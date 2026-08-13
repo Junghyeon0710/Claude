@@ -1,0 +1,194 @@
+[
+  {
+    "folder": "RedBrick",
+    "slug": "brick_wall_001",
+    "source": "https://polyhaven.com/a/brick_wall_001",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\RedBrick\\RedBrick_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\RedBrick\\RedBrick_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\RedBrick\\RedBrick_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\RedBrick\\RedBrick_AO.jpg"
+    }
+  },
+  {
+    "folder": "OldPaintedBrick",
+    "slug": "painted_worn_brick",
+    "source": "https://polyhaven.com/a/painted_worn_brick",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\OldPaintedBrick\\OldPaintedBrick_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\OldPaintedBrick\\OldPaintedBrick_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\OldPaintedBrick\\OldPaintedBrick_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\OldPaintedBrick\\OldPaintedBrick_AO.jpg"
+    }
+  },
+  {
+    "folder": "AgedConcrete",
+    "slug": "chipped_concrete",
+    "source": "https://polyhaven.com/a/chipped_concrete",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\AgedConcrete\\AgedConcrete_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\AgedConcrete\\AgedConcrete_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\AgedConcrete\\AgedConcrete_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\AgedConcrete\\AgedConcrete_AO.jpg"
+    }
+  },
+  {
+    "folder": "DirtyConcrete",
+    "slug": "dirty_concrete",
+    "source": "https://polyhaven.com/a/dirty_concrete",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\DirtyConcrete\\DirtyConcrete_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\DirtyConcrete\\DirtyConcrete_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\DirtyConcrete\\DirtyConcrete_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\DirtyConcrete\\DirtyConcrete_AO.jpg"
+    }
+  },
+  {
+    "folder": "PaintedPlaster",
+    "slug": "painted_plaster_wall",
+    "source": "https://polyhaven.com/a/painted_plaster_wall",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PaintedPlaster\\PaintedPlaster_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PaintedPlaster\\PaintedPlaster_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PaintedPlaster\\PaintedPlaster_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PaintedPlaster\\PaintedPlaster_AO.jpg"
+    }
+  },
+  {
+    "folder": "PeelingPaintWall",
+    "slug": "peeling_painted_wall",
+    "source": "https://polyhaven.com/a/peeling_painted_wall",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PeelingPaintWall\\PeelingPaintWall_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PeelingPaintWall\\PeelingPaintWall_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PeelingPaintWall\\PeelingPaintWall_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PeelingPaintWall\\PeelingPaintWall_AO.jpg"
+    }
+  },
+  {
+    "folder": "CeramicTileFacade",
+    "slug": "concrete_tile_facade",
+    "source": "https://polyhaven.com/a/concrete_tile_facade",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\CeramicTileFacade\\CeramicTileFacade_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\CeramicTileFacade\\CeramicTileFacade_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\CeramicTileFacade\\CeramicTileFacade_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\CeramicTileFacade\\CeramicTileFacade_AO.jpg"
+    }
+  },
+  {
+    "folder": "GalvanizedMetal",
+    "slug": "corrugated_iron",
+    "source": "https://polyhaven.com/a/corrugated_iron",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\GalvanizedMetal\\GalvanizedMetal_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\GalvanizedMetal\\GalvanizedMetal_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\GalvanizedMetal\\GalvanizedMetal_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\GalvanizedMetal\\GalvanizedMetal_AO.jpg"
+    }
+  },
+  {
+    "folder": "RustyMetal",
+    "slug": "rusty_metal_02",
+    "source": "https://polyhaven.com/a/rusty_metal_02",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\RustyMetal\\RustyMetal_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\RustyMetal\\RustyMetal_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\RustyMetal\\RustyMetal_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\RustyMetal\\RustyMetal_AO.jpg"
+    }
+  },
+  {
+    "folder": "PaintedMetalShutter",
+    "slug": "painted_metal_shutter",
+    "source": "https://polyhaven.com/a/painted_metal_shutter",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PaintedMetalShutter\\PaintedMetalShutter_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PaintedMetalShutter\\PaintedMetalShutter_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PaintedMetalShutter\\PaintedMetalShutter_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\PaintedMetalShutter\\PaintedMetalShutter_AO.jpg"
+    }
+  },
+  {
+    "folder": "WornAsphalt",
+    "slug": "asphalt_02",
+    "source": "https://polyhaven.com/a/asphalt_02",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\WornAsphalt\\WornAsphalt_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\WornAsphalt\\WornAsphalt_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\WornAsphalt\\WornAsphalt_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\WornAsphalt\\WornAsphalt_AO.jpg"
+    }
+  },
+  {
+    "folder": "ConcretePavement",
+    "slug": "concrete_pavement_02",
+    "source": "https://polyhaven.com/a/concrete_pavement_02",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\ConcretePavement\\ConcretePavement_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\ConcretePavement\\ConcretePavement_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\ConcretePavement\\ConcretePavement_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\ConcretePavement\\ConcretePavement_AO.jpg"
+    }
+  },
+  {
+    "folder": "OldStoneSidewalk",
+    "slug": "cobblestone_floor_02",
+    "source": "https://polyhaven.com/a/cobblestone_floor_02",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\OldStoneSidewalk\\OldStoneSidewalk_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\OldStoneSidewalk\\OldStoneSidewalk_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\OldStoneSidewalk\\OldStoneSidewalk_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\OldStoneSidewalk\\OldStoneSidewalk_AO.jpg"
+    }
+  },
+  {
+    "folder": "ClayRoofTile",
+    "slug": "clay_roof_tiles_02",
+    "source": "https://polyhaven.com/a/clay_roof_tiles_02",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\ClayRoofTile\\ClayRoofTile_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\ClayRoofTile\\ClayRoofTile_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\ClayRoofTile\\ClayRoofTile_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\ClayRoofTile\\ClayRoofTile_AO.jpg"
+    }
+  },
+  {
+    "folder": "WeatheredWoodPlanks",
+    "slug": "wood_planks_dirt",
+    "source": "https://polyhaven.com/a/wood_planks_dirt",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\WeatheredWoodPlanks\\WeatheredWoodPlanks_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\WeatheredWoodPlanks\\WeatheredWoodPlanks_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\WeatheredWoodPlanks\\WeatheredWoodPlanks_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\WeatheredWoodPlanks\\WeatheredWoodPlanks_AO.jpg"
+    }
+  },
+  {
+    "folder": "CoarseRust",
+    "slug": "rust_coarse_01",
+    "source": "https://polyhaven.com/a/rust_coarse_01",
+    "license": "CC0",
+    "maps": {
+      "BaseColor": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\CoarseRust\\CoarseRust_BaseColor.jpg",
+      "Normal": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\CoarseRust\\CoarseRust_Normal.jpg",
+      "Roughness": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\CoarseRust\\CoarseRust_Roughness.jpg",
+      "AO": "D:\\Claude\\ExternalAssets\\Textures\\KoreanOldTown\\CoarseRust\\CoarseRust_AO.jpg"
+    }
+  }
+]
