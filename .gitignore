@@ -19,3 +19,10 @@ Build/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Claude Code local settings (personal, machine-specific)
+.claude/
+
+# Raw DCC source files (Blender working files). Only the exported/imported
+# results under ExternalAssets/ and Content/ are tracked in git.
+SourceArt/
