@@ -37,6 +37,10 @@
 		{
 			"Name": "UMGToolSet",
 			"Enabled": true
+		},
+		{
+			"Name": "CommonUI",
+			"Enabled": true
 		}
 	]
 }

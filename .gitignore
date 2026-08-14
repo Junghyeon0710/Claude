@@ -4,6 +4,9 @@ DerivedDataCache/
 Intermediate/
 Saved/
 
+# Local Codex settings
+.codex/
+
 # IDE and local user files
 .vs/
 .idea/
@@ -12,6 +15,8 @@ Saved/
 *.userprefs
 *.VC.db
 *.VC.opendb
+*.sln
+*.slnx
 
 # Build output
 Build/
@@ -20,9 +25,8 @@ Build/
 .DS_Store
 Thumbs.db
 
-# Claude Code local settings (personal, machine-specific)
-.claude/
-
-# Raw DCC source files (Blender working files). Only the exported/imported
-# results under ExternalAssets/ and Content/ are tracked in git.
-SourceArt/
+# KoreanOldTown generated intermediates
+*.blend1
+ExternalAssets/Models/KoreanOldTown/KoreanOldTown_CombinedSource.blend
+Content/KoreanOldTown/Level/KOT_SaveProbe.umap
+Content/KoreanOldTown/Level/KoreanOldTown_BlenderGenerated.umap
