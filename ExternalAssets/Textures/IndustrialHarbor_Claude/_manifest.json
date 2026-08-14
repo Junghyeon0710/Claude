@@ -1,0 +1,326 @@
+[
+ {
+  "polyhaven_id": "concrete_layers_02",
+  "asset": "Concrete_Aged",
+  "category": "Concrete",
+  "source": "https://polyhaven.com/a/concrete_layers_02",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Concrete_Aged_D.jpg",
+   "N": "T_CL_Concrete_Aged_N.jpg",
+   "ARM": "T_CL_Concrete_Aged_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "concrete_slab_wall_02",
+  "asset": "Concrete_Panel",
+  "category": "Concrete",
+  "source": "https://polyhaven.com/a/concrete_slab_wall_02",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Concrete_Panel_D.jpg",
+   "N": "T_CL_Concrete_Panel_N.jpg",
+   "ARM": "T_CL_Concrete_Panel_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "brushed_concrete_03",
+  "asset": "Concrete_FloorWorn",
+  "category": "Concrete",
+  "source": "https://polyhaven.com/a/brushed_concrete_03",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Concrete_FloorWorn_D.jpg",
+   "N": "T_CL_Concrete_FloorWorn_N.jpg",
+   "ARM": "T_CL_Concrete_FloorWorn_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "concrete_floor_painted",
+  "asset": "Concrete_FloorPaint",
+  "category": "Concrete",
+  "source": "https://polyhaven.com/a/concrete_floor_painted",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Concrete_FloorPaint_D.jpg",
+   "N": "T_CL_Concrete_FloorPaint_N.jpg",
+   "ARM": "T_CL_Concrete_FloorPaint_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "chipped_concrete",
+  "asset": "Concrete_Chipped",
+  "category": "Concrete",
+  "source": "https://polyhaven.com/a/chipped_concrete",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Concrete_Chipped_D.jpg",
+   "N": "T_CL_Concrete_Chipped_N.jpg",
+   "ARM": "T_CL_Concrete_Chipped_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "concrete_block_wall_03",
+  "asset": "Concrete_Block",
+  "category": "Concrete",
+  "source": "https://polyhaven.com/a/concrete_block_wall_03",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Concrete_Block_D.jpg",
+   "N": "T_CL_Concrete_Block_N.jpg",
+   "ARM": "T_CL_Concrete_Block_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "rusty_corrugated_iron",
+  "asset": "Metal_CorrugRust",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/rusty_corrugated_iron",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_CorrugRust_D.jpg",
+   "N": "T_CL_Metal_CorrugRust_N.jpg",
+   "ARM": "T_CL_Metal_CorrugRust_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "corrugated_iron_02",
+  "asset": "Metal_CorrugGalv",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/corrugated_iron_02",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_CorrugGalv_D.jpg",
+   "N": "T_CL_Metal_CorrugGalv_N.jpg",
+   "ARM": "T_CL_Metal_CorrugGalv_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "worn_corrugated_iron",
+  "asset": "Metal_CorrugWorn",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/worn_corrugated_iron",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_CorrugWorn_D.jpg",
+   "N": "T_CL_Metal_CorrugWorn_N.jpg",
+   "ARM": "T_CL_Metal_CorrugWorn_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "painted_metal_shutter",
+  "asset": "Metal_Shutter",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/painted_metal_shutter",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_Shutter_D.jpg",
+   "N": "T_CL_Metal_Shutter_N.jpg",
+   "ARM": "T_CL_Metal_Shutter_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "rusty_metal_sheet",
+  "asset": "Metal_RustSheet",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/rusty_metal_sheet",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_RustSheet_D.jpg",
+   "N": "T_CL_Metal_RustSheet_N.jpg",
+   "ARM": "T_CL_Metal_RustSheet_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "blue_metal_plate",
+  "asset": "Metal_PlateBlue",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/blue_metal_plate",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_PlateBlue_D.jpg",
+   "N": "T_CL_Metal_PlateBlue_N.jpg",
+   "ARM": "T_CL_Metal_PlateBlue_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "metal_plate_02",
+  "asset": "Metal_PlateCorroded",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/metal_plate_02",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_PlateCorroded_D.jpg",
+   "N": "T_CL_Metal_PlateCorroded_N.jpg",
+   "ARM": "T_CL_Metal_PlateCorroded_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "green_metal_rust",
+  "asset": "Metal_PaintGreen",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/green_metal_rust",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_PaintGreen_D.jpg",
+   "N": "T_CL_Metal_PaintGreen_N.jpg",
+   "ARM": "T_CL_Metal_PaintGreen_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "factory_wall",
+  "asset": "Metal_FactoryWall",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/factory_wall",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_FactoryWall_D.jpg",
+   "N": "T_CL_Metal_FactoryWall_N.jpg",
+   "ARM": "T_CL_Metal_FactoryWall_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "metal_grate_rusty",
+  "asset": "Metal_GrateRusty",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/metal_grate_rusty",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_GrateRusty_D.jpg",
+   "N": "T_CL_Metal_GrateRusty_N.jpg",
+   "ARM": "T_CL_Metal_GrateRusty_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "rust_coarse_01",
+  "asset": "Rust_Coarse",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/rust_coarse_01",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Rust_Coarse_D.jpg",
+   "N": "T_CL_Rust_Coarse_N.jpg",
+   "ARM": "T_CL_Rust_Coarse_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "rusty_metal_03",
+  "asset": "Metal_Rust03",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/rusty_metal_03",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Metal_Rust03_D.jpg",
+   "N": "T_CL_Metal_Rust03_N.jpg",
+   "ARM": "T_CL_Metal_Rust03_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "asphalt_03",
+  "asset": "Asphalt_Worn",
+  "category": "Ground",
+  "source": "https://polyhaven.com/a/asphalt_03",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Asphalt_Worn_D.jpg",
+   "N": "T_CL_Asphalt_Worn_N.jpg",
+   "ARM": "T_CL_Asphalt_Worn_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "asphalt_02",
+  "asset": "Asphalt_Cracked",
+  "category": "Ground",
+  "source": "https://polyhaven.com/a/asphalt_02",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Asphalt_Cracked_D.jpg",
+   "N": "T_CL_Asphalt_Cracked_N.jpg",
+   "ARM": "T_CL_Asphalt_Cracked_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "aerial_asphalt_01",
+  "asset": "Asphalt_Road",
+  "category": "Ground",
+  "source": "https://polyhaven.com/a/aerial_asphalt_01",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Asphalt_Road_D.jpg",
+   "N": "T_CL_Asphalt_Road_N.jpg",
+   "ARM": "T_CL_Asphalt_Road_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "container_side",
+  "asset": "Container_Side",
+  "category": "Metal",
+  "source": "https://polyhaven.com/a/container_side",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Container_Side_D.jpg",
+   "N": "T_CL_Container_Side_N.jpg",
+   "ARM": "T_CL_Container_Side_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "worn_planks",
+  "asset": "Wood_Worn",
+  "category": "Wood",
+  "source": "https://polyhaven.com/a/worn_planks",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Wood_Worn_D.jpg",
+   "N": "T_CL_Wood_Worn_N.jpg",
+   "ARM": "T_CL_Wood_Worn_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "brown_planks_09",
+  "asset": "Wood_Plank",
+  "category": "Wood",
+  "source": "https://polyhaven.com/a/brown_planks_09",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Wood_Plank_D.jpg",
+   "N": "T_CL_Wood_Plank_N.jpg",
+   "ARM": "T_CL_Wood_Plank_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "brick_wall_006",
+  "asset": "Brick_Red",
+  "category": "Brick",
+  "source": "https://polyhaven.com/a/brick_wall_006",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Brick_Red_D.jpg",
+   "N": "T_CL_Brick_Red_N.jpg",
+   "ARM": "T_CL_Brick_Red_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "bitumen",
+  "asset": "Roof_Bitumen",
+  "category": "Roof",
+  "source": "https://polyhaven.com/a/bitumen",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Roof_Bitumen_D.jpg",
+   "N": "T_CL_Roof_Bitumen_N.jpg",
+   "ARM": "T_CL_Roof_Bitumen_ARM.jpg"
+  }
+ },
+ {
+  "polyhaven_id": "damp_sand",
+  "asset": "Water_Ripple",
+  "category": "Water",
+  "source": "https://polyhaven.com/a/damp_sand",
+  "license": "CC0",
+  "maps": {
+   "D": "T_CL_Water_Ripple_D.jpg",
+   "N": "T_CL_Water_Ripple_N.jpg",
+   "ARM": "T_CL_Water_Ripple_ARM.jpg"
+  }
+ }
+]
