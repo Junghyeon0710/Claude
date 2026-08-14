@@ -1,0 +1,2465 @@
+[
+ {
+  "name": "CL_BG_Chimney",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_BG_Chimney.fbx",
+  "slots": [
+   "M_Concrete_Aged",
+   "M_Brick_Red",
+   "M_Metal_Rust03"
+  ],
+  "tris": 868,
+  "verts": 504,
+  "min": [
+   -2.5,
+   -2.5,
+   0.0
+  ],
+  "max": [
+   2.5,
+   2.5,
+   28.2
+  ],
+  "size_m": [
+   5.0,
+   5.0,
+   28.2
+  ]
+ },
+ {
+  "name": "CL_BG_Factory",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_BG_Factory.fbx",
+  "slots": [
+   "M_Concrete_Aged",
+   "M_Concrete_Panel",
+   "M_Glass",
+   "M_Brick_Red",
+   "M_Metal_Rust03",
+   "M_Metal_CorrugGalv"
+  ],
+  "tris": 672,
+  "verts": 384,
+  "min": [
+   -15.3,
+   -10.3,
+   0.0
+  ],
+  "max": [
+   15.3,
+   10.3,
+   28.4
+  ],
+  "size_m": [
+   30.6,
+   20.6,
+   28.4
+  ]
+ },
+ {
+  "name": "CL_BG_GantryCrane",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_BG_GantryCrane.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Concrete_Aged",
+   "M_Metal_RustSheet",
+   "M_Metal_PlateBlue",
+   "M_Metal_Rust03"
+  ],
+  "tris": 604,
+  "verts": 400,
+  "min": [
+   -12.5,
+   -25.923,
+   -0.4
+  ],
+  "max": [
+   12.5,
+   4.5,
+   27.759
+  ],
+  "size_m": [
+   25.0,
+   30.423,
+   28.159
+  ]
+ },
+ {
+  "name": "CL_BG_Silo",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_BG_Silo.fbx",
+  "slots": [
+   "M_Concrete_Aged",
+   "M_Concrete_Panel",
+   "M_Metal_CorrugGalv",
+   "M_Metal_Rust03",
+   "M_Metal_CorrugWorn",
+   "M_Metal_GrateRusty"
+  ],
+  "tris": 1674,
+  "verts": 884,
+  "min": [
+   -8.0,
+   -3.5,
+   0.0
+  ],
+  "max": [
+   8.6,
+   3.5,
+   18.3
+  ],
+  "size_m": [
+   16.6,
+   7.0,
+   18.3
+  ]
+ },
+ {
+  "name": "CL_BG_StorageTank",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_BG_StorageTank.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Metal_Rust03",
+   "M_Metal_RustSheet",
+   "M_Concrete_Aged",
+   "M_Metal_GrateRusty"
+  ],
+  "tris": 1348,
+  "verts": 772,
+  "min": [
+   -8.125,
+   -10.7,
+   -0.5
+  ],
+  "max": [
+   8.125,
+   8.125,
+   12.15
+  ],
+  "size_m": [
+   16.25,
+   18.825,
+   12.65
+  ]
+ },
+ {
+  "name": "CL_BG_Warehouse",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_BG_Warehouse.fbx",
+  "slots": [
+   "M_Concrete_Block",
+   "M_Metal_CorrugWorn",
+   "M_Metal_CorrugRust",
+   "M_Metal_Rust03",
+   "M_Metal_CorrugGalv"
+  ],
+  "tris": 906,
+  "verts": 506,
+  "min": [
+   -21.5,
+   -12.5,
+   0.0
+  ],
+  "max": [
+   21.5,
+   12.5,
+   16.68
+  ],
+  "size_m": [
+   43.0,
+   25.0,
+   16.68
+  ]
+ },
+ {
+  "name": "CL_BarrelPlastic",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_BarrelPlastic.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Metal_Rust03"
+  ],
+  "tris": 300,
+  "verts": 160,
+  "min": [
+   -0.295,
+   -0.295,
+   0.0
+  ],
+  "max": [
+   0.295,
+   0.295,
+   0.96
+  ],
+  "size_m": [
+   0.59,
+   0.59,
+   0.96
+  ]
+ },
+ {
+  "name": "CL_BarrelRusted",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_BarrelRusted.fbx",
+  "slots": [
+   "M_Metal_RustSheet",
+   "M_Rust_Coarse"
+  ],
+  "tris": 240,
+  "verts": 128,
+  "min": [
+   -0.31,
+   -0.31,
+   0.0
+  ],
+  "max": [
+   0.31,
+   0.31,
+   0.9
+  ],
+  "size_m": [
+   0.62,
+   0.62,
+   0.9
+  ]
+ },
+ {
+  "name": "CL_BeamStack",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_BeamStack.fbx",
+  "slots": [
+   "M_Metal_PlateCorroded",
+   "M_Metal_Rust03",
+   "M_Wood_Worn"
+  ],
+  "tris": 600,
+  "verts": 400,
+  "min": [
+   -1.8,
+   -0.65,
+   -0.01
+  ],
+  "max": [
+   1.8,
+   0.65,
+   0.785
+  ],
+  "size_m": [
+   3.6,
+   1.3,
+   0.795
+  ]
+ },
+ {
+  "name": "CL_Bollard_Harbor",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Bollard_Harbor.fbx",
+  "slots": [
+   "M_Metal_PlateCorroded",
+   "M_Metal_Rust03"
+  ],
+  "tris": 236,
+  "verts": 132,
+  "min": [
+   -0.331,
+   -0.34,
+   0.0
+  ],
+  "max": [
+   0.331,
+   0.34,
+   0.84
+  ],
+  "size_m": [
+   0.663,
+   0.68,
+   0.84
+  ]
+ },
+ {
+  "name": "CL_Bollard_Short",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_Bollard_Short.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Metal_Rust03",
+   "M_Metal_RustSheet",
+   "M_Concrete_Floor"
+  ],
+  "tris": 144,
+  "verts": 80,
+  "min": [
+   -0.15,
+   -0.15,
+   -0.03
+  ],
+  "max": [
+   0.15,
+   0.15,
+   0.91
+  ],
+  "size_m": [
+   0.3,
+   0.3,
+   0.94
+  ]
+ },
+ {
+  "name": "CL_CableReel",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_CableReel.fbx",
+  "slots": [
+   "M_Wood_Worn",
+   "M_Metal_Rust03",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 540,
+  "verts": 288,
+  "min": [
+   -0.85,
+   -0.14,
+   -0.85
+  ],
+  "max": [
+   0.85,
+   0.76,
+   0.85
+  ],
+  "size_m": [
+   1.7,
+   0.9,
+   1.7
+  ]
+ },
+ {
+  "name": "CL_Canopy_Steel",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Canopy_Steel.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Concrete_Floor",
+   "M_Metal_CorrugWorn"
+  ],
+  "tris": 256,
+  "verts": 160,
+  "min": [
+   -3.8,
+   -2.7,
+   -0.08
+  ],
+  "max": [
+   3.8,
+   2.7,
+   3.84
+  ],
+  "size_m": [
+   7.6,
+   5.4,
+   3.92
+  ]
+ },
+ {
+  "name": "CL_CardboardBox",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_CardboardBox.fbx",
+  "slots": [
+   "M_Wood_Plank",
+   "M_Metal_Rust03"
+  ],
+  "tris": 36,
+  "verts": 24,
+  "min": [
+   -0.28,
+   -0.22,
+   0.0
+  ],
+  "max": [
+   0.28,
+   0.22,
+   0.425
+  ],
+  "size_m": [
+   0.56,
+   0.44,
+   0.425
+  ]
+ },
+ {
+  "name": "CL_Cart",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_Cart.fbx",
+  "slots": [
+   "M_Metal_PlateCorroded",
+   "M_Metal_Rust03",
+   "M_Roof_Bitumen",
+   "M_Wood_Worn"
+  ],
+  "tris": 252,
+  "verts": 152,
+  "min": [
+   -0.65,
+   -0.39,
+   0.0
+  ],
+  "max": [
+   0.65,
+   0.39,
+   0.755
+  ],
+  "size_m": [
+   1.3,
+   0.78,
+   0.755
+  ]
+ },
+ {
+  "name": "CL_Catwalk_6m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Catwalk_6m.fbx",
+  "slots": [
+   "M_Metal_GrateRusty",
+   "M_Metal_Rust03"
+  ],
+  "tris": 444,
+  "verts": 272,
+  "min": [
+   -0.7,
+   -3.03,
+   -0.916
+  ],
+  "max": [
+   0.7,
+   3.03,
+   1.08
+  ],
+  "size_m": [
+   1.4,
+   6.06,
+   1.996
+  ]
+ },
+ {
+  "name": "CL_Compressor",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_Compressor.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Metal_PlateBlue",
+   "M_Metal_PlateCorroded",
+   "M_Roof_Bitumen"
+  ],
+  "tris": 220,
+  "verts": 124,
+  "min": [
+   -0.75,
+   -0.375,
+   -0.09
+  ],
+  "max": [
+   0.75,
+   0.47,
+   1.35
+  ],
+  "size_m": [
+   1.5,
+   0.845,
+   1.44
+  ]
+ },
+ {
+  "name": "CL_ConcreteBarrier",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_ConcreteBarrier.fbx",
+  "slots": [
+   "M_Concrete_Aged",
+   "M_Concrete_Panel"
+  ],
+  "tris": 32,
+  "verts": 20,
+  "min": [
+   -1.53,
+   -0.3,
+   0.0
+  ],
+  "max": [
+   1.53,
+   0.54,
+   0.98
+  ],
+  "size_m": [
+   3.06,
+   0.84,
+   0.98
+  ]
+ },
+ {
+  "name": "CL_Container_20ft",
+  "category": "Containers",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Containers\\CL_Container_20ft.fbx",
+  "slots": [
+   "M_Container_Side",
+   "M_Metal_Rust03",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 716,
+  "verts": 472,
+  "min": [
+   -3.06,
+   -1.26,
+   0.0
+  ],
+  "max": [
+   3.2,
+   1.26,
+   2.59
+  ],
+  "size_m": [
+   6.26,
+   2.52,
+   2.59
+  ]
+ },
+ {
+  "name": "CL_Container_20ft_Open",
+  "category": "Containers",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Containers\\CL_Container_20ft_Open.fbx",
+  "slots": [
+   "M_Container_Side",
+   "M_Metal_Rust03",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 612,
+  "verts": 408,
+  "min": [
+   -3.06,
+   -2.284,
+   0.0
+  ],
+  "max": [
+   3.957,
+   2.284,
+   2.59
+  ],
+  "size_m": [
+   7.017,
+   4.569,
+   2.59
+  ]
+ },
+ {
+  "name": "CL_Container_20ft_Rust",
+  "category": "Containers",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Containers\\CL_Container_20ft_Rust.fbx",
+  "slots": [
+   "M_Metal_RustSheet",
+   "M_Metal_Rust03",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 716,
+  "verts": 472,
+  "min": [
+   -3.06,
+   -1.26,
+   0.0
+  ],
+  "max": [
+   3.2,
+   1.26,
+   2.59
+  ],
+  "size_m": [
+   6.26,
+   2.52,
+   2.59
+  ]
+ },
+ {
+  "name": "CL_Container_40ft",
+  "category": "Containers",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Containers\\CL_Container_40ft.fbx",
+  "slots": [
+   "M_Container_Side",
+   "M_Metal_Rust03",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 1124,
+  "verts": 744,
+  "min": [
+   -6.125,
+   -1.26,
+   0.0
+  ],
+  "max": [
+   6.265,
+   1.26,
+   2.59
+  ],
+  "size_m": [
+   12.39,
+   2.52,
+   2.59
+  ]
+ },
+ {
+  "name": "CL_CrateMetal",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_CrateMetal.fbx",
+  "slots": [
+   "M_Metal_PlateCorroded",
+   "M_Metal_Rust03",
+   "M_Metal_GrateRusty"
+  ],
+  "tris": 96,
+  "verts": 64,
+  "min": [
+   -0.65,
+   -0.5,
+   -0.005
+  ],
+  "max": [
+   0.65,
+   0.5,
+   0.995
+  ],
+  "size_m": [
+   1.3,
+   1.0,
+   1.0
+  ]
+ },
+ {
+  "name": "CL_CrateWood",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_CrateWood.fbx",
+  "slots": [
+   "M_Wood_Plank",
+   "M_Wood_Worn"
+  ],
+  "tris": 168,
+  "verts": 112,
+  "min": [
+   -0.58,
+   -0.45,
+   0.0
+  ],
+  "max": [
+   0.58,
+   0.45,
+   0.835
+  ],
+  "size_m": [
+   1.16,
+   0.9,
+   0.835
+  ]
+ },
+ {
+  "name": "CL_Curb_8m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Curb_8m.fbx",
+  "slots": [
+   "M_Concrete_Floor"
+  ],
+  "tris": 24,
+  "verts": 16,
+  "min": [
+   -4.0,
+   -0.16,
+   0.0
+  ],
+  "max": [
+   4.0,
+   0.26,
+   0.22
+  ],
+  "size_m": [
+   8.0,
+   0.42,
+   0.22
+  ]
+ },
+ {
+  "name": "CL_Door_Metal",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Door_Metal.fbx",
+  "slots": [
+   "M_Metal_PlateBlue",
+   "M_Metal_Rust03",
+   "M_Metal_GrateRusty"
+  ],
+  "tris": 48,
+  "verts": 32,
+  "min": [
+   -0.61,
+   -0.115,
+   0.0
+  ],
+  "max": [
+   0.61,
+   0.085,
+   2.28
+  ],
+  "size_m": [
+   1.22,
+   0.2,
+   2.28
+  ]
+ },
+ {
+  "name": "CL_Door_Warehouse",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Door_Warehouse.fbx",
+  "slots": [
+   "M_Metal_PlateBlue",
+   "M_Metal_Rust03"
+  ],
+  "tris": 144,
+  "verts": 96,
+  "min": [
+   -1.65,
+   -0.12,
+   0.0
+  ],
+  "max": [
+   1.65,
+   0.11,
+   3.05
+  ],
+  "size_m": [
+   3.3,
+   0.23,
+   3.05
+  ]
+ },
+ {
+  "name": "CL_DrainPipe_5m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_DrainPipe_5m.fbx",
+  "slots": [
+   "M_Metal_Rust03"
+  ],
+  "tris": 120,
+  "verts": 72,
+  "min": [
+   -0.12,
+   -0.353,
+   -0.003
+  ],
+  "max": [
+   0.12,
+   0.16,
+   5.16
+  ],
+  "size_m": [
+   0.24,
+   0.513,
+   5.163
+  ]
+ },
+ {
+  "name": "CL_ElectricalBox",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_ElectricalBox.fbx",
+  "slots": [
+   "M_Metal_PlateCorroded",
+   "M_Metal_Rust03",
+   "M_Metal_RustSheet"
+  ],
+  "tris": 96,
+  "verts": 62,
+  "min": [
+   -0.425,
+   -0.23,
+   0.0
+  ],
+  "max": [
+   0.425,
+   0.21,
+   1.115
+  ],
+  "size_m": [
+   0.85,
+   0.44,
+   1.115
+  ]
+ },
+ {
+  "name": "CL_ExhaustFan",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_ExhaustFan.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Metal_PlateCorroded",
+   "M_Metal_GrateRusty"
+  ],
+  "tris": 180,
+  "verts": 104,
+  "min": [
+   -0.675,
+   -0.19,
+   -0.675
+  ],
+  "max": [
+   0.675,
+   0.15,
+   0.675
+  ],
+  "size_m": [
+   1.35,
+   0.34,
+   1.35
+  ]
+ },
+ {
+  "name": "CL_Fence_Steel_4m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Fence_Steel_4m.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Concrete_Floor",
+   "M_Metal_GrateRusty"
+  ],
+  "tris": 192,
+  "verts": 120,
+  "min": [
+   -2.15,
+   -0.27,
+   0.0
+  ],
+  "max": [
+   2.15,
+   0.15,
+   2.518
+  ],
+  "size_m": [
+   4.3,
+   0.42,
+   2.518
+  ]
+ },
+ {
+  "name": "CL_Forklift",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_Forklift.fbx",
+  "slots": [
+   "M_Metal_RustSheet",
+   "M_Metal_Rust03",
+   "M_Roof_Bitumen",
+   "M_Metal_PlateCorroded",
+   "M_Metal_GrateRusty",
+   "M_Metal_PlateBlue"
+  ],
+  "tris": 436,
+  "verts": 264,
+  "min": [
+   -1.175,
+   -0.83,
+   0.0
+  ],
+  "max": [
+   2.075,
+   0.83,
+   2.74
+  ],
+  "size_m": [
+   3.25,
+   1.66,
+   2.74
+  ]
+ },
+ {
+  "name": "CL_GasCylinder",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_GasCylinder.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Metal_Rust03"
+  ],
+  "tris": 142,
+  "verts": 72,
+  "min": [
+   -0.115,
+   -0.115,
+   0.0
+  ],
+  "max": [
+   0.115,
+   0.115,
+   1.38
+  ],
+  "size_m": [
+   0.23,
+   0.23,
+   1.38
+  ]
+ },
+ {
+  "name": "CL_GasCylinderRack",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_GasCylinderRack.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Metal_Rust03",
+   "M_Metal_PlateBlue",
+   "M_Metal_RustSheet",
+   "M_Metal_GrateRusty"
+  ],
+  "tris": 856,
+  "verts": 440,
+  "min": [
+   -1.09,
+   -0.49,
+   -0.04
+  ],
+  "max": [
+   1.09,
+   0.69,
+   1.32
+  ],
+  "size_m": [
+   2.18,
+   1.18,
+   1.36
+  ]
+ },
+ {
+  "name": "CL_Gate_Steel",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Gate_Steel.fbx",
+  "slots": [
+   "M_Concrete_Aged",
+   "M_Metal_PlateBlue",
+   "M_Metal_Rust03",
+   "M_Metal_RustSheet"
+  ],
+  "tris": 252,
+  "verts": 168,
+  "min": [
+   -3.525,
+   -0.225,
+   0.0
+  ],
+  "max": [
+   3.525,
+   0.225,
+   2.8
+  ],
+  "size_m": [
+   7.05,
+   0.45,
+   2.8
+  ]
+ },
+ {
+  "name": "CL_Generator",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_Generator.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Metal_PaintGreen",
+   "M_Metal_GrateRusty",
+   "M_Metal_PlateCorroded",
+   "M_Roof_Bitumen"
+  ],
+  "tris": 232,
+  "verts": 136,
+  "min": [
+   -1.05,
+   -0.51,
+   -0.16
+  ],
+  "max": [
+   1.05,
+   0.59,
+   2.1
+  ],
+  "size_m": [
+   2.1,
+   1.1,
+   2.26
+  ]
+ },
+ {
+  "name": "CL_Ground_AsphaltCracked_20m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Ground_AsphaltCracked_20m.fbx",
+  "slots": [
+   "M_Asphalt_Cracked"
+  ],
+  "tris": 12,
+  "verts": 8,
+  "min": [
+   -10.0,
+   -10.0,
+   -0.3
+  ],
+  "max": [
+   10.0,
+   10.0,
+   0.0
+  ],
+  "size_m": [
+   20.0,
+   20.0,
+   0.3
+  ]
+ },
+ {
+  "name": "CL_Ground_Asphalt_20m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Ground_Asphalt_20m.fbx",
+  "slots": [
+   "M_Asphalt_Worn"
+  ],
+  "tris": 12,
+  "verts": 8,
+  "min": [
+   -10.0,
+   -10.0,
+   -0.3
+  ],
+  "max": [
+   10.0,
+   10.0,
+   0.0
+  ],
+  "size_m": [
+   20.0,
+   20.0,
+   0.3
+  ]
+ },
+ {
+  "name": "CL_Ground_ConcretePaint_20m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Ground_ConcretePaint_20m.fbx",
+  "slots": [
+   "M_Concrete_Painted"
+  ],
+  "tris": 12,
+  "verts": 8,
+  "min": [
+   -10.0,
+   -10.0,
+   -0.3
+  ],
+  "max": [
+   10.0,
+   10.0,
+   0.0
+  ],
+  "size_m": [
+   20.0,
+   20.0,
+   0.3
+  ]
+ },
+ {
+  "name": "CL_Ground_Concrete_20m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Ground_Concrete_20m.fbx",
+  "slots": [
+   "M_Concrete_Floor"
+  ],
+  "tris": 12,
+  "verts": 8,
+  "min": [
+   -10.0,
+   -10.0,
+   -0.3
+  ],
+  "max": [
+   10.0,
+   10.0,
+   0.0
+  ],
+  "size_m": [
+   20.0,
+   20.0,
+   0.3
+  ]
+ },
+ {
+  "name": "CL_HandTruck",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_HandTruck.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Roof_Bitumen",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 172,
+  "verts": 104,
+  "min": [
+   -0.305,
+   -0.3,
+   -0.001
+  ],
+  "max": [
+   0.305,
+   0.265,
+   1.275
+  ],
+  "size_m": [
+   0.61,
+   0.565,
+   1.276
+  ]
+ },
+ {
+  "name": "CL_HarborOffice",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_HarborOffice.fbx",
+  "slots": [
+   "M_Concrete_Floor",
+   "M_Concrete_Panel",
+   "M_Metal_PlateBlue",
+   "M_Metal_Rust03",
+   "M_Concrete_Aged",
+   "M_Glass",
+   "M_Metal_CorrugGalv",
+   "M_Metal_GrateRusty",
+   "M_Roof_Bitumen",
+   "M_Metal_RustSheet"
+  ],
+  "tris": 1500,
+  "verts": 936,
+  "min": [
+   -5.5,
+   -5.35,
+   0.0
+  ],
+  "max": [
+   5.735,
+   4.5,
+   8.94
+  ],
+  "size_m": [
+   11.235,
+   9.85,
+   8.94
+  ]
+ },
+ {
+  "name": "CL_Ladder_5m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Ladder_5m.fbx",
+  "slots": [
+   "M_Metal_Rust03"
+  ],
+  "tris": 648,
+  "verts": 394,
+  "min": [
+   -0.29,
+   -0.035,
+   0.0
+  ],
+  "max": [
+   0.29,
+   0.439,
+   5.0
+  ],
+  "size_m": [
+   0.581,
+   0.474,
+   5.0
+  ]
+ },
+ {
+  "name": "CL_LampIndustrial",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_LampIndustrial.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Metal_PaintGreen",
+   "M_Glass"
+  ],
+  "tris": 160,
+  "verts": 88,
+  "min": [
+   -0.331,
+   -1.19,
+   0.0
+  ],
+  "max": [
+   0.331,
+   0.055,
+   1.16
+  ],
+  "size_m": [
+   0.663,
+   1.245,
+   1.16
+  ]
+ },
+ {
+  "name": "CL_MaintenanceBuilding",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_MaintenanceBuilding.fbx",
+  "slots": [
+   "M_Concrete_Floor",
+   "M_Metal_CorrugWorn",
+   "M_Metal_PaintGreen",
+   "M_Concrete_Painted",
+   "M_Metal_PlateCorroded",
+   "M_Metal_CorrugRust",
+   "M_Metal_Rust03",
+   "M_Metal_PlateBlue"
+  ],
+  "tris": 552,
+  "verts": 330,
+  "min": [
+   -7.2,
+   -5.8,
+   0.0
+  ],
+  "max": [
+   7.2,
+   5.8,
+   7.62
+  ],
+  "size_m": [
+   14.4,
+   11.6,
+   7.62
+  ]
+ },
+ {
+  "name": "CL_MooringRope",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_MooringRope.fbx",
+  "slots": [
+   "M_Wood_Worn",
+   "M_Concrete_Floor"
+  ],
+  "tris": 636,
+  "verts": 336,
+  "min": [
+   -0.62,
+   -0.62,
+   -0.035
+  ],
+  "max": [
+   1.671,
+   0.675,
+   0.395
+  ],
+  "size_m": [
+   2.291,
+   1.295,
+   0.43
+  ]
+ },
+ {
+  "name": "CL_OilDrum",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_OilDrum.fbx",
+  "slots": [
+   "M_Metal_PlateBlue",
+   "M_Metal_Rust03"
+  ],
+  "tris": 328,
+  "verts": 176,
+  "min": [
+   -0.305,
+   -0.305,
+   0.0
+  ],
+  "max": [
+   0.305,
+   0.305,
+   0.92
+  ],
+  "size_m": [
+   0.61,
+   0.61,
+   0.92
+  ]
+ },
+ {
+  "name": "CL_PalletStack",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_PalletStack.fbx",
+  "slots": [
+   "M_Wood_Worn"
+  ],
+  "tris": 168,
+  "verts": 112,
+  "min": [
+   -0.669,
+   -0.45,
+   0.0
+  ],
+  "max": [
+   0.655,
+   0.44,
+   1.01
+  ],
+  "size_m": [
+   1.324,
+   0.89,
+   1.01
+  ]
+ },
+ {
+  "name": "CL_Pallet_Plastic",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_Pallet_Plastic.fbx",
+  "slots": [
+   "M_Metal_PlateBlue"
+  ],
+  "tris": 156,
+  "verts": 104,
+  "min": [
+   -0.6,
+   -0.4,
+   0.0
+  ],
+  "max": [
+   0.6,
+   0.4,
+   0.145
+  ],
+  "size_m": [
+   1.2,
+   0.8,
+   0.145
+  ]
+ },
+ {
+  "name": "CL_Pallet_Wood",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_Pallet_Wood.fbx",
+  "slots": [
+   "M_Wood_Worn"
+  ],
+  "tris": 168,
+  "verts": 96,
+  "min": [
+   -0.6,
+   -0.4,
+   0.0
+  ],
+  "max": [
+   0.6,
+   0.4,
+   0.128
+  ],
+  "size_m": [
+   1.2,
+   0.8,
+   0.128
+  ]
+ },
+ {
+  "name": "CL_PierLadder",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_PierLadder.fbx",
+  "slots": [
+   "M_Metal_Rust03"
+  ],
+  "tris": 296,
+  "verts": 182,
+  "min": [
+   -0.25,
+   -0.035,
+   -3.2
+  ],
+  "max": [
+   0.25,
+   0.38,
+   0.43
+  ],
+  "size_m": [
+   0.501,
+   0.415,
+   3.63
+  ]
+ },
+ {
+  "name": "CL_PierRail_4m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_PierRail_4m.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Metal_Rust03",
+   "M_Metal_GrateRusty"
+  ],
+  "tris": 188,
+  "verts": 112,
+  "min": [
+   -2.11,
+   -0.11,
+   0.0
+  ],
+  "max": [
+   2.11,
+   0.11,
+   1.15
+  ],
+  "size_m": [
+   4.22,
+   0.22,
+   1.15
+  ]
+ },
+ {
+  "name": "CL_Pier_Deck_12m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Pier_Deck_12m.fbx",
+  "slots": [
+   "M_Concrete_Floor",
+   "M_Concrete_Aged",
+   "M_Wood_Worn"
+  ],
+  "tris": 276,
+  "verts": 164,
+  "min": [
+   -6.0,
+   -5.65,
+   -3.6
+  ],
+  "max": [
+   6.0,
+   5.0,
+   0.0
+  ],
+  "size_m": [
+   12.0,
+   10.65,
+   3.6
+  ]
+ },
+ {
+  "name": "CL_PipeLarge_8m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_PipeLarge_8m.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Metal_Rust03"
+  ],
+  "tris": 288,
+  "verts": 160,
+  "min": [
+   -4.0,
+   -0.5,
+   -1.33
+  ],
+  "max": [
+   4.0,
+   0.5,
+   0.5
+  ],
+  "size_m": [
+   8.0,
+   1.0,
+   1.83
+  ]
+ },
+ {
+  "name": "CL_PipeRack_8m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_PipeRack_8m.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Concrete_Floor",
+   "M_Metal_PaintGreen",
+   "M_Metal_PlateCorroded",
+   "M_Metal_RustSheet"
+  ],
+  "tris": 532,
+  "verts": 312,
+  "min": [
+   -4.2,
+   -1.35,
+   -0.1
+  ],
+  "max": [
+   4.2,
+   1.35,
+   3.78
+  ],
+  "size_m": [
+   8.4,
+   2.7,
+   3.88
+  ]
+ },
+ {
+  "name": "CL_PipeStack",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_PipeStack.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Metal_PlateCorroded",
+   "M_Metal_RustSheet",
+   "M_Wood_Worn"
+  ],
+  "tris": 680,
+  "verts": 376,
+  "min": [
+   -2.92,
+   -0.5,
+   -0.0
+  ],
+  "max": [
+   2.92,
+   0.5,
+   2.1
+  ],
+  "size_m": [
+   5.84,
+   1.0,
+   2.1
+  ]
+ },
+ {
+  "name": "CL_Pipe_6m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Pipe_6m.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 176,
+  "verts": 96,
+  "min": [
+   -3.0,
+   -0.17,
+   -0.17
+  ],
+  "max": [
+   3.0,
+   0.17,
+   0.17
+  ],
+  "size_m": [
+   6.0,
+   0.34,
+   0.34
+  ]
+ },
+ {
+  "name": "CL_PowerPole",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_PowerPole.fbx",
+  "slots": [
+   "M_Concrete_Aged",
+   "M_Metal_Rust03",
+   "M_Glass",
+   "M_Metal_PlateCorroded",
+   "M_Concrete_Floor"
+  ],
+  "tris": 531,
+  "verts": 301,
+  "min": [
+   -1.0,
+   -0.35,
+   -0.05
+  ],
+  "max": [
+   1.0,
+   0.63,
+   9.5
+  ],
+  "size_m": [
+   2.0,
+   0.98,
+   9.55
+  ]
+ },
+ {
+  "name": "CL_Railing_Metal_4m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Railing_Metal_4m.fbx",
+  "slots": [
+   "M_Metal_Rust03"
+  ],
+  "tris": 184,
+  "verts": 112,
+  "min": [
+   -2.0,
+   -0.08,
+   0.0
+  ],
+  "max": [
+   2.0,
+   0.08,
+   1.108
+  ],
+  "size_m": [
+   4.0,
+   0.16,
+   1.108
+  ]
+ },
+ {
+  "name": "CL_Ramp_Dock",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Ramp_Dock.fbx",
+  "slots": [
+   "M_Concrete_Floor",
+   "M_Concrete_Aged"
+  ],
+  "tris": 36,
+  "verts": 20,
+  "min": [
+   -3.15,
+   -3.5,
+   -0.5
+  ],
+  "max": [
+   3.15,
+   3.5,
+   1.35
+  ],
+  "size_m": [
+   6.3,
+   7.0,
+   1.85
+  ]
+ },
+ {
+  "name": "CL_RoadSign",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_RoadSign.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Metal_PlateBlue",
+   "M_Metal_RustSheet",
+   "M_Concrete_Floor"
+  ],
+  "tris": 64,
+  "verts": 40,
+  "min": [
+   -0.475,
+   -0.2,
+   -0.04
+  ],
+  "max": [
+   0.475,
+   0.2,
+   2.6
+  ],
+  "size_m": [
+   0.95,
+   0.4,
+   2.64
+  ]
+ },
+ {
+  "name": "CL_Road_20m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Road_20m.fbx",
+  "slots": [
+   "M_Asphalt_Road",
+   "M_Concrete_Floor"
+  ],
+  "tris": 46,
+  "verts": 28,
+  "min": [
+   -10.0,
+   -5.2,
+   -0.34
+  ],
+  "max": [
+   10.0,
+   5.2,
+   0.14
+  ],
+  "size_m": [
+   20.0,
+   10.4,
+   0.48
+  ]
+ },
+ {
+  "name": "CL_RoofVent",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_RoofVent.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Metal_CorrugGalv",
+   "M_Metal_RustSheet"
+  ],
+  "tris": 168,
+  "verts": 92,
+  "min": [
+   -0.536,
+   -0.55,
+   -0.05
+  ],
+  "max": [
+   0.536,
+   0.55,
+   1.18
+  ],
+  "size_m": [
+   1.072,
+   1.1,
+   1.23
+  ]
+ },
+ {
+  "name": "CL_RooftopUnit",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_RooftopUnit.fbx",
+  "slots": [
+   "M_Metal_CorrugGalv",
+   "M_Metal_Rust03",
+   "M_Metal_GrateRusty"
+  ],
+  "tris": 112,
+  "verts": 68,
+  "min": [
+   -1.4,
+   -1.05,
+   -0.12
+  ],
+  "max": [
+   1.4,
+   1.05,
+   1.55
+  ],
+  "size_m": [
+   2.8,
+   2.1,
+   1.67
+  ]
+ },
+ {
+  "name": "CL_SafetyBarrier",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_SafetyBarrier.fbx",
+  "slots": [
+   "M_Metal_RustSheet",
+   "M_Concrete_Panel"
+  ],
+  "tris": 72,
+  "verts": 48,
+  "min": [
+   -1.031,
+   -0.251,
+   0.0
+  ],
+  "max": [
+   1.031,
+   0.251,
+   1.17
+  ],
+  "size_m": [
+   2.063,
+   0.502,
+   1.17
+  ]
+ },
+ {
+  "name": "CL_ScrapMetal",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_ScrapMetal.fbx",
+  "slots": [
+   "M_Metal_RustSheet",
+   "M_Rust_Coarse",
+   "M_Metal_PlateCorroded",
+   "M_Metal_Rust03"
+  ],
+  "tris": 348,
+  "verts": 218,
+  "min": [
+   -1.388,
+   -1.608,
+   -0.126
+  ],
+  "max": [
+   1.684,
+   1.395,
+   0.944
+  ],
+  "size_m": [
+   3.072,
+   3.003,
+   1.071
+  ]
+ },
+ {
+  "name": "CL_SeaWall_12m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_SeaWall_12m.fbx",
+  "slots": [
+   "M_Concrete_Aged",
+   "M_Concrete_Panel"
+  ],
+  "tris": 96,
+  "verts": 64,
+  "min": [
+   -6.0,
+   -0.95,
+   -3.4
+  ],
+  "max": [
+   6.0,
+   0.95,
+   0.55
+  ],
+  "size_m": [
+   12.0,
+   1.9,
+   3.95
+  ]
+ },
+ {
+  "name": "CL_Shutter_Rolling_4m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Shutter_Rolling_4m.fbx",
+  "slots": [
+   "M_Metal_Shutter",
+   "M_Metal_Rust03"
+  ],
+  "tris": 60,
+  "verts": 40,
+  "min": [
+   -2.2,
+   -0.12,
+   0.0
+  ],
+  "max": [
+   2.2,
+   0.18,
+   4.6
+  ],
+  "size_m": [
+   4.4,
+   0.3,
+   4.6
+  ]
+ },
+ {
+  "name": "CL_SignSafety",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_SignSafety.fbx",
+  "slots": [
+   "M_Metal_Rust03",
+   "M_Metal_RustSheet",
+   "M_Metal_PlateBlue",
+   "M_Concrete_Floor"
+  ],
+  "tris": 64,
+  "verts": 40,
+  "min": [
+   -0.275,
+   -0.14,
+   -0.03
+  ],
+  "max": [
+   0.275,
+   0.14,
+   1.875
+  ],
+  "size_m": [
+   0.55,
+   0.28,
+   1.905
+  ]
+ },
+ {
+  "name": "CL_SmallCrane",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_SmallCrane.fbx",
+  "slots": [
+   "M_Concrete_Aged",
+   "M_Metal_PaintGreen",
+   "M_Metal_RustSheet",
+   "M_Metal_Rust03",
+   "M_Metal_PlateBlue"
+  ],
+  "tris": 328,
+  "verts": 196,
+  "min": [
+   -1.4,
+   -5.532,
+   -0.3
+  ],
+  "max": [
+   1.4,
+   2.25,
+   6.668
+  ],
+  "size_m": [
+   2.8,
+   7.782,
+   6.968
+  ]
+ },
+ {
+  "name": "CL_SmallFactory_A",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_SmallFactory_A.fbx",
+  "slots": [
+   "M_Concrete_Floor",
+   "M_Concrete_Aged",
+   "M_Metal_Shutter",
+   "M_Metal_Rust03",
+   "M_Concrete_Panel",
+   "M_Glass",
+   "M_Metal_CorrugGalv",
+   "M_Roof_Bitumen",
+   "M_Metal_GrateRusty",
+   "M_Brick_Red",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 1504,
+  "verts": 880,
+  "min": [
+   -8.5,
+   -6.4,
+   0.0
+  ],
+  "max": [
+   8.975,
+   6.4,
+   18.45
+  ],
+  "size_m": [
+   17.475,
+   12.8,
+   18.45
+  ]
+ },
+ {
+  "name": "CL_SmallFactory_B",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_SmallFactory_B.fbx",
+  "slots": [
+   "M_Concrete_Floor",
+   "M_Concrete_Block",
+   "M_Metal_CorrugGalv",
+   "M_Metal_Shutter",
+   "M_Metal_Rust03",
+   "M_Glass",
+   "M_Metal_CorrugRust",
+   "M_Metal_CorrugWorn",
+   "M_Metal_GrateRusty",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 760,
+  "verts": 460,
+  "min": [
+   -9.35,
+   -5.35,
+   0.0
+  ],
+  "max": [
+   9.39,
+   5.35,
+   9.3
+  ],
+  "size_m": [
+   18.74,
+   10.7,
+   9.3
+  ]
+ },
+ {
+  "name": "CL_Stair_Metal_4m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Stair_Metal_4m.fbx",
+  "slots": [
+   "M_Metal_GrateRusty",
+   "M_Metal_Rust03"
+  ],
+  "tris": 500,
+  "verts": 320,
+  "min": [
+   -0.643,
+   -1.814,
+   -0.097
+  ],
+  "max": [
+   0.643,
+   1.814,
+   5.019
+  ],
+  "size_m": [
+   1.287,
+   3.629,
+   5.117
+  ]
+ },
+ {
+  "name": "CL_TarpBundle",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_TarpBundle.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Metal_Rust03"
+  ],
+  "tris": 48,
+  "verts": 32,
+  "min": [
+   -1.038,
+   -0.825,
+   0.0
+  ],
+  "max": [
+   1.038,
+   0.825,
+   0.85
+  ],
+  "size_m": [
+   2.076,
+   1.651,
+   0.85
+  ]
+ },
+ {
+  "name": "CL_Tire",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_Tire.fbx",
+  "slots": [
+   "M_Roof_Bitumen",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 120,
+  "verts": 64,
+  "min": [
+   -0.374,
+   -0.38,
+   -0.01
+  ],
+  "max": [
+   0.374,
+   0.38,
+   0.27
+  ],
+  "size_m": [
+   0.748,
+   0.76,
+   0.28
+  ]
+ },
+ {
+  "name": "CL_TireStack",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_TireStack.fbx",
+  "slots": [
+   "M_Roof_Bitumen"
+  ],
+  "tris": 300,
+  "verts": 160,
+  "min": [
+   -0.4,
+   -0.39,
+   0.01
+  ],
+  "max": [
+   0.4,
+   0.39,
+   1.21
+  ],
+  "size_m": [
+   0.8,
+   0.78,
+   1.2
+  ]
+ },
+ {
+  "name": "CL_ToolCabinet",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_ToolCabinet.fbx",
+  "slots": [
+   "M_Metal_PlateBlue",
+   "M_Metal_Rust03"
+  ],
+  "tris": 132,
+  "verts": 88,
+  "min": [
+   -0.56,
+   -0.315,
+   0.0
+  ],
+  "max": [
+   0.56,
+   0.3,
+   1.46
+  ],
+  "size_m": [
+   1.12,
+   0.615,
+   1.46
+  ]
+ },
+ {
+  "name": "CL_TrafficCone",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_TrafficCone.fbx",
+  "slots": [
+   "M_Roof_Bitumen",
+   "M_Metal_RustSheet",
+   "M_Concrete_Panel"
+  ],
+  "tris": 100,
+  "verts": 56,
+  "min": [
+   -0.18,
+   -0.18,
+   0.0
+  ],
+  "max": [
+   0.18,
+   0.18,
+   0.67
+  ],
+  "size_m": [
+   0.36,
+   0.36,
+   0.67
+  ]
+ },
+ {
+  "name": "CL_TrashBin",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_TrashBin.fbx",
+  "slots": [
+   "M_Metal_PlateCorroded",
+   "M_Metal_Rust03"
+  ],
+  "tris": 260,
+  "verts": 140,
+  "min": [
+   -0.439,
+   -0.45,
+   0.0
+  ],
+  "max": [
+   0.439,
+   0.45,
+   1.02
+  ],
+  "size_m": [
+   0.877,
+   0.9,
+   1.02
+  ]
+ },
+ {
+  "name": "CL_UtilityBox",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_UtilityBox.fbx",
+  "slots": [
+   "M_Metal_PaintGreen",
+   "M_Metal_Rust03",
+   "M_Metal_GrateRusty",
+   "M_Concrete_Floor",
+   "M_Metal_RustSheet"
+  ],
+  "tris": 60,
+  "verts": 40,
+  "min": [
+   -0.75,
+   -0.425,
+   -0.12
+  ],
+  "max": [
+   0.75,
+   0.425,
+   1.525
+  ],
+  "size_m": [
+   1.5,
+   0.85,
+   1.645
+  ]
+ },
+ {
+  "name": "CL_UtilityBuilding",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_UtilityBuilding.fbx",
+  "slots": [
+   "M_Concrete_Floor",
+   "M_Concrete_Block",
+   "M_Metal_Rust03",
+   "M_Metal_GrateRusty",
+   "M_Roof_Bitumen",
+   "M_Concrete_Aged",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 370,
+  "verts": 218,
+  "min": [
+   -3.35,
+   -2.85,
+   0.0
+  ],
+  "max": [
+   3.4,
+   4.102,
+   5.26
+  ],
+  "size_m": [
+   6.75,
+   6.952,
+   5.26
+  ]
+ },
+ {
+  "name": "CL_VentDuct_6m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_VentDuct_6m.fbx",
+  "slots": [
+   "M_Metal_CorrugGalv",
+   "M_Metal_Rust03"
+  ],
+  "tris": 108,
+  "verts": 72,
+  "min": [
+   -3.0,
+   -0.49,
+   -1.09
+  ],
+  "max": [
+   3.0,
+   0.49,
+   0.49
+  ],
+  "size_m": [
+   6.0,
+   0.98,
+   1.58
+  ]
+ },
+ {
+  "name": "CL_Wall_Concrete_4m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Wall_Concrete_4m.fbx",
+  "slots": [
+   "M_Concrete_Aged",
+   "M_Concrete_Panel"
+  ],
+  "tris": 48,
+  "verts": 32,
+  "min": [
+   -2.06,
+   -0.2,
+   0.0
+  ],
+  "max": [
+   2.06,
+   0.2,
+   2.76
+  ],
+  "size_m": [
+   4.12,
+   0.4,
+   2.76
+  ]
+ },
+ {
+  "name": "CL_Wall_Corrugated_4m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Wall_Corrugated_4m.fbx",
+  "slots": [
+   "M_Concrete_Block",
+   "M_Metal_FactoryWall",
+   "M_Metal_Rust03"
+  ],
+  "tris": 60,
+  "verts": 40,
+  "min": [
+   -2.02,
+   -0.13,
+   0.0
+  ],
+  "max": [
+   2.02,
+   0.13,
+   2.9
+  ],
+  "size_m": [
+   4.04,
+   0.26,
+   2.9
+  ]
+ },
+ {
+  "name": "CL_Warehouse_A",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_Warehouse_A.fbx",
+  "slots": [
+   "M_Concrete_Floor",
+   "M_Concrete_Aged",
+   "M_Concrete_Panel",
+   "M_Glass",
+   "M_Metal_Rust03",
+   "M_Metal_GrateRusty",
+   "M_Metal_Shutter",
+   "M_Metal_CorrugWorn",
+   "M_Roof_Bitumen",
+   "M_Metal_CorrugGalv",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 2324,
+  "verts": 1400,
+  "min": [
+   -12.45,
+   -8.8,
+   0.0
+  ],
+  "max": [
+   12.45,
+   7.45,
+   10.36
+  ],
+  "size_m": [
+   24.9,
+   16.25,
+   10.36
+  ]
+ },
+ {
+  "name": "CL_Warehouse_B",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_Warehouse_B.fbx",
+  "slots": [
+   "M_Concrete_Floor",
+   "M_Concrete_Block",
+   "M_Metal_PlateBlue",
+   "M_Metal_CorrugWorn",
+   "M_Metal_Shutter",
+   "M_Metal_Rust03",
+   "M_Metal_CorrugRust",
+   "M_Glass",
+   "M_Metal_GrateRusty",
+   "M_Metal_PlateCorroded",
+   "M_Metal_RustSheet"
+  ],
+  "tris": 2300,
+  "verts": 1404,
+  "min": [
+   -15.55,
+   -9.95,
+   0.0
+  ],
+  "max": [
+   16.54,
+   8.4,
+   11.74
+  ],
+  "size_m": [
+   32.09,
+   18.35,
+   11.74
+  ]
+ },
+ {
+  "name": "CL_Warehouse_C",
+  "category": "Buildings",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Buildings\\CL_Warehouse_C.fbx",
+  "slots": [
+   "M_Concrete_Floor",
+   "M_Brick_Red",
+   "M_Metal_CorrugWorn",
+   "M_Concrete_Panel",
+   "M_Metal_Shutter",
+   "M_Metal_Rust03",
+   "M_Glass",
+   "M_Metal_RustSheet"
+  ],
+  "tris": 750,
+  "verts": 460,
+  "min": [
+   -10.35,
+   -9.4,
+   0.0
+  ],
+  "max": [
+   10.36,
+   6.35,
+   10.26
+  ],
+  "size_m": [
+   20.71,
+   15.75,
+   10.26
+  ]
+ },
+ {
+  "name": "CL_Water_Plane_160m",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Water_Plane_160m.fbx",
+  "slots": [
+   "M_Water"
+  ],
+  "tris": 12,
+  "verts": 8,
+  "min": [
+   -80.0,
+   -80.0,
+   -0.2
+  ],
+  "max": [
+   80.0,
+   80.0,
+   0.0
+  ],
+  "size_m": [
+   160.0,
+   160.0,
+   0.2
+  ]
+ },
+ {
+  "name": "CL_Window_Industrial",
+  "category": "Modular",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Modular\\CL_Window_Industrial.fbx",
+  "slots": [
+   "M_Glass",
+   "M_Metal_Rust03"
+  ],
+  "tris": 84,
+  "verts": 56,
+  "min": [
+   -0.975,
+   -0.08,
+   -0.755
+  ],
+  "max": [
+   0.975,
+   0.025,
+   0.755
+  ],
+  "size_m": [
+   1.95,
+   0.105,
+   1.51
+  ]
+ },
+ {
+  "name": "CL_WorkTable",
+  "category": "Props",
+  "fbx": "D:\\Unreal Projects\\Claude\\ExternalAssets\\Models\\IndustrialHarbor_Claude\\Props\\CL_WorkTable.fbx",
+  "slots": [
+   "M_Wood_Plank",
+   "M_Metal_Rust03",
+   "M_Metal_PlateCorroded"
+  ],
+  "tris": 156,
+  "verts": 104,
+  "min": [
+   -1.025,
+   -0.45,
+   0.0
+  ],
+  "max": [
+   1.025,
+   0.45,
+   1.675
+  ],
+  "size_m": [
+   2.05,
+   0.9,
+   1.675
+  ]
+ }
+]
