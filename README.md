@@ -1,156 +1,209 @@
 # Claude — Unreal Engine MCP 자동화 저장소
 
-Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 **MCP(Model Context Protocol) 툴 호출로 제작**한 결과물을 모아둔 저장소입니다. 메시가 필요하면 **Blender MCP**로 만들어 FBX로 넘기고, 레벨 배치·머티리얼·그래프 구성·검증 캡처까지 전부 코드로 수행합니다.
+Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 **MCP(Model Context Protocol) 툴 호출로 제작**한 결과물을 모아둔 저장소입니다. 메시가 필요하면 **Blender MCP**로 만들어 FBX로 넘기고, 레벨 배치·머티리얼·그래프 구성·리깅·검증 캡처까지 전부 코드로 수행합니다.
 
 사용 플러그인: `ModelContextProtocol`, `EditorToolset`, `PCGToolset`, `UMGToolSet`, `AllToolsets`
 
 <table>
 <tr>
-<td width="33%"><a href="#1-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
-<td width="33%"><a href="#2-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
-<td width="33%"><a href="#3-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
+<td width="25%"><a href="#4-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
+<td width="25%"><a href="#5-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
+<td width="25%"><a href="#6-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
+<td width="25%"><a href="#7-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
 </tr>
 <tr>
-<td align="center"><b>PCG 절차적 숲</b><br>인스턴스 70,325</td>
+<td align="center"><b>캐릭터 리깅·애니메이션</b><br>본 20 · 액션 2종</td>
 <td align="center"><b>나이아가라 VFX</b><br>시스템 5종 · 에미터 23</td>
+<td align="center"><b>PCG 절차적 숲</b><br>인스턴스 70,325</td>
 <td align="center"><b>시퀀서 시네마틱</b><br>42초 · 6샷</td>
 </tr>
 </table>
 
 ## 목차
 
-| # | 작업 | 규모 | 폴더 |
-|---|---|---|---|
-| [1](#1-pcg-절차적-숲) | **PCG 절차적 숲** | 그래프 93노드 / 인스턴스 70,325 / 지형 600m | `Content/PCG_Test` |
-| [2](#2-나이아가라-vfx) | **나이아가라 VFX** | 시스템 5종 / 에미터 23 / 머티리얼 3종 | `Content/VFX_Test` |
-| [3](#3-시퀀서-시네마틱) | **시퀀서 시네마틱** | 1260프레임 / 6샷 / 카메라 6대 | `Content/VFX_Test` |
-| [4](#4-그-외-작업) | 그 외 작업 | 모듈러 킷 · UMG 재현 | 여러 폴더 |
+커밋 순서(작업한 순서)대로 정렬했습니다.
 
-각 항목은 **결과 → 파이프라인 → 재현 방법 → 기술 노트** 순서로 정리했습니다.
+| # | 작업 | 규모 | 폴더 | 커밋 |
+|---|---|---|---|---|
+| [1](#1-한국-구도심-골목) | 한국 구도심 골목 | 에셋 150 / 프롭·모듈러 세트 | `Content/KoreanOldTown` | `30a16b4` `5845a84` |
+| [2](#2-산업-항구-모듈러-킷) | 산업 항구 모듈러 킷 | 메시 90 / 텍스처 81 / 액터 1,720 | `Content/IndustrialHarbor_Claude` | `55d1fc5`…`ae3f916` |
+| [3](#3-umg-레이아웃-재현) | UMG 레이아웃 재현 | WBP 8종 / 텍스처 15장 | `Content/UIReferenceTest` | `1300782` |
+| [4](#4-캐릭터-리깅애니메이션) | **캐릭터 리깅·애니메이션** | 본 20 / 폴리 938 / 액션 2종 | `Content/Characters` | `aa65f26` |
+| [5](#5-나이아가라-vfx) | **나이아가라 VFX** | 시스템 5종 / 에미터 23 / 머티리얼 3종 | `Content/VFX_Test` | `5064487` |
+| [6](#6-pcg-절차적-숲) | **PCG 절차적 숲** | 그래프 93노드 / 인스턴스 70,325 / 지형 600m | `Content/PCG_Test` | `4cfc69f` |
+| [7](#7-시퀀서-시네마틱) | **시퀀서 시네마틱** | 1260프레임 / 6샷 / 카메라 6대 | `Content/VFX_Test` | `1de62e4` |
+
+굵은 항목은 **결과 → 파이프라인 → 재현 방법 → 기술 노트** 순서로 상세 정리했습니다.
 기술 노트에는 MCP로 막힌 지점과 우회책을 적어뒀습니다(접혀 있습니다).
 
 ---
 
-# 1. PCG 절차적 숲
+# 1. 한국 구도심 골목
 
-> `Content/PCG_Test`
+> `Content/KoreanOldTown`
 
-규칙만 주면 나무·바위·관목·풀이 알아서 자라는 PCG 그래프. 나무를 한 그루도 손으로 심지 않았고, **지형을 400m에서 600m로 교체했을 때 70,325개가 자동으로 재배치**됐습니다.
+한국 구도심 상가 골목을 모듈러로 재현한 첫 작업. Blender로 만든 프롭·건물 모듈과 PBR 텍스처를 원본째 저장소(`ExternalAssets/`)에 두고 임포트해 레벨을 구성했습니다.
 
-![전체 조망](docs/images/01_overview.jpg)
+| 항목 | 값 |
+|---|---|
+| 언리얼 에셋 | 150 uasset |
+| 원본 | PBR 텍스처 + FBX (`ExternalAssets`) |
+| 레벨 | 상가 골목 1식 |
 
-![지상 시점](docs/images/02_road_ground.jpg)
+---
 
-## 1.1 결과
+# 2. 산업 항구 모듈러 킷
 
-| 레이어 | 메시 | 인스턴스 | 규칙 |
-|---|---|---:|---|
-| L1 대형 침엽수 | Pine A/B | 2,216 | 고도 1825–6290, 경사 ≤25°, 북사면 선호 |
-| L2 중형 활엽수 | Broad A/B, Dead | 5,171 | 고도 100–6290, 경사 ≤30°, 남사면 선호 |
-| L3 관목 | Bush A | 25,095 | 활엽수 근접 시에만 (Distance 가중) |
-| L4 바위 | Rock A/B/C | 1,386 | 경사 반전 — 급경사일수록 밀집 |
-| L5 풀 | Grass A | 31,617 | 고도 ≤5670, 경사 ≤20°, 겹침 허용 |
-| L6 저지대 관목 | Bush A | 4,434 | 고도 ≤1690 전담, 밀도 2배 |
-| 길 + 자갈 | Road_Segment, Rock A | 406 | 스플라인 추종, 폭 900 내 나무·바위 제거 |
-| **합계** | | **70,325** | |
+> `Content/IndustrialHarbor_Claude`
 
-- 그래프 **93 노드 / 101 에지 / 7 브랜치**
-- 지형 600m × 600m, 고도 100–9096 유닛
-- 서브그래프 `PCG_ScatterLayer` (파라미터 6종) + 재사용 데모 `PCG_BiomeDemo`
+컨테이너·크레인·창고·배관으로 구성한 산업 항구 킷. 메시 제작부터 머티리얼 인스턴스 파생, 레벨 배치까지 한 파이프라인으로 이었습니다.
 
-## 1.2 파이프라인
+| 항목 | 값 |
+|---|---|
+| Blender 메시 → FBX | 90개 |
+| 텍스처 | 81장 (Poly Haven CC0 2K, 압축 설정 적용) |
+| 머티리얼 | 마스터 3종 + 인스턴스 56개 |
+| 레벨 액터 | 1,720개 |
+| 메시 설정 | Nanite 활성 |
+| 언리얼 에셋 | 230 uasset |
 
-모든 브랜치가 같은 6단계 뼈대를 공유하고 숫자만 다릅니다.
+---
+
+# 3. UMG 레이아웃 재현
+
+> `Content/UIReferenceTest`
+
+참조 UI 스크린샷을 보고 `UMGToolSet`으로 위젯 트리를 구성해 레이아웃을 재현했습니다.
+
+| 항목 | 값 |
+|---|---|
+| 위젯 블루프린트 | 8종 |
+| 텍스처 | 15장 |
+| 언리얼 에셋 | 25 uasset |
+
+> 위젯 프로퍼티는 클래스마다 이름이 달라 유추가 안 됩니다. `list_properties` → `get_properties` → `set_properties` 순서를 지키지 않으면 `set_properties`가 조용히 실패합니다.
+
+---
+
+# 4. 캐릭터 리깅·애니메이션
+
+> `Content/Characters` · 소스 `Blender/SK_Character.blend` · `Export/SK_Character.fbx`
+
+참조 이미지 앞/뒤 2장만 놓고 **Blender MCP로 메시 → 리그 → 애니메이션까지 전부 스크립트로 생성**한 뒤 언리얼 스켈레탈 메시로 넘겼습니다. 버텍스를 손으로 찍거나 웨이트를 칠한 곳은 없습니다.
+
+<table>
+<tr>
+<td width="50%"><img src="docs/images/17_char_front.jpg" width="100%"></td>
+<td width="50%"><img src="docs/images/18_char_back.jpg" width="100%"></td>
+</tr>
+<tr>
+<td align="center">정면 — 바이저 · 가슴 코어 · 벨트 버클</td>
+<td align="center">후면 — 정수리 스트립 · 등 척추 라인</td>
+</tr>
+</table>
+
+## 4.1 결과
+
+| 항목 | 값 |
+|---|---|
+| 메시 | 1,172 verts / 938 polys (언리얼 5,192 verts / 4 섹션) |
+| 키 | 180.8 cm (발바닥 z=0 정렬) |
+| 본 | 20개 — `root` 최상위 |
+| 머티리얼 | 4종 (다크 / 실버 / 오렌지 / 코어 이미시브) |
+| `A_Character_Idle` | 60키 / 1.97초 / 30fps |
+| `A_Character_Walk` | 24키 / 0.77초 / 30fps |
+| 그 외 | Skeleton · PhysicsAsset 자동 생성 |
+
+본 계층은 `root → pelvis → spine → chest → neck → head`, 여기서 `shoulder → upperarm → lowerarm → hand`와 `thigh → calf → foot`이 `_L`/`_R`로 갈라집니다.
+
+## 4.2 파이프라인
+
+메시는 프리미티브를 쌓는 대신 **단면 링을 이어 붙이는 loft**로 만들었습니다. 단면을 초타원(superellipse)으로 두면 지수 하나로 원↔사각을 오갈 수 있어, 같은 코드로 몸통(각진 단면)과 팔다리(둥근 단면)를 뽑습니다.
 
 ```
-World Ray Hit Query          지형 표면 획득
+superellipse 링 loft                단면 12~16각, 밴드별 머티리얼 지정
       │
-      ├─ ① Surface Sampler          격자 후보 포인트
-      ├─ ② Normal To Density        경사 → 밀도
-      │    Normal To Density        사면 방위(남/북) → 밀도 배수
-      │    Spatial Noise (FBM)      펄린 노이즈 → 밀도 (숲 뭉침·빈터)
-      │    Filter by Range          고도 컷 (설선 / 저지대)
-      │    Distance                 나무까지 거리 → 밀도 (관목 전용)
-      ├─ ③ Density Filter           임계값 미만 제거
-      │    Self Pruning             최소 간격 이내 제거
-      ├─ ④ Transform Points         랜덤 Yaw/스케일/지터 + Z 높이 변조
-      ├─ ⑤ Projection               지형 표면에 스냅
-      └─ ⑥ Static Mesh Spawner      ISM 인스턴스 생성
-                                     └ Difference 로 길 위 제거
+      ├─ ① 몸통·팔·다리            링 시퀀스 + 방향벡터 (팔다리는 축 기울기 반영)
+      │    헬멧·코어·벨트·패드·부츠  박스 / 디스크 프리미티브
+      │    face_mat(밴드, 세그먼트)   앞·뒤·바깥면 컬러 블로킹
+      ├─ ② 아마추어 20본            rest 좌표를 메시 실측값에 맞춰 배치
+      ├─ ③ 웨이트                   정점↔본 선분 거리 → 가중치 → 이웃 스무딩
+      ├─ ④ 키포즈                   월드축 회전을 본 로컬 쿼터니언으로 변환
+      ├─ ⑤ 접지 보정                프레임별 메시 최저점 측정 → pelvis 수직 이동
+      └─ ⑥ FBX                      Apply Unit Scale / Bake All Actions / Leaf Bones OFF
 ```
 
-`$Density`가 기축통화입니다. ②에서 규칙을 밀도에 누적하고 ③에서 실행합니다.
+## 4.3 리깅
 
-## 1.3 생태 규칙
+자동 웨이트(Bone Heat)는 이 메시에서 **전 정점 웨이트 0**을 냅니다. 파츠가 서로 닫힌 셸이라 열확산 해가 없기 때문입니다. 그래서 정점에서 각 본 선분까지의 거리로 직접 계산했습니다.
 
-**설선** — 고도 상한을 넘으면 나무가 사라지고 바위만 남습니다.
+```
+w = 1 / (거리 + 0.015)^4.2       후보 = 최근접 본 + 그 부모/자식
+                                 상위 4개, 임계값 0.02, 이웃 평균 스무딩 1회
+```
 
-![설선](docs/images/03_snowline.jpg)
+후보를 최근접 본의 **부모·자식으로만 제한**하는 것이 핵심입니다. 이게 없으면 팔 정점이 가슴 웨이트를 받아 목을 돌릴 때 몸통이 딸려옵니다.
 
-**경사 편중 + 근접 밀집** — 왼쪽 완경사는 숲, 오른쪽 급사면은 나무 없이 바위. 관목은 나무 주변에만 붙습니다.
+![리깅 검증](docs/images/19_char_rig.jpg)
 
-![생태 규칙](docs/images/04_ecology.jpg)
+팔·다리·머리를 동시에 꺾어도 관절이 찢어지지 않고, 어깨 패드·무릎 패드·부츠 같은 별도 파츠도 정확히 따라옵니다.
 
-**길** — 스플라인을 지형에 투영해 세그먼트 메시를 이어 붙이고, `Difference`로 폭 900 내 나무·바위를 제거합니다. 가장자리엔 풀·관목·자갈이 남습니다.
+## 4.4 애니메이션
 
-![길](docs/images/05_road_high.jpg)
+<table>
+<tr>
+<td width="50%"><img src="docs/images/20_char_walk.jpg" width="100%"></td>
+<td width="50%"><img src="docs/images/21_char_idle.jpg" width="100%"></td>
+</tr>
+<tr>
+<td align="center"><b>Walk</b> — 콘택트 포즈, 뒤꿈치 착지 + 뒷발 밀어내기</td>
+<td align="center"><b>Idle</b> — 호흡 + 미세 좌우 흔들림</td>
+</tr>
+</table>
 
-**개체 변화** — 같은 메시에 색조가 다른 MaterialInstance를 물려 침엽수 3톤 / 활엽수 3톤으로 갈립니다. Z축만 0.75–1.38배 흔들어 키도 다릅니다.
+**Walk** — 24프레임 4키 사이클(contact → down → passing → up)을 반주기만 정의하고 나머지 절반은 좌우 미러로 생성합니다. 팔은 반대쪽 다리와 반대 위상, 골반은 좌우 롤 + 상체 요를 함께 겁니다.
 
-![색 변화](docs/images/06_color_variants.jpg)
+**접지 보정** — 다리를 27° 벌리면 다리 길이가 유지되는 만큼 발이 9cm 뜹니다. 키포즈마다 메시 최저점을 실측해 `pelvis`를 `-min_z`만큼 내리면, 평행이동이라 **1회 보정으로 정확히 수렴**합니다. 키프레임에서 오차 0, 보간 구간 최대 8mm. 이 보정이 골반 상하 바운스(-2.3 ~ +3.1cm)도 자동으로 만들어줍니다.
 
-## 1.4 에셋 (Blender MCP 제작)
+**Idle** — 60프레임, `chest` 피치로 호흡을 만들고 골반은 수직으로 움직이지 않습니다(발이 뜨지 않게). 위상을 `2π(f-1)/59`로 두어 60프레임이 1프레임과 같아집니다.
 
-전부 로우폴리로 스크립트 생성 → FBX → 임포트했습니다. 원본 FBX는 `ImportSource/`에 있습니다.
+## 4.5 언리얼 임포트
 
-![Blender 에셋](docs/images/07_blender_assets.jpg)
+![언리얼 임포트 결과](docs/images/22_char_unreal.jpg)
 
-| 에셋 | 트라이앵글 | 높이 |
-|---|---:|---|
-| Tree_Pine_A / B | 116 / 94 | 10.1m / 14m |
-| Tree_Broad_A / B | 108 / 188 | 8.1m / 11.2m |
-| Tree_Dead | 128 | 6.4m |
-| Rock_A / B / C | 44 each | 1.1 / 2.0 / 4.2m |
-| Bush_A / Grass_A | 80 / 6 | 1.3m / 0.5m |
-| Terrain_Forest | 80,802 | 600m, 기복 90m |
-| Road_Segment | 40 | 폭 9.2m |
+`SkeletalMeshTools.import_file` 한 번으로 SkeletalMesh · Skeleton · PhysicsAsset · AnimSequence 2종 · Material 4종이 생성됩니다. 검증 결과 임포트 경고 0건, 바운드 180.9cm, 정면 +X.
 
-원점은 전부 밑동 바닥 중앙, +Z 업, 트랜스폼 적용 완료 (미터 단위 모델링 → 언리얼에서 1m = 100유닛 정확히 일치).
+## 4.6 재현
 
-**접지 검증** — Projection이 정상 동작해 밑동이 뜨거나 묻히지 않습니다.
+1. 콘텐츠 브라우저에서 `Content/Characters/SK_Character` 열기
+2. `A_Character_Walk` / `A_Character_Idle` 더블클릭해 재생
+3. 소스를 고치려면 `Blender/SK_Character.blend` → 익스포트 설정은 아래 기술 노트 참고
 
-![접지](docs/images/08_projection.jpg)
-
-## 1.5 재현
-
-1. `Content/PCG_Test/L_PCG_Forest` 열기
-2. 아웃라이너에서 `PCG_ForestVolume` 선택
-3. Details → PCG Component → **Generate**
-
-파라미터를 바꾸려면 `PCG_ForestGraph`에서 각 브랜치의 `Surface Sampler`(밀도), `Density Filter`(임계값), `Filter by Range`(고도)를 조정합니다. 개수 확인은 노드 우클릭 → **Inspect**.
-
-## 1.6 기술 노트
+## 4.7 기술 노트
 
 <details>
 <summary><b>MCP로 막힌 것들 — 5건 (펼치기)</b></summary>
 
-**랜드스케이프를 PCG로 샘플링할 수 없습니다.** `Get Landscape Data`가 항상 빈 결과를 냅니다. 원인은 `PCGWorldActor.LandscapeCache`의 `cacheEntryCount`가 0인 것인데, 이 캐시를 빌드하는 경로가 MCP에 없습니다(콘솔 *명령* 실행 툴도 없어 우회 불가). `serializationMode` 변경, 랜드스케이프 더티 마킹, `Wait Until Landscape Is Ready` 삽입 모두 실패했습니다.
-→ **우회**: 지형 메시를 `CTF_UseComplexAsSimple` 콜리전으로 두고 `World Ray Hit Query`로 표면을 얻습니다. 노멀도 정상이라 경사 규칙이 전부 동작합니다.
+**자동 웨이트가 실패합니다.** 파츠를 여러 개의 닫힌 셸로 만들어 join한 메시는 `parent_set(type='ARMATURE_AUTO')`가 "뼈대 히트 웨이팅: 솔루션을 찾지 못 함" 경고와 함께 **전 정점 웨이트 0**을 만듭니다. 버텍스 그룹은 19개 생기는데 값이 전부 비어 있어서, 웨이트가 없다는 걸 눈으로는 못 알아챕니다.
+→ **우회**: 거리 기반 수동 웨이트(4.3). 로우폴리에서는 결과가 오히려 예측 가능합니다.
 
-**`Spawn Spline Mesh`는 사용 불가.** 그래프에 넣으면 `ExecuteGraphInstance`가 실패하고, 노드를 지워도 볼륨이 망가진 채 남습니다(볼륨 재스폰으로만 복구). 길은 Static Mesh Spawner로 세그먼트를 이어 붙여 만들었습니다.
+**Blender 좌표가 언리얼에 그대로 갑니다.** `axis_forward='-Z', axis_up='Y'`(기본값)로 내보내면 Blender `(x,y,z)` → 언리얼 `(x,y,z)` 항등 매핑입니다. 언리얼 표준은 +X 정면이므로 **Blender에서 +X를 정면으로 모델링해야** 합니다. +Y 정면으로 만들었다가 90° 틀어진 걸 뒤늦게 발견했습니다(바운드의 `boxExtent.x`가 팔 span으로 잡히면 틀어진 겁니다).
+→ **우회**: 메시 정점과 본 rest 좌표를 `(x,y,z) → (y,-x,z)`로 변환. Blender 오른손계 ↔ 언리얼 왼손계 차이 덕에 `_L`/`_R` 라벨도 자동으로 맞습니다. 단 **rest를 돌리면 본 로컬 축이 바뀌어 기존 키가 깨지므로 애니메이션은 재생성**해야 합니다(접지 오차가 8mm → 36mm로 튀는 걸로 드러납니다).
 
-**인스턴스별 랜덤 색은 머티리얼 표현식으로 안 됩니다.** `PerInstanceRandom`, `PerInstanceCustomData` 모두 PCG가 만든 ISM에서 값을 못 받습니다(PCG 쪽 어트리뷰트 생성은 정상 확인). descriptor에 `numCustomDataFloats`가 노출되지 않는 것이 원인으로 보입니다.
-→ **우회**: `MeshEntries` descriptor의 `OverrideMaterials`로 같은 메시에 색만 다른 MIC를 물립니다.
+**아마추어 오브젝트 이름이 언리얼 최상위 본이 됩니다.** `armature_nodetype='NULL'`로 둬도 마찬가지입니다. 아마추어 안에 `root` 본을 따로 만들면 `ARM_Character → root → pelvis`로 한 단계 밀립니다.
+→ **우회**: 아마추어 **오브젝트** 이름을 `root`로 하고 안쪽 `root` 본은 삭제. 부작용으로 액션 이름이 `SK_X_Anim_root_Idle`이 되므로 임포트 후 `AssetTools.move`로 리네임합니다.
 
-**그래프 파라미터 → 노드 바인딩은 됩니다.** `Get Graph Parameter` 노드를 만들고 `ConnectNodePins`의 대상 핀 라벨에 **노드 프로퍼티 이름을 그대로** 주면 오버라이드 핀에 연결됩니다(`GetSlopeCos.Out → SlopeCut.LowerBound`). 단 중첩 구조체 프로퍼티(고도 필터의 threshold 등)는 오버라이드 핀이 없어 파라미터화가 안 됩니다.
+**Blender 5.x 액션에는 `fcurves`가 없습니다.** 슬롯/레이어 구조로 바뀌어 `action.layers[].strips[].channelbags[].fcurves`로 내려가야 합니다. 액션을 붙일 때도 `animation_data.action = act` 다음에 `act.slots.new(id_type='OBJECT', …)` → `animation_data.action_slot = act.slots[0]`까지 해줘야 키가 들어갑니다.
 
-**튜닝은 실측 분포로.** Density Filter 임계값을 감으로 잡으면 안 됩니다. 노이즈 출력이 0.51–1.0 범위인데 임계값 0.55를 주면 아무것도 안 걸러집니다. `GetNodeDataView`(에디터의 Inspect)로 실제 분포를 읽어 목표 개수의 백분위에서 역산해야 합니다. 그리고 **Self Pruning이 개수의 천장**이라, 샘플을 늘려도 안 늘면 `pointExtents`(= 최소간격 ÷ 2)를 줄이는 것이 유일한 손잡이입니다.
+**월드축 회전을 본 로컬로 옮길 때 부모 행렬을 끼우면 안 됩니다.** `bone.matrix_local`은 이미 아마추어 공간 기준이라 `Quaternion(matrix_local.to_3x3().inverted() @ world_axis, angle)`이면 끝입니다. 부모를 한 번 더 곱했더니 다리는 우연히 맞고 팔만 전혀 안 도는 증상이 나왔습니다. 회전을 여러 개 합성할 때는 **나중에 적용할 것을 왼쪽에** 곱합니다(팔을 내린 뒤 앞뒤로 스윙하려면 `q_swing @ q_down`).
+
+**그 외** — 절차적 생성 메시는 UV가 없어 임포트 시 "UV 세트 없음" 경고가 뜹니다. `bpy.ops.uv.smart_project()` 한 줄로 해결됩니다. 그리고 `CaptureAssetImage`/`CaptureEditorImage`는 base64가 커서 응답이 잘리므로, 저장된 tool-results 파일에서 디코드해 PNG로 봐야 합니다.
 
 </details>
 
 ---
 
-# 2. 나이아가라 VFX
+# 5. 나이아가라 VFX
 
 > `Content/VFX_Test`
 
@@ -183,7 +236,7 @@ World Ray Hit Query          지형 표면 획득
 </tr>
 </table>
 
-## 2.1 결과
+## 5.1 결과
 
 | 시스템 | 에미터 | 구성 | 핵심 기법 |
 |---|---:|---|---|
@@ -196,7 +249,7 @@ World Ray Hit Query          지형 표면 획득
 
 머티리얼 3종(`M_VFX_Translucent` / `TranslucentRibbon` / `Additive`)은 엔진 기본 나이아가라 머티리얼을 복제해 블렌드 모드만 바꿔 만들었습니다.
 
-## 2.2 파이프라인
+## 5.2 파이프라인
 
 모든 스프라이트 에미터가 `Fountain` 템플릿에서 출발해 같은 뼈대를 공유합니다.
 
@@ -230,13 +283,13 @@ lerp(lerp(lerp(float3(12,7,2), float3(8,3.2,0.5),
 
 `Particles.NormalizedAge`, `Particles.Position`, `Engine.Time`을 참조할 수 있어 커브보다 표현력이 넓습니다.
 
-## 2.3 재현
+## 5.3 재현
 
 1. `Content/VFX_Test/L_VFX_Showcase` 열기
 2. 레벨의 `FX_Showcase_*` 액터에서 개별 확인
 3. 파티클이 안 보이면 **Simulate**를 켜세요 (에디터 뷰포트는 나이아가라를 tick하지 않습니다)
 
-## 2.4 기술 노트
+## 5.4 기술 노트
 
 <details>
 <summary><b>MCP로 막힌 것들 — 4건 (펼치기)</b></summary>
@@ -254,7 +307,126 @@ lerp(lerp(lerp(float3(12,7,2), float3(8,3.2,0.5),
 
 ---
 
-# 3. 시퀀서 시네마틱
+# 6. PCG 절차적 숲
+
+> `Content/PCG_Test`
+
+규칙만 주면 나무·바위·관목·풀이 알아서 자라는 PCG 그래프. 나무를 한 그루도 손으로 심지 않았고, **지형을 400m에서 600m로 교체했을 때 70,325개가 자동으로 재배치**됐습니다.
+
+![전체 조망](docs/images/01_overview.jpg)
+
+![지상 시점](docs/images/02_road_ground.jpg)
+
+## 6.1 결과
+
+| 레이어 | 메시 | 인스턴스 | 규칙 |
+|---|---|---:|---|
+| L1 대형 침엽수 | Pine A/B | 2,216 | 고도 1825–6290, 경사 ≤25°, 북사면 선호 |
+| L2 중형 활엽수 | Broad A/B, Dead | 5,171 | 고도 100–6290, 경사 ≤30°, 남사면 선호 |
+| L3 관목 | Bush A | 25,095 | 활엽수 근접 시에만 (Distance 가중) |
+| L4 바위 | Rock A/B/C | 1,386 | 경사 반전 — 급경사일수록 밀집 |
+| L5 풀 | Grass A | 31,617 | 고도 ≤5670, 경사 ≤20°, 겹침 허용 |
+| L6 저지대 관목 | Bush A | 4,434 | 고도 ≤1690 전담, 밀도 2배 |
+| 길 + 자갈 | Road_Segment, Rock A | 406 | 스플라인 추종, 폭 900 내 나무·바위 제거 |
+| **합계** | | **70,325** | |
+
+- 그래프 **93 노드 / 101 에지 / 7 브랜치**
+- 지형 600m × 600m, 고도 100–9096 유닛
+- 서브그래프 `PCG_ScatterLayer` (파라미터 6종) + 재사용 데모 `PCG_BiomeDemo`
+
+## 6.2 파이프라인
+
+모든 브랜치가 같은 6단계 뼈대를 공유하고 숫자만 다릅니다.
+
+```
+World Ray Hit Query          지형 표면 획득
+      │
+      ├─ ① Surface Sampler          격자 후보 포인트
+      ├─ ② Normal To Density        경사 → 밀도
+      │    Normal To Density        사면 방위(남/북) → 밀도 배수
+      │    Spatial Noise (FBM)      펄린 노이즈 → 밀도 (숲 뭉침·빈터)
+      │    Filter by Range          고도 컷 (설선 / 저지대)
+      │    Distance                 나무까지 거리 → 밀도 (관목 전용)
+      ├─ ③ Density Filter           임계값 미만 제거
+      │    Self Pruning             최소 간격 이내 제거
+      ├─ ④ Transform Points         랜덤 Yaw/스케일/지터 + Z 높이 변조
+      ├─ ⑤ Projection               지형 표면에 스냅
+      └─ ⑥ Static Mesh Spawner      ISM 인스턴스 생성
+                                     └ Difference 로 길 위 제거
+```
+
+`$Density`가 기축통화입니다. ②에서 규칙을 밀도에 누적하고 ③에서 실행합니다.
+
+## 6.3 생태 규칙
+
+**설선** — 고도 상한을 넘으면 나무가 사라지고 바위만 남습니다.
+
+![설선](docs/images/03_snowline.jpg)
+
+**경사 편중 + 근접 밀집** — 왼쪽 완경사는 숲, 오른쪽 급사면은 나무 없이 바위. 관목은 나무 주변에만 붙습니다.
+
+![생태 규칙](docs/images/04_ecology.jpg)
+
+**길** — 스플라인을 지형에 투영해 세그먼트 메시를 이어 붙이고, `Difference`로 폭 900 내 나무·바위를 제거합니다. 가장자리엔 풀·관목·자갈이 남습니다.
+
+![길](docs/images/05_road_high.jpg)
+
+**개체 변화** — 같은 메시에 색조가 다른 MaterialInstance를 물려 침엽수 3톤 / 활엽수 3톤으로 갈립니다. Z축만 0.75–1.38배 흔들어 키도 다릅니다.
+
+![색 변화](docs/images/06_color_variants.jpg)
+
+## 6.4 에셋 (Blender MCP 제작)
+
+전부 로우폴리로 스크립트 생성 → FBX → 임포트했습니다. 원본 FBX는 `ImportSource/`에 있습니다.
+
+![Blender 에셋](docs/images/07_blender_assets.jpg)
+
+| 에셋 | 트라이앵글 | 높이 |
+|---|---:|---|
+| Tree_Pine_A / B | 116 / 94 | 10.1m / 14m |
+| Tree_Broad_A / B | 108 / 188 | 8.1m / 11.2m |
+| Tree_Dead | 128 | 6.4m |
+| Rock_A / B / C | 44 each | 1.1 / 2.0 / 4.2m |
+| Bush_A / Grass_A | 80 / 6 | 1.3m / 0.5m |
+| Terrain_Forest | 80,802 | 600m, 기복 90m |
+| Road_Segment | 40 | 폭 9.2m |
+
+원점은 전부 밑동 바닥 중앙, +Z 업, 트랜스폼 적용 완료 (미터 단위 모델링 → 언리얼에서 1m = 100유닛 정확히 일치).
+
+**접지 검증** — Projection이 정상 동작해 밑동이 뜨거나 묻히지 않습니다.
+
+![접지](docs/images/08_projection.jpg)
+
+## 6.5 재현
+
+1. `Content/PCG_Test/L_PCG_Forest` 열기
+2. 아웃라이너에서 `PCG_ForestVolume` 선택
+3. Details → PCG Component → **Generate**
+
+파라미터를 바꾸려면 `PCG_ForestGraph`에서 각 브랜치의 `Surface Sampler`(밀도), `Density Filter`(임계값), `Filter by Range`(고도)를 조정합니다. 개수 확인은 노드 우클릭 → **Inspect**.
+
+## 6.6 기술 노트
+
+<details>
+<summary><b>MCP로 막힌 것들 — 5건 (펼치기)</b></summary>
+
+**랜드스케이프를 PCG로 샘플링할 수 없습니다.** `Get Landscape Data`가 항상 빈 결과를 냅니다. 원인은 `PCGWorldActor.LandscapeCache`의 `cacheEntryCount`가 0인 것인데, 이 캐시를 빌드하는 경로가 MCP에 없습니다(콘솔 *명령* 실행 툴도 없어 우회 불가). `serializationMode` 변경, 랜드스케이프 더티 마킹, `Wait Until Landscape Is Ready` 삽입 모두 실패했습니다.
+→ **우회**: 지형 메시를 `CTF_UseComplexAsSimple` 콜리전으로 두고 `World Ray Hit Query`로 표면을 얻습니다. 노멀도 정상이라 경사 규칙이 전부 동작합니다.
+
+**`Spawn Spline Mesh`는 사용 불가.** 그래프에 넣으면 `ExecuteGraphInstance`가 실패하고, 노드를 지워도 볼륨이 망가진 채 남습니다(볼륨 재스폰으로만 복구). 길은 Static Mesh Spawner로 세그먼트를 이어 붙여 만들었습니다.
+
+**인스턴스별 랜덤 색은 머티리얼 표현식으로 안 됩니다.** `PerInstanceRandom`, `PerInstanceCustomData` 모두 PCG가 만든 ISM에서 값을 못 받습니다(PCG 쪽 어트리뷰트 생성은 정상 확인). descriptor에 `numCustomDataFloats`가 노출되지 않는 것이 원인으로 보입니다.
+→ **우회**: `MeshEntries` descriptor의 `OverrideMaterials`로 같은 메시에 색만 다른 MIC를 물립니다.
+
+**그래프 파라미터 → 노드 바인딩은 됩니다.** `Get Graph Parameter` 노드를 만들고 `ConnectNodePins`의 대상 핀 라벨에 **노드 프로퍼티 이름을 그대로** 주면 오버라이드 핀에 연결됩니다(`GetSlopeCos.Out → SlopeCut.LowerBound`). 단 중첩 구조체 프로퍼티(고도 필터의 threshold 등)는 오버라이드 핀이 없어 파라미터화가 안 됩니다.
+
+**튜닝은 실측 분포로.** Density Filter 임계값을 감으로 잡으면 안 됩니다. 노이즈 출력이 0.51–1.0 범위인데 임계값 0.55를 주면 아무것도 안 걸러집니다. `GetNodeDataView`(에디터의 Inspect)로 실제 분포를 읽어 목표 개수의 백분위에서 역산해야 합니다. 그리고 **Self Pruning이 개수의 천장**이라, 샘플을 늘려도 안 늘면 `pointExtents`(= 최소간격 ÷ 2)를 줄이는 것이 유일한 손잡이입니다.
+
+</details>
+
+---
+
+# 7. 시퀀서 시네마틱
 
 > `Content/VFX_Test`
 
@@ -262,7 +434,7 @@ VFX 5종을 훑는 **42초(1260프레임 @ 30fps) 6샷** 시퀀스 `LS_VFX_Showc
 
 ![풀백](docs/images/14_seq_pullback.jpg)
 
-## 3.1 샷 구성
+## 7.1 샷 구성
 
 | # | 대상 | 구간 | 카메라 워크 | 렌즈 |
 |---|---|---|---|---|
@@ -286,12 +458,12 @@ VFX 5종을 훑는 **42초(1260프레임 @ 30fps) 6샷** 시퀀스 `LS_VFX_Showc
 
 오로라는 상공 z=7000에 배치해 **모든 샷의 하늘 배경**으로 쓰고, 나머지는 서로 화면에 겹치지 않도록 X·Y축에 분산했습니다. 초점거리를 키프레임하지 않으면 시네카메라 기본 35mm가 고정되어 풀백 샷에 아무것도 들어오지 않습니다.
 
-## 3.2 재현
+## 7.2 재현
 
 1. `Content/VFX_Test/L_VFX_Showcase` 열기
 2. 시퀀서에서 `LS_VFX_Showcase` 재생
 
-## 3.3 기술 노트
+## 7.3 기술 노트
 
 <details>
 <summary><b>MCP로 막힌 것들 — 4건 (펼치기)</b></summary>
@@ -307,13 +479,3 @@ VFX 5종을 훑는 **42초(1260프레임 @ 30fps) 6샷** 시퀀스 `LS_VFX_Showc
 **거리 컬링은 복구되지 않습니다.** Simulate 중 카메라에서 먼 나이아가라는 컬링되어 꺼지는데, 카메라가 돌아와도 되살아나지 않습니다. 여러 이펙트를 한 세션에서 순회 캡처하면 뒤쪽 것이 조용히 빈 화면으로 나옵니다 — 대상마다 Simulate를 다시 시작해야 합니다. 프레임 단위는 tick이 아닌 **display rate** 기준입니다.
 
 </details>
-
----
-
-# 4. 그 외 작업
-
-| 폴더 | 내용 |
-|---|---|
-| `Content/IndustrialHarbor_Claude` | 산업 항구 모듈러 킷. Blender 제작 메시 90개, 텍스처 81장, 마스터 머티리얼 3종 + MI 56개, 레벨 액터 1,720개 |
-| `Content/KoreanOldTown` | 한국 구도심 프롭·모듈러 세트 |
-| `Content/UIReferenceTest` | UMG 레이아웃 재현 (WBP 8종 + 텍스처 15종) |
