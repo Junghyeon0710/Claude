@@ -296,18 +296,24 @@ WBP_SettingsPanel (CommonActivatableWidget)
 
 > `Content/Characters` · 소스 `Blender/SK_Character.blend` · `Export/SK_Character.fbx`
 
-참조 이미지 앞/뒤 2장만 놓고 **Blender MCP로 메시 → 리그 → 애니메이션까지 전부 스크립트로 생성**한 뒤 언리얼 스켈레탈 메시로 넘겼습니다. 버텍스를 손으로 찍거나 웨이트를 칠한 곳은 없습니다.
+**참조 이미지 앞/뒤 2장**만 입력으로 주고, **Blender MCP로 메시 → 리그 → 애니메이션까지 전부 스크립트로 생성**한 뒤 언리얼 스켈레탈 메시로 넘겼습니다. 버텍스를 손으로 찍거나 웨이트를 칠한 곳은 없습니다.
 
 <table>
 <tr>
-<td width="50%"><img src="docs/images/17_char_front.jpg" width="100%"></td>
-<td width="50%"><img src="docs/images/18_char_back.jpg" width="100%"></td>
+<td width="25%"><img src="docs/images/29_char_reference_front.jpg" width="100%"></td>
+<td width="25%"><img src="docs/images/17_char_front.jpg" width="100%"></td>
+<td width="25%"><img src="docs/images/30_char_reference_back.jpg" width="100%"></td>
+<td width="25%"><img src="docs/images/18_char_back.jpg" width="100%"></td>
 </tr>
 <tr>
-<td align="center">정면 — 바이저 · 가슴 코어 · 벨트 버클</td>
-<td align="center">후면 — 정수리 스트립 · 등 척추 라인</td>
+<td align="center"><b>입력</b> — 참조 정면</td>
+<td align="center"><b>출력</b> — 정면 (바이저 · 가슴 코어 · 벨트 버클)</td>
+<td align="center"><b>입력</b> — 참조 후면</td>
+<td align="center"><b>출력</b> — 후면 (정수리 스트립 · 등 척추 라인)</td>
 </tr>
 </table>
+
+레퍼런스는 노멀맵·서브서피스까지 낸 실사풍 컨셉아트지만, 실제로 넘긴 정보는 **실루엣·프롭 배치·색 블로킹**뿐입니다. 헬멧 바이저, 가슴 코어, 벨트 버클, 어깨·팔꿈치·무릎 패드, 정강이 보강재, 부츠 — 이 배치를 superellipse loft(3.2)로 재해석하고, 텍스처 없이 4색 머티리얼(다크 / 실버 / 오렌지 / 이미시브)로 근사했습니다.
 
 ## 3.1 결과
 
