@@ -4,9 +4,36 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 
 사용 플러그인: `ModelContextProtocol`, `EditorToolset`, `PCGToolset`, `UMGToolSet`, `AllToolsets`
 
+<table>
+<tr>
+<td width="33%"><a href="#1-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
+<td width="33%"><a href="#2-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
+<td width="33%"><a href="#3-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
+</tr>
+<tr>
+<td align="center"><b>PCG 절차적 숲</b><br>인스턴스 70,325</td>
+<td align="center"><b>나이아가라 VFX</b><br>시스템 5종 · 에미터 23</td>
+<td align="center"><b>시퀀서 시네마틱</b><br>42초 · 6샷</td>
+</tr>
+</table>
+
+## 목차
+
+| # | 작업 | 규모 | 폴더 |
+|---|---|---|---|
+| [1](#1-pcg-절차적-숲) | **PCG 절차적 숲** | 그래프 93노드 / 인스턴스 70,325 / 지형 600m | `Content/PCG_Test` |
+| [2](#2-나이아가라-vfx) | **나이아가라 VFX** | 시스템 5종 / 에미터 23 / 머티리얼 3종 | `Content/VFX_Test` |
+| [3](#3-시퀀서-시네마틱) | **시퀀서 시네마틱** | 1260프레임 / 6샷 / 카메라 6대 | `Content/VFX_Test` |
+| [4](#4-그-외-작업) | 그 외 작업 | 모듈러 킷 · UMG 재현 | 여러 폴더 |
+
+각 항목은 **결과 → 파이프라인 → 재현 방법 → 기술 노트** 순서로 정리했습니다.
+기술 노트에는 MCP로 막힌 지점과 우회책을 적어뒀습니다(접혀 있습니다).
+
 ---
 
-# PCG 절차적 숲 (`Content/PCG_Test`)
+# 1. PCG 절차적 숲
+
+> `Content/PCG_Test`
 
 규칙만 주면 나무·바위·관목·풀이 알아서 자라는 PCG 그래프. 나무를 한 그루도 손으로 심지 않았고, **지형을 400m에서 600m로 교체했을 때 70,325개가 자동으로 재배치**됐습니다.
 
@@ -14,7 +41,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 
 ![지상 시점](docs/images/02_road_ground.jpg)
 
-## 결과
+## 1.1 결과
 
 | 레이어 | 메시 | 인스턴스 | 규칙 |
 |---|---|---:|---|
@@ -31,7 +58,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 - 지형 600m × 600m, 고도 100–9096 유닛
 - 서브그래프 `PCG_ScatterLayer` (파라미터 6종) + 재사용 데모 `PCG_BiomeDemo`
 
-## 파이프라인
+## 1.2 파이프라인
 
 모든 브랜치가 같은 6단계 뼈대를 공유하고 숫자만 다릅니다.
 
@@ -54,7 +81,7 @@ World Ray Hit Query          지형 표면 획득
 
 `$Density`가 기축통화입니다. ②에서 규칙을 밀도에 누적하고 ③에서 실행합니다.
 
-## 생태 규칙
+## 1.3 생태 규칙
 
 **설선** — 고도 상한을 넘으면 나무가 사라지고 바위만 남습니다.
 
@@ -72,7 +99,7 @@ World Ray Hit Query          지형 표면 획득
 
 ![색 변화](docs/images/06_color_variants.jpg)
 
-## 에셋 (Blender MCP 제작)
+## 1.4 에셋 (Blender MCP 제작)
 
 전부 로우폴리로 스크립트 생성 → FBX → 임포트했습니다. 원본 FBX는 `ImportSource/`에 있습니다.
 
@@ -94,7 +121,7 @@ World Ray Hit Query          지형 표면 획득
 
 ![접지](docs/images/08_projection.jpg)
 
-## 재현
+## 1.5 재현
 
 1. `Content/PCG_Test/L_PCG_Forest` 열기
 2. 아웃라이너에서 `PCG_ForestVolume` 선택
@@ -102,9 +129,10 @@ World Ray Hit Query          지형 표면 획득
 
 파라미터를 바꾸려면 `PCG_ForestGraph`에서 각 브랜치의 `Surface Sampler`(밀도), `Density Filter`(임계값), `Filter by Range`(고도)를 조정합니다. 개수 확인은 노드 우클릭 → **Inspect**.
 
-## 기술 노트 — MCP로 막힌 것들
+## 1.6 기술 노트
 
-이 프로젝트에서 확인된 한계입니다. 같은 작업을 하려는 사람에게 유용할 내용입니다.
+<details>
+<summary><b>MCP로 막힌 것들 — 5건 (펼치기)</b></summary>
 
 **랜드스케이프를 PCG로 샘플링할 수 없습니다.** `Get Landscape Data`가 항상 빈 결과를 냅니다. 원인은 `PCGWorldActor.LandscapeCache`의 `cacheEntryCount`가 0인 것인데, 이 캐시를 빌드하는 경로가 MCP에 없습니다(콘솔 *명령* 실행 툴도 없어 우회 불가). `serializationMode` 변경, 랜드스케이프 더티 마킹, `Wait Until Landscape Is Ready` 삽입 모두 실패했습니다.
 → **우회**: 지형 메시를 `CTF_UseComplexAsSimple` 콜리전으로 두고 `World Ray Hit Query`로 표면을 얻습니다. 노멀도 정상이라 경사 규칙이 전부 동작합니다.
@@ -118,22 +146,44 @@ World Ray Hit Query          지형 표면 획득
 
 **튜닝은 실측 분포로.** Density Filter 임계값을 감으로 잡으면 안 됩니다. 노이즈 출력이 0.51–1.0 범위인데 임계값 0.55를 주면 아무것도 안 걸러집니다. `GetNodeDataView`(에디터의 Inspect)로 실제 분포를 읽어 목표 개수의 백분위에서 역산해야 합니다. 그리고 **Self Pruning이 개수의 천장**이라, 샘플을 늘려도 안 늘면 `pointExtents`(= 최소간격 ÷ 2)를 줄이는 것이 유일한 손잡이입니다.
 
+</details>
+
 ---
 
-# 나이아가라 VFX + 시퀀서 시네마틱 (`Content/VFX_Test`)
+# 2. 나이아가라 VFX
 
-나이아가라 시스템 5종을 에디터 UI 없이 만들었습니다. **에미터 23개, 스택 에러 0, 전 시스템 컴파일 UpToDate.** 색·크기 그라데이션은 커브를 쓰지 않고 **HLSL 표현식으로 생성**했습니다 — 커브 DataInterface에 값을 쓰면 에디터가 죽기 때문입니다(아래 기술 노트).
+> `Content/VFX_Test`
 
-| | |
-|---|---|
-| ![불](docs/images/09_vfx_fire.jpg) | ![오로라](docs/images/10_vfx_aurora.jpg) |
-| **NS_Fire** — 흰노랑→주황→적색 HDR 램프, 불티, 라이트 렌더러 | **NS_Aurora** — 세로 시트 커튼 3겹, 녹색→청록→보라 |
-| ![토네이도](docs/images/11_vfx_tornado.jpg) | ![분수](docs/images/12_vfx_water.jpg) |
-| **NS_Tornado** — 반경이 커지는 원통 밴드 5겹 + VortexForce | **NS_WaterFountain** — Velocity-aligned 물줄기, 중력 포물선 |
-| ![번개](docs/images/13_vfx_lightning.jpg) | |
-| **NS_Lightning** — HDR 볼트 + JitterPosition 지그재그, 2.4초 주기 플래시 | |
+나이아가라 시스템 5종을 에디터 UI 없이 만들었습니다. **에미터 23개, 스택 에러 0, 전 시스템 컴파일 UpToDate.** 색·크기 그라데이션은 커브를 쓰지 않고 **HLSL 표현식으로 생성**했습니다 — 커브 DataInterface에 값을 쓰면 에디터가 죽기 때문입니다.
 
-## 결과
+<table>
+<tr>
+<td width="50%"><img src="docs/images/09_vfx_fire.jpg" width="100%"></td>
+<td width="50%"><img src="docs/images/10_vfx_aurora.jpg" width="100%"></td>
+</tr>
+<tr>
+<td><b>NS_Fire</b> — 흰노랑→주황→적색 HDR 램프, 불티, 라이트 렌더러</td>
+<td><b>NS_Aurora</b> — 세로 시트 커튼 3겹, 녹색→청록→보라</td>
+</tr>
+<tr>
+<td><img src="docs/images/11_vfx_tornado.jpg" width="100%"></td>
+<td><img src="docs/images/12_vfx_water.jpg" width="100%"></td>
+</tr>
+<tr>
+<td><b>NS_Tornado</b> — 반경이 커지는 원통 밴드 5겹 + VortexForce</td>
+<td><b>NS_WaterFountain</b> — Velocity-aligned 물줄기, 중력 포물선</td>
+</tr>
+<tr>
+<td><img src="docs/images/13_vfx_lightning.jpg" width="100%"></td>
+<td></td>
+</tr>
+<tr>
+<td><b>NS_Lightning</b> — HDR 볼트 + JitterPosition 지그재그, 2.4초 주기 플래시</td>
+<td></td>
+</tr>
+</table>
+
+## 2.1 결과
 
 | 시스템 | 에미터 | 구성 | 핵심 기법 |
 |---|---:|---|---|
@@ -146,7 +196,7 @@ World Ray Hit Query          지형 표면 획득
 
 머티리얼 3종(`M_VFX_Translucent` / `TranslucentRibbon` / `Additive`)은 엔진 기본 나이아가라 머티리얼을 복제해 블렌드 모드만 바꿔 만들었습니다.
 
-## 파이프라인
+## 2.2 파이프라인
 
 모든 스프라이트 에미터가 `Fountain` 템플릿에서 출발해 같은 뼈대를 공유합니다.
 
@@ -170,7 +220,7 @@ CreateNiagaraSystem (MinimalLightweight)   시스템 생성 → 템플릿 에미
                           └ ApplyStackIssueFix 로 솔버 순서 자동 교정
 ```
 
-`ScaleColor`의 `Scale RGB`·`Scale Alpha`에 중첩 `lerp` 문자열을 넣어 다단 그라데이션을 만듭니다. 예를 들어 불꽃 코어는 이렇게 펼쳐집니다.
+`ScaleColor`의 `Scale RGB`·`Scale Alpha`에 중첩 `lerp` 문자열을 넣어 다단 그라데이션을 만듭니다. 불꽃 코어는 이렇게 펼쳐집니다.
 
 ```hlsl
 lerp(lerp(lerp(float3(12,7,2), float3(8,3.2,0.5),
@@ -180,11 +230,39 @@ lerp(lerp(lerp(float3(12,7,2), float3(8,3.2,0.5),
 
 `Particles.NormalizedAge`, `Particles.Position`, `Engine.Time`을 참조할 수 있어 커브보다 표현력이 넓습니다.
 
-## 시퀀서 시네마틱
+## 2.3 재현
+
+1. `Content/VFX_Test/L_VFX_Showcase` 열기
+2. 레벨의 `FX_Showcase_*` 액터에서 개별 확인
+3. 파티클이 안 보이면 **Simulate**를 켜세요 (에디터 뷰포트는 나이아가라를 tick하지 않습니다)
+
+## 2.4 기술 노트
+
+<details>
+<summary><b>MCP로 막힌 것들 — 4건 (펼치기)</b></summary>
+
+**커브 DataInterface에 쓰면 에디터가 크래시합니다.** `ScaleColor.Linear Color Curve` 같은 커브 입력에 `SetStackInputData`를 하면 `PlaceholderDataInterfaceChanged → ResetSystem`이 컴파일 중에 재진입해 `InitDITickLists`에서 널 참조로 죽습니다.
+→ **우회**: HLSL 표현식 입력(`NiagaraExt_StackInputData_HlslExpression`)으로 전량 대체. 크래시가 없을 뿐 아니라 표현력도 더 좋습니다.
+
+**`ShapeLocation`의 Box/Plane 셰이프는 파티클이 나오지 않습니다.** Cylinder·Cone은 정상입니다. 오로라가 렌더되지 않던 원인이었고, 원통 분포로 바꾸자 즉시 해결됐습니다. 원뿔은 파티클이 넓은 끝에 몰리므로, 테이퍼 실루엣은 **반경이 커지는 원통 밴드를 쌓는 편**이 예측 가능합니다(토네이도가 그 방식).
+
+**빔(DynamicBeam) 리본은 신뢰할 수 없습니다.** `Use Beam Tangents`의 기본 탄젠트가 0이라 빔이 통째로 붕괴하고, 고쳐도 상대좌표 Start/End가 지정한 길이보다 훨씬 짧게 그려집니다. 오로라·번개 모두 스프라이트 방식으로 선회했습니다.
+
+**그 외 자잘한 것** — `SetEmitterData`는 `bEnabled`가 아니라 **`bIsEnabled`**, 렌더러 프로퍼티는 PascalCase(camelCase는 에러 없이 무시), 스태틱 스위치로 숨겨진 입력은 부모 스위치를 바꿔도 **다음 호출에서 즉시 반영되지 않습니다**.
+
+</details>
+
+---
+
+# 3. 시퀀서 시네마틱
+
+> `Content/VFX_Test`
 
 VFX 5종을 훑는 **42초(1260프레임 @ 30fps) 6샷** 시퀀스 `LS_VFX_Showcase`. 샷마다 스포너블 시네카메라를 하나씩 두고 트랜스폼과 **초점거리를 함께 키프레임**했습니다.
 
 ![풀백](docs/images/14_seq_pullback.jpg)
+
+## 3.1 샷 구성
 
 | # | 대상 | 구간 | 카메라 워크 | 렌즈 |
 |---|---|---|---|---|
@@ -195,26 +273,28 @@ VFX 5종을 훑는 **42초(1260프레임 @ 30fps) 6샷** 시퀀스 `LS_VFX_Showc
 | 5 | 불 | 31–38s | 클로즈업 회전 | 43.5 → 55.4mm |
 | 6 | 풀백 | 38–42s | 상공으로 후퇴, 전체 조망 | 34.6 → 16.5mm |
 
-| | |
-|---|---|
-| ![오로라 샷](docs/images/15_seq_aurora.jpg) | ![토네이도 샷](docs/images/16_seq_tornado.jpg) |
+<table>
+<tr>
+<td width="50%"><img src="docs/images/15_seq_aurora.jpg" width="100%"></td>
+<td width="50%"><img src="docs/images/16_seq_tornado.jpg" width="100%"></td>
+</tr>
+<tr>
+<td>샷 1 — 오로라 (상공 배치, 전 샷의 하늘 배경)</td>
+<td>샷 2 — 토네이도 (로우앵글)</td>
+</tr>
+</table>
 
 오로라는 상공 z=7000에 배치해 **모든 샷의 하늘 배경**으로 쓰고, 나머지는 서로 화면에 겹치지 않도록 X·Y축에 분산했습니다. 초점거리를 키프레임하지 않으면 시네카메라 기본 35mm가 고정되어 풀백 샷에 아무것도 들어오지 않습니다.
 
-## 재현
+## 3.2 재현
 
 1. `Content/VFX_Test/L_VFX_Showcase` 열기
 2. 시퀀서에서 `LS_VFX_Showcase` 재생
-3. 개별 VFX만 보려면 레벨의 `FX_Showcase_*` 액터를 확인
 
-## 기술 노트 — MCP로 막힌 것들
+## 3.3 기술 노트
 
-**커브 DataInterface에 쓰면 에디터가 크래시합니다.** `ScaleColor.Linear Color Curve` 같은 커브 입력에 `SetStackInputData`를 하면 `PlaceholderDataInterfaceChanged → ResetSystem`이 컴파일 중에 재진입해 `InitDITickLists`에서 널 참조로 죽습니다.
-→ **우회**: HLSL 표현식 입력(`NiagaraExt_StackInputData_HlslExpression`)으로 전량 대체. 크래시가 없을 뿐 아니라 표현력도 더 좋습니다.
-
-**`ShapeLocation`의 Box/Plane 셰이프는 파티클이 나오지 않습니다.** Cylinder·Cone은 정상입니다. 오로라가 렌더되지 않던 원인이었고, 원통 분포로 바꾸자 즉시 해결됐습니다. 원뿔은 파티클이 넓은 끝에 몰리므로, 테이퍼 실루엣은 **반경이 커지는 원통 밴드를 쌓는 편**이 예측 가능합니다(토네이도가 그 방식).
-
-**빔(DynamicBeam) 리본은 신뢰할 수 없습니다.** `Use Beam Tangents`의 기본 탄젠트가 0이라 빔이 통째로 붕괴하고, 고쳐도 상대좌표 Start/End가 지정한 길이보다 훨씬 짧게 그려집니다. 오로라·번개 모두 스프라이트 방식으로 선회했습니다.
+<details>
+<summary><b>MCP로 막힌 것들 — 4건 (펼치기)</b></summary>
 
 **`set_camera_cut_binding`은 항상 실패합니다.** 어떤 ID 형식을 줘도 `call() takes at most 0 arguments`.
 → **우회**: `ObjectTools.set_properties(section, {"CameraBindingID": {"Guid": <bindingId>, "SequenceID": 0, "ResolveParentIndex": 0}})`로 섹션 프로퍼티를 직접 씁니다.
@@ -222,17 +302,15 @@ VFX 5종을 훑는 **42초(1260프레임 @ 30fps) 6샷** 시퀀스 `LS_VFX_Showc
 **시퀀서를 연 채 PIE를 시작하면 죽습니다.** `OnPreBeginPIE → OnPlaybackContextChanged → SpawnRegister::CleanUp → DestroySpawnedObject → AActor::Modify`. 레벨에 남은 스폰 카메라도 `ACineCameraActor::Tick`에서 무효 핸들로 죽습니다.
 → 결과적으로 **시퀀서 카메라 뷰는 스크린샷으로 검증할 수 없습니다.** 나이아가라는 시퀀서 재생만으로 충분히 tick하지 않아 화면이 비고, 파티클을 돌리려면 Simulate가 필요한데 그것이 시퀀서와 공존하지 않습니다. 샷 포즈를 좌표로 직접 캡처해 검증했습니다. 실제 영상은 Movie Render Queue가 답입니다.
 
-**뷰포트는 나이아가라를 tick하지 않습니다.** `CaptureViewport`만으로는 파티클이 하나도 안 찍힙니다. `StartPIE {bSimulate: true, playMode: "PlayMode_Simulate"}`로 감싸야 실제 시뮬레이션이 찍힙니다.
-
 **노출을 고정하지 않으면 튜닝이 무의미합니다.** 어두운 씬에서 자동 노출이 열려 additive VFX가 전부 흰색으로 포화됩니다. `AutoExposureMethod: AEM_Manual` + Min=Max=1인 언바운드 PostProcessVolume이 필요합니다.
 
-**거리 컬링은 복구되지 않습니다.** Simulate 중 카메라에서 먼 나이아가라는 컬링되어 꺼지는데, 카메라가 돌아와도 되살아나지 않습니다. 여러 이펙트를 한 세션에서 순회 캡처하면 뒤쪽 것이 조용히 빈 화면으로 나옵니다 — 대상마다 Simulate를 다시 시작해야 합니다.
+**거리 컬링은 복구되지 않습니다.** Simulate 중 카메라에서 먼 나이아가라는 컬링되어 꺼지는데, 카메라가 돌아와도 되살아나지 않습니다. 여러 이펙트를 한 세션에서 순회 캡처하면 뒤쪽 것이 조용히 빈 화면으로 나옵니다 — 대상마다 Simulate를 다시 시작해야 합니다. 프레임 단위는 tick이 아닌 **display rate** 기준입니다.
 
-**그 외 자잘한 것** — `SetEmitterData`는 `bEnabled`가 아니라 **`bIsEnabled`**, 렌더러 프로퍼티는 PascalCase(camelCase는 에러 없이 무시), 프레임 단위는 tick이 아닌 **display rate**, 스태틱 스위치로 숨겨진 입력은 부모 스위치를 바꿔도 **다음 호출에서 즉시 반영되지 않습니다**.
+</details>
 
 ---
 
-# 그 외 작업
+# 4. 그 외 작업
 
 | 폴더 | 내용 |
 |---|---|
