@@ -120,6 +120,118 @@ World Ray Hit Query          지형 표면 획득
 
 ---
 
+# 나이아가라 VFX + 시퀀서 시네마틱 (`Content/VFX_Test`)
+
+나이아가라 시스템 5종을 에디터 UI 없이 만들었습니다. **에미터 23개, 스택 에러 0, 전 시스템 컴파일 UpToDate.** 색·크기 그라데이션은 커브를 쓰지 않고 **HLSL 표현식으로 생성**했습니다 — 커브 DataInterface에 값을 쓰면 에디터가 죽기 때문입니다(아래 기술 노트).
+
+| | |
+|---|---|
+| ![불](docs/images/09_vfx_fire.jpg) | ![오로라](docs/images/10_vfx_aurora.jpg) |
+| **NS_Fire** — 흰노랑→주황→적색 HDR 램프, 불티, 라이트 렌더러 | **NS_Aurora** — 세로 시트 커튼 3겹, 녹색→청록→보라 |
+| ![토네이도](docs/images/11_vfx_tornado.jpg) | ![분수](docs/images/12_vfx_water.jpg) |
+| **NS_Tornado** — 반경이 커지는 원통 밴드 5겹 + VortexForce | **NS_WaterFountain** — Velocity-aligned 물줄기, 중력 포물선 |
+| ![번개](docs/images/13_vfx_lightning.jpg) | |
+| **NS_Lightning** — HDR 볼트 + JitterPosition 지그재그, 2.4초 주기 플래시 | |
+
+## 결과
+
+| 시스템 | 에미터 | 구성 | 핵심 기법 |
+|---|---:|---|---|
+| NS_Fire | 4 | Core / Embers / Smoke / **Light** | Curl Noise, HDR 램프, 라이트 렌더러 |
+| NS_Aurora | 3 | Lower / Mid / Upper | 세로 non-uniform 스프라이트, 초저속 드리프트 |
+| NS_Tornado | 7 | Band0–4 / GroundDust / **Debris(Mesh)** | VortexForce, 높이별 반경 확장 |
+| NS_WaterFountain | 4 | Jet / Droplets / Mist / Splash | VelocityAligned 스트레치, 중력 −980 |
+| NS_Lightning | 5 | MainBolt / Glow / Branch×2 / Sparks | JitterPosition, 시간 게이트 플래시 |
+| **합계** | **23** | | |
+
+머티리얼 3종(`M_VFX_Translucent` / `TranslucentRibbon` / `Additive`)은 엔진 기본 나이아가라 머티리얼을 복제해 블렌드 모드만 바꿔 만들었습니다.
+
+## 파이프라인
+
+모든 스프라이트 에미터가 `Fountain` 템플릿에서 출발해 같은 뼈대를 공유합니다.
+
+```
+CreateNiagaraSystem (MinimalLightweight)   시스템 생성 → 템플릿 에미터 제거
+      │
+      ├─ AddEmitter (Fountain / UpwardMeshBurst)
+      │
+      ├─ EmitterUpdate   SpawnRate
+      ├─ ParticleSpawn   InitializeParticle  수명·크기·색 모드
+      │                  ShapeLocation       Cylinder / Cone 분포
+      │                  AddVelocity         원뿔 방향 + 속도 범위
+      ├─ ParticleUpdate  GravityForce / Drag
+      │                  CurlNoiseForce      난류
+      │                  VortexForce         회전 (토네이도)
+      │                  JitterPosition      각진 변위 (번개)
+      │                  ScaleColor          ← HLSL 램프 (RGB·Alpha)
+      │                  ScaleSpriteSize     ← HLSL 램프
+      │                  SolveForcesAndVelocity
+      └─ SetRendererData  머티리얼 / 정렬 / 정렬힌트
+                          └ ApplyStackIssueFix 로 솔버 순서 자동 교정
+```
+
+`ScaleColor`의 `Scale RGB`·`Scale Alpha`에 중첩 `lerp` 문자열을 넣어 다단 그라데이션을 만듭니다. 예를 들어 불꽃 코어는 이렇게 펼쳐집니다.
+
+```hlsl
+lerp(lerp(lerp(float3(12,7,2), float3(8,3.2,0.5),
+     saturate((Particles.NormalizedAge - 0.0) * 6.667)),
+     float3(3.5,0.9,0.08), saturate((Particles.NormalizedAge - 0.15) * 4.0)), ...)
+```
+
+`Particles.NormalizedAge`, `Particles.Position`, `Engine.Time`을 참조할 수 있어 커브보다 표현력이 넓습니다.
+
+## 시퀀서 시네마틱
+
+VFX 5종을 훑는 **42초(1260프레임 @ 30fps) 6샷** 시퀀스 `LS_VFX_Showcase`. 샷마다 스포너블 시네카메라를 하나씩 두고 트랜스폼과 **초점거리를 함께 키프레임**했습니다.
+
+![풀백](docs/images/14_seq_pullback.jpg)
+
+| # | 대상 | 구간 | 카메라 워크 | 렌즈 |
+|---|---|---|---|---|
+| 1 | 오로라 | 0–8s | 좌→우 수평 트래킹 | 16.5mm |
+| 2 | 토네이도 | 8–16s | 로우앵글 크레인 업 + 오빗 | 23.5 → 30mm |
+| 3 | 번개 | 16–23s | 정지에 가까운 푸시인 | 25.7 → 32.5mm |
+| 4 | 분수 | 23–31s | 시계방향 오빗 | 28.3 → 34.6mm |
+| 5 | 불 | 31–38s | 클로즈업 회전 | 43.5 → 55.4mm |
+| 6 | 풀백 | 38–42s | 상공으로 후퇴, 전체 조망 | 34.6 → 16.5mm |
+
+| | |
+|---|---|
+| ![오로라 샷](docs/images/15_seq_aurora.jpg) | ![토네이도 샷](docs/images/16_seq_tornado.jpg) |
+
+오로라는 상공 z=7000에 배치해 **모든 샷의 하늘 배경**으로 쓰고, 나머지는 서로 화면에 겹치지 않도록 X·Y축에 분산했습니다. 초점거리를 키프레임하지 않으면 시네카메라 기본 35mm가 고정되어 풀백 샷에 아무것도 들어오지 않습니다.
+
+## 재현
+
+1. `Content/VFX_Test/L_VFX_Showcase` 열기
+2. 시퀀서에서 `LS_VFX_Showcase` 재생
+3. 개별 VFX만 보려면 레벨의 `FX_Showcase_*` 액터를 확인
+
+## 기술 노트 — MCP로 막힌 것들
+
+**커브 DataInterface에 쓰면 에디터가 크래시합니다.** `ScaleColor.Linear Color Curve` 같은 커브 입력에 `SetStackInputData`를 하면 `PlaceholderDataInterfaceChanged → ResetSystem`이 컴파일 중에 재진입해 `InitDITickLists`에서 널 참조로 죽습니다.
+→ **우회**: HLSL 표현식 입력(`NiagaraExt_StackInputData_HlslExpression`)으로 전량 대체. 크래시가 없을 뿐 아니라 표현력도 더 좋습니다.
+
+**`ShapeLocation`의 Box/Plane 셰이프는 파티클이 나오지 않습니다.** Cylinder·Cone은 정상입니다. 오로라가 렌더되지 않던 원인이었고, 원통 분포로 바꾸자 즉시 해결됐습니다. 원뿔은 파티클이 넓은 끝에 몰리므로, 테이퍼 실루엣은 **반경이 커지는 원통 밴드를 쌓는 편**이 예측 가능합니다(토네이도가 그 방식).
+
+**빔(DynamicBeam) 리본은 신뢰할 수 없습니다.** `Use Beam Tangents`의 기본 탄젠트가 0이라 빔이 통째로 붕괴하고, 고쳐도 상대좌표 Start/End가 지정한 길이보다 훨씬 짧게 그려집니다. 오로라·번개 모두 스프라이트 방식으로 선회했습니다.
+
+**`set_camera_cut_binding`은 항상 실패합니다.** 어떤 ID 형식을 줘도 `call() takes at most 0 arguments`.
+→ **우회**: `ObjectTools.set_properties(section, {"CameraBindingID": {"Guid": <bindingId>, "SequenceID": 0, "ResolveParentIndex": 0}})`로 섹션 프로퍼티를 직접 씁니다.
+
+**시퀀서를 연 채 PIE를 시작하면 죽습니다.** `OnPreBeginPIE → OnPlaybackContextChanged → SpawnRegister::CleanUp → DestroySpawnedObject → AActor::Modify`. 레벨에 남은 스폰 카메라도 `ACineCameraActor::Tick`에서 무효 핸들로 죽습니다.
+→ 결과적으로 **시퀀서 카메라 뷰는 스크린샷으로 검증할 수 없습니다.** 나이아가라는 시퀀서 재생만으로 충분히 tick하지 않아 화면이 비고, 파티클을 돌리려면 Simulate가 필요한데 그것이 시퀀서와 공존하지 않습니다. 샷 포즈를 좌표로 직접 캡처해 검증했습니다. 실제 영상은 Movie Render Queue가 답입니다.
+
+**뷰포트는 나이아가라를 tick하지 않습니다.** `CaptureViewport`만으로는 파티클이 하나도 안 찍힙니다. `StartPIE {bSimulate: true, playMode: "PlayMode_Simulate"}`로 감싸야 실제 시뮬레이션이 찍힙니다.
+
+**노출을 고정하지 않으면 튜닝이 무의미합니다.** 어두운 씬에서 자동 노출이 열려 additive VFX가 전부 흰색으로 포화됩니다. `AutoExposureMethod: AEM_Manual` + Min=Max=1인 언바운드 PostProcessVolume이 필요합니다.
+
+**거리 컬링은 복구되지 않습니다.** Simulate 중 카메라에서 먼 나이아가라는 컬링되어 꺼지는데, 카메라가 돌아와도 되살아나지 않습니다. 여러 이펙트를 한 세션에서 순회 캡처하면 뒤쪽 것이 조용히 빈 화면으로 나옵니다 — 대상마다 Simulate를 다시 시작해야 합니다.
+
+**그 외 자잘한 것** — `SetEmitterData`는 `bEnabled`가 아니라 **`bIsEnabled`**, 렌더러 프로퍼티는 PascalCase(camelCase는 에러 없이 무시), 프레임 단위는 tick이 아닌 **display rate**, 스태틱 스위치로 숨겨진 입력은 부모 스위치를 바꿔도 **다음 호출에서 즉시 반영되지 않습니다**.
+
+---
+
 # 그 외 작업
 
 | 폴더 | 내용 |
@@ -127,4 +239,3 @@ World Ray Hit Query          지형 표면 획득
 | `Content/IndustrialHarbor_Claude` | 산업 항구 모듈러 킷. Blender 제작 메시 90개, 텍스처 81장, 마스터 머티리얼 3종 + MI 56개, 레벨 액터 1,720개 |
 | `Content/KoreanOldTown` | 한국 구도심 프롭·모듈러 세트 |
 | `Content/UIReferenceTest` | UMG 레이아웃 재현 (WBP 8종 + 텍스처 15종) |
-| `Content/VFX_Test` | 나이아가라 VFX 5종 (불/오로라/토네이도/분수/번개) |
