@@ -6,12 +6,14 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 
 <table>
 <tr>
-<td width="25%"><a href="#4-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
-<td width="25%"><a href="#5-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
-<td width="25%"><a href="#6-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
-<td width="25%"><a href="#7-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
+<td width="20%"><a href="#3-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
+<td width="20%"><a href="#4-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
+<td width="20%"><a href="#5-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
+<td width="20%"><a href="#6-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
+<td width="20%"><a href="#7-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
 </tr>
 <tr>
+<td align="center"><b>UMG 레이아웃 재현</b><br>WBP 8종 · 텍스처 15장</td>
 <td align="center"><b>캐릭터 리깅·애니메이션</b><br>본 20 · 액션 2종</td>
 <td align="center"><b>나이아가라 VFX</b><br>시스템 5종 · 에미터 23</td>
 <td align="center"><b>PCG 절차적 숲</b><br>인스턴스 70,325</td>
@@ -27,7 +29,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 |---|---|---|---|---|
 | [1](#1-한국-구도심-골목) | 한국 구도심 골목 | 에셋 150 / 프롭·모듈러 세트 | `Content/KoreanOldTown` | `30a16b4` `5845a84` |
 | [2](#2-산업-항구-모듈러-킷) | 산업 항구 모듈러 킷 | 메시 90 / 텍스처 81 / 액터 1,720 | `Content/IndustrialHarbor_Claude` | `55d1fc5`…`ae3f916` |
-| [3](#3-umg-레이아웃-재현) | UMG 레이아웃 재현 | WBP 8종 / 텍스처 15장 | `Content/UIReferenceTest` | `1300782` |
+| [3](#3-umg-레이아웃-재현) | **UMG 레이아웃 재현** | WBP 8종 / 텍스처 15장 / 기준 1920×1080 | `Content/UIReferenceTest` | `1300782` |
 | [4](#4-캐릭터-리깅애니메이션) | **캐릭터 리깅·애니메이션** | 본 20 / 폴리 938 / 액션 2종 | `Content/Characters` | `aa65f26` |
 | [5](#5-나이아가라-vfx) | **나이아가라 VFX** | 시스템 5종 / 에미터 23 / 머티리얼 3종 | `Content/VFX_Test` | `5064487` |
 | [6](#6-pcg-절차적-숲) | **PCG 절차적 숲** | 그래프 93노드 / 인스턴스 70,325 / 지형 600m | `Content/PCG_Test` | `4cfc69f` |
@@ -71,17 +73,139 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 
 # 3. UMG 레이아웃 재현
 
-> `Content/UIReferenceTest`
+> `Content/UIReferenceTest` · 소스 `ExternalAssets/UIReferenceTest`
 
-참조 UI 스크린샷을 보고 `UMGToolSet`으로 위젯 트리를 구성해 레이아웃을 재현했습니다.
+**참조 UI 스크린샷 한 장**만 입력으로 주고, 거기서 좌표·크기·여백·색·알파를 역산해 `UMGToolSet`으로 위젯 트리를 다시 세웠습니다. 기능(클릭·설정 적용·Push/Pop)은 범위에서 빼고 레이아웃과 비주얼만 맞췄습니다.
+
+<table>
+<tr>
+<td width="50%"><img src="docs/images/24_ui_reference.jpg" width="100%"></td>
+<td width="50%"><img src="docs/images/25_ui_result.jpg" width="100%"></td>
+</tr>
+<tr>
+<td align="center"><b>입력</b> — 참조로 받은 배경 아트</td>
+<td align="center"><b>출력</b> — UMG 위젯 트리 + 자체 생성한 배경</td>
+</tr>
+</table>
+
+참조는 이 배경 아트 위에 메뉴·설정 팝업이 얹힌 UI 스크린샷 한 장이었습니다. 화면의 배경도 원본을 가져다 쓴 게 아니라 **같은 구도를 실루엣 페인팅으로 다시 그려 넣은 것**입니다(→ [3.3](#33-텍스처-자체-제작)).
+
+*오른쪽 점선은 UMG 디자이너의 위젯 외곽선 표시입니다. 실제 렌더에는 나오지 않습니다.*
+
+## 3.1 결과
 
 | 항목 | 값 |
 |---|---|
-| 위젯 블루프린트 | 8종 |
-| 텍스처 | 15장 |
+| 위젯 블루프린트 | 8종 (`CommonActivatableWidget` 2 · `CommonUserWidget` 4 · `UserWidget` 2) |
+| 텍스처 | 15장 (전부 자체 생성) |
+| 스타일 에셋 | `CommonButtonStyle` 1종 |
 | 언리얼 에셋 | 25 uasset |
+| 기준 해상도 | 1920×1080 (DPI 스케일 0.67에서 검증) |
 
-> 위젯 프로퍼티는 클래스마다 이름이 달라 유추가 안 됩니다. `list_properties` → `get_properties` → `set_properties` 순서를 지키지 않으면 `set_properties`가 조용히 실패합니다.
+<table>
+<tr>
+<td width="45%"><img src="docs/images/26_ui_menu.jpg" width="100%"></td>
+<td width="55%"><img src="docs/images/27_ui_panel.jpg" width="100%"></td>
+</tr>
+<tr>
+<td align="center">타이틀 2단 + 메뉴 4항목 — 선택 항목만 금색 바·페이드 배경·테두리·chevron</td>
+<td align="center">설정 팝업 465×700 — 옵션 3행 · 구분선 · 볼륨 3행 · CLOSE</td>
+</tr>
+</table>
+
+## 3.2 위젯 계층
+
+인스턴스마다 문구와 슬라이더 값이 다른 부분은 **`NamedSlot`으로 주입**해서, 같은 WBP를 텍스트 개수만큼 복제하지 않았습니다.
+
+```
+WBP_MainMenuScreen (CommonActivatableWidget)
+└─ Overlay_Root
+   ├─ Img_Background      T_UI_Background · Fill/Fill
+   ├─ Img_LeftScrim       T_UI_LeftScrim · HAlign_Left 880px
+   └─ Canvas_Content
+      ├─ VBox_Title           @(78,208)   PROJECT 46 / NEXUS 120 Bold
+      ├─ VBox_MainMenu        @(86,482)   405×311 · 항목 간격 29
+      │  ├─ Btn_Continue      WBP_MenuButton_Selected → NamedSlot "CONTINUE"
+      │  └─ Btn_NewGame / Btn_Settings / Btn_ExitGame  WBP_MenuButton
+      ├─ Txt_PanelLabel       @(1429,64)  "Settings Popup"
+      ├─ Panel_Settings       @(1429,107) 465×700
+      └─ Prompt_Select        @(55,986)   WBP_KeyPrompt
+
+WBP_SettingsPanel (CommonActivatableWidget)
+└─ Root_SizeBox 465×700
+   └─ Overlay_Panel
+      ├─ Img_PanelFill    T_UI_White  #111318 α0.945
+      ├─ Img_PanelNoise   T_UI_PanelNoise · Tiling Both · α0.05
+      ├─ Img_PanelBorder  T_UI_Border · DrawAs Box · α0.18
+      └─ VBox_Content     padding L28 / R29
+         ├─ SizeBox_Header 94   Txt_Title + Btn_CloseIcon
+         ├─ Img_Divider1
+         ├─ Row_Graphics / Row_Resolution / Row_Fullscreen   WBP_OptionRow 59px
+         ├─ Img_Divider2 · Txt_VolumeHeader
+         ├─ Row_Master / Row_BGM / Row_SFX                   WBP_SliderRow 59px
+         ├─ Spacer_Fill
+         └─ Btn_Close                                        208×55 · 하단 37
+```
+
+메뉴 항목은 `WBP_MenuButton`(텍스트만)과 `WBP_MenuButton_Selected`(강조 4요소 포함) 두 종으로 나눴습니다. 하나로 두고 `Visibility`만 껐더니 **디자이너가 `Collapsed`를 무시하고 그려버려서**, 비선택 쪽은 아예 위젯을 삭제하는 편이 프리뷰와 런타임이 일치했습니다.
+
+## 3.3 텍스처 자체 제작
+
+프로젝트에 UI 소스가 없어 15장을 전부 Pillow/NumPy로 그려서 임포트했습니다. 생성기는 [`ExternalAssets/UIReferenceTest/gen_ui_textures.py`](ExternalAssets/UIReferenceTest/gen_ui_textures.py)에 있고, 다시 돌리면 같은 결과가 나옵니다(시드 고정).
+
+![텍스처](docs/images/28_ui_textures.jpg)
+
+배경 `T_UI_Background`(1920×1080)는 참조 이미지를 복사한 것이 아니라 같은 구도를 **실루엣 페인팅으로 다시 그린 것**입니다.
+
+```
+하늘        고도 그라디언트 + 광원 3개 → fBm 구름 3레이어(어두운 상층 / 밝은 중층 / 수평 띠)
+지형        노이즈 능선 폴리곤 3겹 · fBm 지면 셰이딩 · 대기 원근 + 거리 감쇠
+실루엣      성(첨탑 9) · 망토 인물(폭 프로파일 11점 보간) · 침엽수 11 · 강 리본
+후처리      비네트 · 좌측 스크림 · 스플릿 톤 · 필름 그레인
+```
+
+아이콘은 4배 슈퍼샘플 후 축소해 안티에일리어싱을 얻었고, 테두리류(`T_UI_Border`·`T_UI_KeyBadge`)는 9-slice로 만들어 `DrawAs: Box` + `Margin`으로 늘려 씁니다.
+
+임포트 설정은 전부 `TEXTUREGROUP_UI` / `TMGS_NoMipmaps` / `NeverStream`, 아이콘·그라디언트는 알파 보존을 위해 `TC_EditorIcon`, 배경만 `TC_Default`입니다.
+
+## 3.4 레이아웃 수치
+
+참조 이미지에서 읽어낸 값을 1920×1080으로 환산해 그대로 넣었습니다.
+
+| 요소 | 값 |
+|---|---|
+| 타이틀 | `PROJECT` 46 / 자간 400 · `NEXUS` 120 Bold / 자간 80 |
+| 메뉴 버튼 | 405×56 · 피치 85 · 텍스트 좌패딩 38 · chevron 우패딩 26 |
+| 강조 바 | 폭 3px `#F0C880` · 하이라이트는 좌→우 페이드 α0.26 |
+| 설정 팝업 | 465×700 · 우측 여백 26 · 내부 패딩 divider 28 / 행 44 |
+| 옵션 행 | 높이 59 · 값 영역 194 (`<` 값 `>` 중앙 정렬) |
+| 볼륨 행 | 라벨 150 / 트랙 184 / 값 42 · 바 두께 2 α0.55 · 핸들 20px |
+| 색 | 패널 `#111318` · 강조 `#F0C880` · 라벨 `#D8DADE` `#C6C9CE` · 보조 `#9EA2A8` |
+
+색은 `set_properties`로 넣으면 **선형(linear) 값으로 그대로 저장**되므로, sRGB 표기를 매번 변환해서 기입했습니다.
+
+## 3.5 재현
+
+1. 콘텐츠 브라우저에서 `Content/UIReferenceTest/Widgets/WBP_MainMenuScreen` 열기
+2. 디자이너 화면 크기를 16:9로 두면 참조와 동일한 배치
+3. 텍스처를 다시 만들려면 `uv run --with pillow --with numpy python ExternalAssets/UIReferenceTest/gen_ui_textures.py`
+
+## 3.6 기술 노트
+
+<details>
+<summary><b>MCP로 막힌 것들 — 4건 (펼치기)</b></summary>
+
+**위젯 프로퍼티는 이름을 유추할 수 없습니다.** 클래스마다 다릅니다. `list_properties` → `get_properties` → `set_properties` 순서를 지키지 않으면 `set_properties`가 조용히 실패합니다. 중첩 구조체는 필드명까지 확인해야 합니다 — 브러시는 `resourceObject`/`imageSize`/`drawAs`/`margin`/`tintColor.specifiedColor`, 폰트는 `fontObject`/`typefaceFontName`/`size`/`letterSpacing`입니다.
+
+**`CommonButtonBase`의 흰 배경을 끌 수 없었습니다.** 내부 `UButton`이 기본 스타일로 흰 사각형을 그리는데, `CommonButtonStyle` 서브클래스를 만들어 모든 브러시를 `NoDrawType`(그리고 알파 0)으로 비우고 `Style`에 CDO·인스턴스 양쪽으로 지정해도 그대로였습니다.
+→ **우회**: 버튼 WBP 4종의 부모를 `CommonUserWidget`으로 리페어런트. 이번 작업은 클릭 기능이 범위 밖이라 손실이 없었습니다.
+
+**디자이너는 `Visibility: Collapsed`를 무시합니다.** 편집 편의를 위해 `bHiddenInDesigner`를 대신 보기 때문에, 숨긴 자식이 프리뷰에 그대로 나옵니다. 프리뷰와 런타임을 일치시키려면 **숨기지 말고 지워야** 합니다.
+
+**위젯을 스크린샷할 방법이 마땅치 않습니다.** `CaptureEditorImage`는 데스크톱 전체를 1280px로 줄여버려 UI 판독이 안 되고, `CaptureViewport`는 PIE 중에도 레벨 뷰포트만 잡습니다. 에디터 월드에 `WidgetComponent`를 놓는 우회로는 렌더 타깃이 갱신되지 않거나 검게 나왔습니다.
+→ **우회**: 위젯 에디터 창을 Win32로 최상위에 올려 `CopyFromScreen`으로 원본 해상도 캡처. 디자이너 줌은 `PostMessage(WM_MOUSEWHEEL)`로만 움직였고(`mouse_event`는 먹지 않음), MCP로 에셋을 고쳐도 **프리뷰가 갱신되지 않아** 창을 닫았다 다시 열어야 했습니다.
+
+</details>
 
 ---
 
