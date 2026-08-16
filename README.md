@@ -6,13 +6,15 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 
 <table>
 <tr>
-<td width="20%"><a href="#3-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
-<td width="20%"><a href="#4-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
-<td width="20%"><a href="#5-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
-<td width="20%"><a href="#6-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
-<td width="20%"><a href="#7-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
+<td width="16.6%"><a href="#1-산업-항구-모듈러-킷"><img src="docs/images/harbor_01_overview.jpg" width="100%"></a></td>
+<td width="16.6%"><a href="#2-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
+<td width="16.6%"><a href="#3-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
+<td width="16.6%"><a href="#4-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
+<td width="16.6%"><a href="#5-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
+<td width="16.6%"><a href="#6-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
 </tr>
 <tr>
+<td align="center"><b>산업 항구 모듈러 킷</b><br>메시 90 · 액터 1,720</td>
 <td align="center"><b>UMG 레이아웃 재현</b><br>WBP 8종 · 텍스처 15장</td>
 <td align="center"><b>캐릭터 리깅·애니메이션</b><br>본 20 · 액션 2종</td>
 <td align="center"><b>나이아가라 VFX</b><br>시스템 5종 · 에미터 23</td>
@@ -27,51 +29,132 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 
 | # | 작업 | 규모 | 폴더 | 커밋 |
 |---|---|---|---|---|
-| [1](#1-한국-구도심-골목) | 한국 구도심 골목 | 에셋 150 / 프롭·모듈러 세트 | `Content/KoreanOldTown` | `30a16b4` `5845a84` |
-| [2](#2-산업-항구-모듈러-킷) | 산업 항구 모듈러 킷 | 메시 90 / 텍스처 81 / 액터 1,720 | `Content/IndustrialHarbor_Claude` | `55d1fc5`…`ae3f916` |
-| [3](#3-umg-레이아웃-재현) | **UMG 레이아웃 재현** | WBP 8종 / 텍스처 15장 / 기준 1920×1080 | `Content/UIReferenceTest` | `1300782` |
-| [4](#4-캐릭터-리깅애니메이션) | **캐릭터 리깅·애니메이션** | 본 20 / 폴리 938 / 액션 2종 | `Content/Characters` | `aa65f26` |
-| [5](#5-나이아가라-vfx) | **나이아가라 VFX** | 시스템 5종 / 에미터 23 / 머티리얼 3종 | `Content/VFX_Test` | `5064487` |
-| [6](#6-pcg-절차적-숲) | **PCG 절차적 숲** | 그래프 93노드 / 인스턴스 70,325 / 지형 600m | `Content/PCG_Test` | `4cfc69f` |
-| [7](#7-시퀀서-시네마틱) | **시퀀서 시네마틱** | 1260프레임 / 6샷 / 카메라 6대 | `Content/VFX_Test` | `1de62e4` |
+| [1](#1-산업-항구-모듈러-킷) | **산업 항구 모듈러 킷** | 메시 90 / 텍스처 81 / 액터 1,720 | `Content/IndustrialHarbor_Claude` | `55d1fc5`…`ae3f916` |
+| [2](#2-umg-레이아웃-재현) | **UMG 레이아웃 재현** | WBP 8종 / 텍스처 15장 / 기준 1920×1080 | `Content/UIReferenceTest` | `1300782` |
+| [3](#3-캐릭터-리깅애니메이션) | **캐릭터 리깅·애니메이션** | 본 20 / 폴리 938 / 액션 2종 | `Content/Characters` | `aa65f26` |
+| [4](#4-나이아가라-vfx) | **나이아가라 VFX** | 시스템 5종 / 에미터 23 / 머티리얼 3종 | `Content/VFX_Test` | `5064487` |
+| [5](#5-pcg-절차적-숲) | **PCG 절차적 숲** | 그래프 93노드 / 인스턴스 70,325 / 지형 600m | `Content/PCG_Test` | `4cfc69f` |
+| [6](#6-시퀀서-시네마틱) | **시퀀서 시네마틱** | 1260프레임 / 6샷 / 카메라 6대 | `Content/VFX_Test` | `1de62e4` |
 
 굵은 항목은 **결과 → 파이프라인 → 재현 방법 → 기술 노트** 순서로 상세 정리했습니다.
 기술 노트에는 MCP로 막힌 지점과 우회책을 적어뒀습니다(접혀 있습니다).
 
 ---
 
-# 1. 한국 구도심 골목
+# 1. 산업 항구 모듈러 킷
 
-> `Content/KoreanOldTown`
+> `Content/IndustrialHarbor_Claude` · 소스 `ExternalAssets/{Models,Textures}/IndustrialHarbor_Claude`
 
-한국 구도심 상가 골목을 모듈러로 재현한 첫 작업. Blender로 만든 프롭·건물 모듈과 PBR 텍스처를 원본째 저장소(`ExternalAssets/`)에 두고 임포트해 레벨을 구성했습니다.
+완전히 버려진 폐허가 아니라 **20~30년 된 시설물이 지금도 돌아가는** 낡은 한국 항구·산업 지역. Blender MCP로 건물·모듈러·프롭·컨테이너를 절차적으로 만들어 FBX로 내보내고, Poly Haven CC0 텍스처를 입힌 뒤 마스터 머티리얼과 인스턴스 56개로 녹·때·색을 갈라 배치까지 전부 MCP로 진행했습니다. Landscape는 쓰지 않고 지면·부두까지 전부 Static Mesh로 구성했습니다.
 
-| 항목 | 값 |
-|---|---|
-| 언리얼 에셋 | 150 uasset |
-| 원본 | PBR 텍스처 + FBX (`ExternalAssets`) |
-| 레벨 | 상가 골목 1식 |
+![전체 조망](docs/images/harbor_01_overview.jpg)
 
----
-
-# 2. 산업 항구 모듈러 킷
-
-> `Content/IndustrialHarbor_Claude`
-
-컨테이너·크레인·창고·배관으로 구성한 산업 항구 킷. 메시 제작부터 머티리얼 인스턴스 파생, 레벨 배치까지 한 파이프라인으로 이었습니다.
+## 1.1 결과
 
 | 항목 | 값 |
 |---|---|
-| Blender 메시 → FBX | 90개 |
-| 텍스처 | 81장 (Poly Haven CC0 2K, 압축 설정 적용) |
-| 머티리얼 | 마스터 3종 + 인스턴스 56개 |
-| 레벨 액터 | 1,720개 |
-| 메시 설정 | Nanite 활성 |
+| Blender 메시 → FBX | 90개 (건물 14 · 모듈러 41 · 프롭 31 · 컨테이너 4) |
+| 텍스처 | 81장 (Poly Haven CC0 2K, 27세트 × BaseColor/Normal/ARM) |
+| 머티리얼 | 마스터 3종(Industrial/Water/Decal) + 인스턴스 56개 |
+| 레벨 액터 | 1,720개 (배치 1,371 · 데칼 305 · 대안 배경 18 · 라이팅 등) |
+| 배치 건물 | 주요 16동(8종) + 배경 32동(6종) |
+| 컨테이너 | 106개, 8색 variation, 1~3단 적재 |
+| 메시 설정 | Nanite 활성 (지면 타일·유리·소형 프롭 일부 제외) |
 | 언리얼 에셋 | 230 uasset |
+| Landscape | 미사용 — 지면·도로·부두 전부 Static Mesh |
+
+<table>
+<tr>
+<td width="50%"><img src="docs/images/harbor_02_entry.jpg" width="100%"></td>
+<td width="50%"><img src="docs/images/harbor_03_alley.jpg" width="100%"></td>
+</tr>
+<tr>
+<td align="center">Area A — 진입 도로 (전봇대·펜스·화물 대기 공간)</td>
+<td align="center">Area B — 창고 사이 골목 (배관·전기함·조명 디테일)</td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/images/harbor_04_containeryard.jpg" width="100%"></td>
+<td width="50%"><img src="docs/images/harbor_05_pier.jpg" width="100%"></td>
+</tr>
+<tr>
+<td align="center">Area C — 컨테이너 야적장 (1~3단 적재, 통행 가능한 협로)</td>
+<td align="center">Area E — 부두 (갠트리 크레인·소형 크레인·바다)</td>
+</tr>
+</table>
+
+## 1.2 파이프라인
+
+```
+Blender MCP (전용 Collection)
+      │
+      ├─ ① bmesh 프리미티브 조합       벽·지붕·배관·계단·컨테이너를 코드로 생성
+      ├─ ② 면 법선 우세축 평면 UV      머티리얼별 m/타일 지정, 골강판은 리브가
+      │                               수직이 되도록 UV 90° 회전
+      └─ ③ 개별 FBX Export             Buildings / Modular / Props / Containers
+            │
+      Poly Haven CC0                  콘크리트·골강판·아스팔트·목재·벽돌 27세트
+            │                         BaseColor / Normal(nor_dx) / ARM, 2K
+      Unreal MCP
+      ├─ ① 텍스처 임포트                맵 종류별 압축·색공간 설정
+      ├─ ② Static Mesh 임포트           Nanite on/off 판단
+      ├─ ③ M_CL_Industrial_Master       ARM 반전 캐비티로 Dirt/Rust 마스킹,
+      │    (마스터 머티리얼)            ObjectPositionWS 해시로 인스턴스 색편차
+      ├─ ④ Material Instance 56종       컨테이너 8색 등 표면별 분기
+      ├─ ⑤ Programmatic 스크립트로      1,720개 배치 + 인스턴스별
+      │    일괄 배치                    OverrideMaterials
+      ├─ ⑥ Lighting / PostProcess       늦은 오후 + Lumen GI/Reflection
+      └─ ⑦ CaptureViewport로 검증        6회 반복 수정 (그림자·색·배치)
+```
+
+## 1.3 공간 구성
+
+일직선 도로 하나로 끝나지 않도록 5개 구역을 성격이 다르게 나누고 서로 잇습니다.
+
+| 구역 | 구성 |
+|---|---|
+| A 진입 도로 | 철제 게이트·펜스, 전봇대 11개, 도로 표지, 화물 대기 공간 |
+| B 창고 거리 | 도로 양쪽 창고·소규모 공장 밀집, 건물 사이 골목 2곳 |
+| C 컨테이너 야적장 | 106개, 방향·단수 혼합, 통행 가능한 협로 |
+| D 정비 공간 | 작업대·공구함·발전기·컴프레서·가스통 랙·폐자재 |
+| E 부두 | 콘크리트 부두, 방파제, 계선주, 소형 크레인, 갠트리 크레인, 바다 |
+
+## 1.4 반복감 제거
+
+같은 메시를 그대로 복제한 티가 나지 않도록 세 겹으로 변주했습니다.
+
+- **인스턴스 색편차** — 마스터 머티리얼에서 `ObjectPositionWS`를 해시해 `Frac`으로 의사난수를 뽑고 `ColorVariation`으로 곱합니다. 같은 `MI_CL_Concrete_Aged`를 쓴 벽 두 개가 위치만 다르면 색이 미세하게 갈립니다.
+- **컨테이너 8색** — 중성 아연도금 텍스처(`container_side`) 위에 Blue/Red/Green/Gray/Orange/Yellow/Faded/Rust 틴트를 얹어, 같은 지오메트리라도 야적장이 알록달록하게 보입니다.
+- **건물 재사용 시 표면 교체** — 예를 들어 `Warehouse_A`는 3곳에 배치되는데, 두 번째·세 번째는 벽체·셔터·콘크리트 인스턴스를 각각 `Warm`/`Cool` 계열로 바꿔 같은 건물이라는 티를 줄였습니다.
+- **Transform Variation** — 프롭은 시드 고정 난수로 위치·yaw를 흩뿌리고, 컨테이너 적재는 간격·회전·단수를 모두 조금씩 어긋나게 잡았습니다.
+
+## 1.5 재현
+
+1. 콘텐츠 브라우저에서 `Content/IndustrialHarbor_Claude/Level/L_IndustrialHarbor_Claude` 열기
+2. Landscape가 없어 별도 지형 로드 없이 바로 플레이 가능 (PlayerStart 배치됨)
+3. 메시 소스를 고치려면 `ExternalAssets/Models/IndustrialHarbor_Claude/IndustrialHarbor_Claude.blend`를 Blender에서 열어 편집 후 재-Export (자동 재생성 스크립트는 저장소에 포함하지 않았습니다)
+4. 텍스처는 `ExternalAssets/Textures/IndustrialHarbor_Claude/_manifest.json`에 Poly Haven ID와 출처가 남아 있어 동일 세트를 다시 받을 수 있습니다
+
+## 1.6 기술 노트
+
+<details>
+<summary><b>MCP로 막힌 것들 — 5건 (펼치기)</b></summary>
+
+**`ActorTools.get_components`는 Billboard/Arrow 스프라이트 컴포넌트까지 반환합니다.** 조명 액터에 `component_type` 없이 프로퍼티를 쓰면 실제 `PointLightComponent`가 아니라 에디터 전용 시각화 컴포넌트에 값이 들어가 조용히 무시됩니다.
+→ **우회**: 항상 `/Script/Engine.PointLightComponent` 같은 구체 타입으로 필터링해서 가져옵니다.
+
+**`ObjectTools.set_properties`의 값은 JSON *문자열*이어야 합니다.** 오브젝트를 그대로 넘기면 스키마 오류가 납니다. 액터별로 다른 머티리얼을 입히는 유일한 방법인 `StaticMeshComponent.OverrideMaterials` 배열도 이 경로로만 씁니다 — 컴포넌트 단위 머티리얼 오버라이드 전용 툴은 따로 없습니다.
+
+**`ProgrammaticToolset` 스크립트는 중간에 실패해도 이미 실행된 호출의 부수효과가 남습니다.** 배치 스크립트 안에서 한 액터 생성이 예외를 던지면 `run()`의 리턴값이 에러 텍스트로 통째로 교체되는데, 그 전까지 만든 액터들은 이미 레벨에 들어가 있습니다. "실패"로 보고돼도 재실행 전에 `exists` 체크로 멱등성을 확보해야 중복 배치를 피할 수 있습니다.
+
+**중복(`duplicate`)한 레벨 에셋은 저장 전엔 `load_level`이 안 됩니다.** "has unsaved changes" 에러가 가리키는 건 현재 열린 레벨이 아니라 **로드하려는 대상**이라, 새로 만든 레벨을 저장하지 않고 곧바로 전환하면 매번 이 에러가 났습니다.
+
+**`Decal Material`의 `DecalBlendMode`는 `set_properties`로 설정되지 않습니다.** 시도하면 "could not be set" 오류가 나서, 기본값(`DBM_Translucent`)에 `BlendMode: BLEND_Translucent`만 지정하는 선으로 우회했습니다. 데칼 305개 전부 이 설정으로 충분히 동작합니다.
+
+</details>
 
 ---
 
-# 3. UMG 레이아웃 재현
+# 2. UMG 레이아웃 재현
 
 > `Content/UIReferenceTest` · 소스 `ExternalAssets/UIReferenceTest`
 
@@ -88,11 +171,11 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 </tr>
 </table>
 
-배경도 참조 이미지를 잘라 쓴 게 아니라 **같은 구도를 실루엣 페인팅으로 다시 그려 넣은 것**입니다(→ [3.3](#33-텍스처-자체-제작)).
+배경도 참조 이미지를 잘라 쓴 게 아니라 **같은 구도를 실루엣 페인팅으로 다시 그려 넣은 것**입니다(→ [2.3](#23-텍스처-자체-제작)).
 
 *오른쪽 점선은 UMG 디자이너의 위젯 외곽선 표시입니다. 실제 렌더에는 나오지 않습니다.*
 
-## 3.1 결과
+## 2.1 결과
 
 | 항목 | 값 |
 |---|---|
@@ -113,7 +196,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 </tr>
 </table>
 
-## 3.2 위젯 계층
+## 2.2 위젯 계층
 
 인스턴스마다 문구와 슬라이더 값이 다른 부분은 **`NamedSlot`으로 주입**해서, 같은 WBP를 텍스트 개수만큼 복제하지 않았습니다.
 
@@ -149,7 +232,7 @@ WBP_SettingsPanel (CommonActivatableWidget)
 
 메뉴 항목은 `WBP_MenuButton`(텍스트만)과 `WBP_MenuButton_Selected`(강조 4요소 포함) 두 종으로 나눴습니다. 하나로 두고 `Visibility`만 껐더니 **디자이너가 `Collapsed`를 무시하고 그려버려서**, 비선택 쪽은 아예 위젯을 삭제하는 편이 프리뷰와 런타임이 일치했습니다.
 
-## 3.3 텍스처 자체 제작
+## 2.3 텍스처 자체 제작
 
 프로젝트에 UI 소스가 없어 15장을 전부 Pillow/NumPy로 그려서 임포트했습니다. 생성기는 [`ExternalAssets/UIReferenceTest/gen_ui_textures.py`](ExternalAssets/UIReferenceTest/gen_ui_textures.py)에 있고, 다시 돌리면 같은 결과가 나옵니다(시드 고정).
 
@@ -168,7 +251,7 @@ WBP_SettingsPanel (CommonActivatableWidget)
 
 임포트 설정은 전부 `TEXTUREGROUP_UI` / `TMGS_NoMipmaps` / `NeverStream`, 아이콘·그라디언트는 알파 보존을 위해 `TC_EditorIcon`, 배경만 `TC_Default`입니다.
 
-## 3.4 레이아웃 수치
+## 2.4 레이아웃 수치
 
 참조 이미지에서 읽어낸 값을 1920×1080으로 환산해 그대로 넣었습니다.
 
@@ -184,13 +267,13 @@ WBP_SettingsPanel (CommonActivatableWidget)
 
 색은 `set_properties`로 넣으면 **선형(linear) 값으로 그대로 저장**되므로, sRGB 표기를 매번 변환해서 기입했습니다.
 
-## 3.5 재현
+## 2.5 재현
 
 1. 콘텐츠 브라우저에서 `Content/UIReferenceTest/Widgets/WBP_MainMenuScreen` 열기
 2. 디자이너 화면 크기를 16:9로 두면 참조와 동일한 배치
 3. 텍스처를 다시 만들려면 `uv run --with pillow --with numpy python ExternalAssets/UIReferenceTest/gen_ui_textures.py`
 
-## 3.6 기술 노트
+## 2.6 기술 노트
 
 <details>
 <summary><b>MCP로 막힌 것들 — 4건 (펼치기)</b></summary>
@@ -209,7 +292,7 @@ WBP_SettingsPanel (CommonActivatableWidget)
 
 ---
 
-# 4. 캐릭터 리깅·애니메이션
+# 3. 캐릭터 리깅·애니메이션
 
 > `Content/Characters` · 소스 `Blender/SK_Character.blend` · `Export/SK_Character.fbx`
 
@@ -226,7 +309,7 @@ WBP_SettingsPanel (CommonActivatableWidget)
 </tr>
 </table>
 
-## 4.1 결과
+## 3.1 결과
 
 | 항목 | 값 |
 |---|---|
@@ -240,7 +323,7 @@ WBP_SettingsPanel (CommonActivatableWidget)
 
 본 계층은 `root → pelvis → spine → chest → neck → head`, 여기서 `shoulder → upperarm → lowerarm → hand`와 `thigh → calf → foot`이 `_L`/`_R`로 갈라집니다.
 
-## 4.2 파이프라인
+## 3.2 파이프라인
 
 메시는 프리미티브를 쌓는 대신 **단면 링을 이어 붙이는 loft**로 만들었습니다. 단면을 초타원(superellipse)으로 두면 지수 하나로 원↔사각을 오갈 수 있어, 같은 코드로 몸통(각진 단면)과 팔다리(둥근 단면)를 뽑습니다.
 
@@ -257,7 +340,7 @@ superellipse 링 loft                단면 12~16각, 밴드별 머티리얼 지
       └─ ⑥ FBX                      Apply Unit Scale / Bake All Actions / Leaf Bones OFF
 ```
 
-## 4.3 리깅
+## 3.3 리깅
 
 자동 웨이트(Bone Heat)는 이 메시에서 **전 정점 웨이트 0**을 냅니다. 파츠가 서로 닫힌 셸이라 열확산 해가 없기 때문입니다. 그래서 정점에서 각 본 선분까지의 거리로 직접 계산했습니다.
 
@@ -272,7 +355,7 @@ w = 1 / (거리 + 0.015)^4.2       후보 = 최근접 본 + 그 부모/자식
 
 팔·다리·머리를 동시에 꺾어도 관절이 찢어지지 않고, 어깨 패드·무릎 패드·부츠 같은 별도 파츠도 정확히 따라옵니다.
 
-## 4.4 애니메이션
+## 3.4 애니메이션
 
 <table>
 <tr>
@@ -291,25 +374,25 @@ w = 1 / (거리 + 0.015)^4.2       후보 = 최근접 본 + 그 부모/자식
 
 **Idle** — 60프레임, `chest` 피치로 호흡을 만들고 골반은 수직으로 움직이지 않습니다(발이 뜨지 않게). 위상을 `2π(f-1)/59`로 두어 60프레임이 1프레임과 같아집니다.
 
-## 4.5 언리얼 임포트
+## 3.5 언리얼 임포트
 
 ![언리얼 임포트 결과](docs/images/22_char_unreal.jpg)
 
 `SkeletalMeshTools.import_file` 한 번으로 SkeletalMesh · Skeleton · PhysicsAsset · AnimSequence 2종 · Material 4종이 생성됩니다. 검증 결과 임포트 경고 0건, 바운드 180.9cm, 정면 +X.
 
-## 4.6 재현
+## 3.6 재현
 
 1. 콘텐츠 브라우저에서 `Content/Characters/SK_Character` 열기
 2. `A_Character_Walk` / `A_Character_Idle` 더블클릭해 재생
 3. 소스를 고치려면 `Blender/SK_Character.blend` → 익스포트 설정은 아래 기술 노트 참고
 
-## 4.7 기술 노트
+## 3.7 기술 노트
 
 <details>
 <summary><b>MCP로 막힌 것들 — 5건 (펼치기)</b></summary>
 
 **자동 웨이트가 실패합니다.** 파츠를 여러 개의 닫힌 셸로 만들어 join한 메시는 `parent_set(type='ARMATURE_AUTO')`가 "뼈대 히트 웨이팅: 솔루션을 찾지 못 함" 경고와 함께 **전 정점 웨이트 0**을 만듭니다. 버텍스 그룹은 19개 생기는데 값이 전부 비어 있어서, 웨이트가 없다는 걸 눈으로는 못 알아챕니다.
-→ **우회**: 거리 기반 수동 웨이트(4.3). 로우폴리에서는 결과가 오히려 예측 가능합니다.
+→ **우회**: 거리 기반 수동 웨이트(3.3). 로우폴리에서는 결과가 오히려 예측 가능합니다.
 
 **Blender 좌표가 언리얼에 그대로 갑니다.** `axis_forward='-Z', axis_up='Y'`(기본값)로 내보내면 Blender `(x,y,z)` → 언리얼 `(x,y,z)` 항등 매핑입니다. 언리얼 표준은 +X 정면이므로 **Blender에서 +X를 정면으로 모델링해야** 합니다. +Y 정면으로 만들었다가 90° 틀어진 걸 뒤늦게 발견했습니다(바운드의 `boxExtent.x`가 팔 span으로 잡히면 틀어진 겁니다).
 → **우회**: 메시 정점과 본 rest 좌표를 `(x,y,z) → (y,-x,z)`로 변환. Blender 오른손계 ↔ 언리얼 왼손계 차이 덕에 `_L`/`_R` 라벨도 자동으로 맞습니다. 단 **rest를 돌리면 본 로컬 축이 바뀌어 기존 키가 깨지므로 애니메이션은 재생성**해야 합니다(접지 오차가 8mm → 36mm로 튀는 걸로 드러납니다).
@@ -327,7 +410,7 @@ w = 1 / (거리 + 0.015)^4.2       후보 = 최근접 본 + 그 부모/자식
 
 ---
 
-# 5. 나이아가라 VFX
+# 4. 나이아가라 VFX
 
 > `Content/VFX_Test`
 
@@ -360,7 +443,7 @@ w = 1 / (거리 + 0.015)^4.2       후보 = 최근접 본 + 그 부모/자식
 </tr>
 </table>
 
-## 5.1 결과
+## 4.1 결과
 
 | 시스템 | 에미터 | 구성 | 핵심 기법 |
 |---|---:|---|---|
@@ -373,7 +456,7 @@ w = 1 / (거리 + 0.015)^4.2       후보 = 최근접 본 + 그 부모/자식
 
 머티리얼 3종(`M_VFX_Translucent` / `TranslucentRibbon` / `Additive`)은 엔진 기본 나이아가라 머티리얼을 복제해 블렌드 모드만 바꿔 만들었습니다.
 
-## 5.2 파이프라인
+## 4.2 파이프라인
 
 모든 스프라이트 에미터가 `Fountain` 템플릿에서 출발해 같은 뼈대를 공유합니다.
 
@@ -407,13 +490,13 @@ lerp(lerp(lerp(float3(12,7,2), float3(8,3.2,0.5),
 
 `Particles.NormalizedAge`, `Particles.Position`, `Engine.Time`을 참조할 수 있어 커브보다 표현력이 넓습니다.
 
-## 5.3 재현
+## 4.3 재현
 
 1. `Content/VFX_Test/L_VFX_Showcase` 열기
 2. 레벨의 `FX_Showcase_*` 액터에서 개별 확인
 3. 파티클이 안 보이면 **Simulate**를 켜세요 (에디터 뷰포트는 나이아가라를 tick하지 않습니다)
 
-## 5.4 기술 노트
+## 4.4 기술 노트
 
 <details>
 <summary><b>MCP로 막힌 것들 — 4건 (펼치기)</b></summary>
@@ -431,7 +514,7 @@ lerp(lerp(lerp(float3(12,7,2), float3(8,3.2,0.5),
 
 ---
 
-# 6. PCG 절차적 숲
+# 5. PCG 절차적 숲
 
 > `Content/PCG_Test`
 
@@ -441,7 +524,7 @@ lerp(lerp(lerp(float3(12,7,2), float3(8,3.2,0.5),
 
 ![지상 시점](docs/images/02_road_ground.jpg)
 
-## 6.1 결과
+## 5.1 결과
 
 | 레이어 | 메시 | 인스턴스 | 규칙 |
 |---|---|---:|---|
@@ -458,7 +541,7 @@ lerp(lerp(lerp(float3(12,7,2), float3(8,3.2,0.5),
 - 지형 600m × 600m, 고도 100–9096 유닛
 - 서브그래프 `PCG_ScatterLayer` (파라미터 6종) + 재사용 데모 `PCG_BiomeDemo`
 
-## 6.2 파이프라인
+## 5.2 파이프라인
 
 모든 브랜치가 같은 6단계 뼈대를 공유하고 숫자만 다릅니다.
 
@@ -481,7 +564,7 @@ World Ray Hit Query          지형 표면 획득
 
 `$Density`가 기축통화입니다. ②에서 규칙을 밀도에 누적하고 ③에서 실행합니다.
 
-## 6.3 생태 규칙
+## 5.3 생태 규칙
 
 **설선** — 고도 상한을 넘으면 나무가 사라지고 바위만 남습니다.
 
@@ -499,7 +582,7 @@ World Ray Hit Query          지형 표면 획득
 
 ![색 변화](docs/images/06_color_variants.jpg)
 
-## 6.4 에셋 (Blender MCP 제작)
+## 5.4 에셋 (Blender MCP 제작)
 
 전부 로우폴리로 스크립트 생성 → FBX → 임포트했습니다. 원본 FBX는 `ImportSource/`에 있습니다.
 
@@ -521,7 +604,7 @@ World Ray Hit Query          지형 표면 획득
 
 ![접지](docs/images/08_projection.jpg)
 
-## 6.5 재현
+## 5.5 재현
 
 1. `Content/PCG_Test/L_PCG_Forest` 열기
 2. 아웃라이너에서 `PCG_ForestVolume` 선택
@@ -529,7 +612,7 @@ World Ray Hit Query          지형 표면 획득
 
 파라미터를 바꾸려면 `PCG_ForestGraph`에서 각 브랜치의 `Surface Sampler`(밀도), `Density Filter`(임계값), `Filter by Range`(고도)를 조정합니다. 개수 확인은 노드 우클릭 → **Inspect**.
 
-## 6.6 기술 노트
+## 5.6 기술 노트
 
 <details>
 <summary><b>MCP로 막힌 것들 — 5건 (펼치기)</b></summary>
@@ -550,7 +633,7 @@ World Ray Hit Query          지형 표면 획득
 
 ---
 
-# 7. 시퀀서 시네마틱
+# 6. 시퀀서 시네마틱
 
 > `Content/VFX_Test`
 
@@ -558,7 +641,7 @@ VFX 5종을 훑는 **42초(1260프레임 @ 30fps) 6샷** 시퀀스 `LS_VFX_Showc
 
 ![풀백](docs/images/14_seq_pullback.jpg)
 
-## 7.1 샷 구성
+## 6.1 샷 구성
 
 | # | 대상 | 구간 | 카메라 워크 | 렌즈 |
 |---|---|---|---|---|
@@ -582,12 +665,12 @@ VFX 5종을 훑는 **42초(1260프레임 @ 30fps) 6샷** 시퀀스 `LS_VFX_Showc
 
 오로라는 상공 z=7000에 배치해 **모든 샷의 하늘 배경**으로 쓰고, 나머지는 서로 화면에 겹치지 않도록 X·Y축에 분산했습니다. 초점거리를 키프레임하지 않으면 시네카메라 기본 35mm가 고정되어 풀백 샷에 아무것도 들어오지 않습니다.
 
-## 7.2 재현
+## 6.2 재현
 
 1. `Content/VFX_Test/L_VFX_Showcase` 열기
 2. 시퀀서에서 `LS_VFX_Showcase` 재생
 
-## 7.3 기술 노트
+## 6.3 기술 노트
 
 <details>
 <summary><b>MCP로 막힌 것들 — 4건 (펼치기)</b></summary>
