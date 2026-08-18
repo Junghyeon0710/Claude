@@ -6,12 +6,13 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 
 <table>
 <tr>
-<td width="16.6%"><a href="#1-산업-항구-모듈러-킷"><img src="docs/images/harbor_01_overview.jpg" width="100%"></a></td>
-<td width="16.6%"><a href="#2-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
-<td width="16.6%"><a href="#3-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
-<td width="16.6%"><a href="#4-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
-<td width="16.6%"><a href="#5-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
-<td width="16.6%"><a href="#6-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
+<td width="14.2%"><a href="#1-산업-항구-모듈러-킷"><img src="docs/images/harbor_01_overview.jpg" width="100%"></a></td>
+<td width="14.2%"><a href="#2-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
+<td width="14.2%"><a href="#3-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
+<td width="14.2%"><a href="#4-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
+<td width="14.2%"><a href="#5-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
+<td width="14.2%"><a href="#6-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
+<td width="14.2%"><a href="#7-control-rig-리깅"><img src="docs/images/rig_01_pose.jpg" width="100%"></a></td>
 </tr>
 <tr>
 <td align="center"><b>산업 항구 모듈러 킷</b><br>메시 90 · 액터 1,720</td>
@@ -20,6 +21,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 <td align="center"><b>나이아가라 VFX</b><br>시스템 5종 · 에미터 23</td>
 <td align="center"><b>PCG 절차적 숲</b><br>인스턴스 70,325</td>
 <td align="center"><b>시퀀서 시네마틱</b><br>42초 · 6샷</td>
+<td align="center"><b>Control Rig 리깅</b><br>컨트롤 28 · IK 4체인</td>
 </tr>
 </table>
 
@@ -35,6 +37,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 | [4](#4-나이아가라-vfx) | **나이아가라 VFX** | 시스템 5종 / 에미터 23 / 머티리얼 3종 | `Content/VFX_Test` | `5064487` |
 | [5](#5-pcg-절차적-숲) | **PCG 절차적 숲** | 그래프 93노드 / 인스턴스 70,325 / 지형 600m | `Content/PCG_Test` | `4cfc69f` |
 | [6](#6-시퀀서-시네마틱) | **시퀀서 시네마틱** | 1260프레임 / 6샷 / 카메라 6대 | `Content/VFX_Test` | `1de62e4` |
+| [7](#7-control-rig-리깅) | **Control Rig 리깅** | 컨트롤 28 / 그래프 53노드 / IK 4체인 | `Content/Characters` | — |
 
 굵은 항목은 **결과 → 파이프라인 → 재현 방법 → 기술 노트** 순서로 상세 정리했습니다.
 기술 노트에는 MCP로 막힌 지점과 우회책을 적어뒀습니다(접혀 있습니다).
@@ -690,5 +693,123 @@ VFX 5종을 훑는 **42초(1260프레임 @ 30fps) 6샷** 시퀀스 `LS_VFX_Showc
 **노출을 고정하지 않으면 튜닝이 무의미합니다.** 어두운 씬에서 자동 노출이 열려 additive VFX가 전부 흰색으로 포화됩니다. `AutoExposureMethod: AEM_Manual` + Min=Max=1인 언바운드 PostProcessVolume이 필요합니다.
 
 **거리 컬링은 복구되지 않습니다.** Simulate 중 카메라에서 먼 나이아가라는 컬링되어 꺼지는데, 카메라가 돌아와도 되살아나지 않습니다. 여러 이펙트를 한 세션에서 순회 캡처하면 뒤쪽 것이 조용히 빈 화면으로 나옵니다 — 대상마다 Simulate를 다시 시작해야 합니다. 프레임 단위는 tick이 아닌 **display rate** 기준입니다.
+
+</details>
+
+---
+
+# 7. Control Rig 리깅
+
+> `Content/Characters/CR_Character` · 데모 `Content/Characters/LS_CR_Character_Demo`
+
+3번에서 만든 `SK_Character`는 Blender에서 구운 **베이크드 액션 2종**만 갖고 있었습니다. 여기서는 언리얼 안에서 **애니메이터가 직접 조작할 수 있는 Control Rig**을 MCP로 만들었습니다. 컨트롤 계층·셰이프·색부터 Forward Solve 그래프의 노드 53개와 핀 연결까지 전부 툴 호출이고, 에디터에서 노드를 끌어다 놓은 곳은 없습니다.
+
+![IK 포즈](docs/images/rig_01_pose.jpg)
+
+## 7.1 결과
+
+| 항목 | 값 |
+|---|---|
+| 컨트롤 | 28개 (FK 20 · IK 이펙터 4 · 폴벡터 4) |
+| Null(오프셋 그룹) | 28개 — 컨트롤마다 1:1 |
+| Forward Solve 노드 | 53개 (GetTransform 28 · SetTransform 20 · Basic IK 4 · BeginExecution 1) |
+| IK 체인 | 4개 — 양팔(상완→전완→손) · 양다리(허벅지→정강이→발) |
+| 대상 본 | 20개 — FK 컨트롤과 1:1 |
+| 컨트롤 셰이프 | Circle_Thick(FK) · Box_Thick(IK) · Diamond_Thick(폴벡터) |
+| 색 구분 | 중앙 노랑 · 좌 파랑 · 우 빨강 |
+
+## 7.2 컨트롤 구조
+
+컨트롤은 **Null(오프셋) → Control** 쌍으로 쌓았습니다. Null이 본의 rest 트랜스폼을 물고 있어서, 컨트롤의 로컬 값은 rest에서 항등(0,0,0 / scale 1)이 됩니다. 애니메이터가 값을 0으로 되돌리면 정확히 레퍼런스 포즈로 복귀합니다.
+
+```
+ctrl_root                              (root 본, 전체 이동)
+ └ ctrl_pelvis
+    ├ ctrl_spine → ctrl_chest → ctrl_neck → ctrl_head
+    │   ├ ctrl_shoulder_L → ctrl_fk_upperarm_L → ctrl_fk_lowerarm_L → ctrl_fk_hand_L
+    │   └ ctrl_shoulder_R → ctrl_fk_upperarm_R → ctrl_fk_lowerarm_R → ctrl_fk_hand_R
+    ├ ctrl_fk_thigh_L → ctrl_fk_calf_L → ctrl_fk_foot_L
+    └ ctrl_fk_thigh_R → ctrl_fk_calf_R → ctrl_fk_foot_R
+
+ctrl_root 직속 (몸통과 독립 — 발이 바닥에 고정되도록)
+ ├ ctrl_ik_hand_L / ctrl_ik_hand_R      손 IK 이펙터
+ ├ ctrl_ik_foot_L / ctrl_ik_foot_R      발 IK 이펙터
+ ├ ctrl_pv_elbow_L / ctrl_pv_elbow_R    팔꿈치 폴벡터 (본 위치에서 -X 60)
+ └ ctrl_pv_knee_L / ctrl_pv_knee_R      무릎 폴벡터 (본 위치에서 +X 60)
+```
+
+IK 이펙터를 `ctrl_root` 직속에 둔 것이 핵심입니다. 골반이 내려가도 발 컨트롤은 월드에 남아 있고, 그 차이를 IK가 무릎 각도로 흡수합니다.
+
+## 7.3 Forward Solve 그래프
+
+![리그 에디터](docs/images/rig_03_editor.jpg)
+
+```
+BeginExecution
+   │
+   ├─ FK 20단  GetTransform(ctrl_*, Global) ─→ SetTransform(bone, Global)
+   │            부모→자식 순서(root → pelvis → … → foot_R)로 실행 체인 연결
+   │
+   └─ IK 4단   Basic IK (RigUnit_TwoBoneIKSimplePerItem)
+                ItemA/ItemB/EffectorItem  = 상완/전완/손, 허벅지/정강이/발
+                Effector    ← GetTransform(ctrl_ik_*).Transform
+                PoleVector  ← GetTransform(ctrl_pv_*).Transform.Translation
+                PrimaryAxis = (0,-1,0)   ItemALength/BLength = 실측 본 길이
+```
+
+`PrimaryAxis`가 `(0,-1,0)`인 것은 이 스켈레톤의 **본 주축이 로컬 −Y**이기 때문입니다. 자식 본의 로컬 위치가 전부 `(0, −n, 0)`으로 나오는 것으로 확인했습니다(Blender 아마추어의 +Y 본 축이 FBX를 거치며 부호가 뒤집힌 결과). 기본값 `(1,0,0)`을 그대로 두면 IK가 팔다리를 엉뚱한 축으로 비틉니다.
+
+본 길이는 rest 글로벌 좌표에서 직접 계산해 핀에 박았습니다 — 상완 32.50 / 전완 26.31 / 허벅지 44.22 / 정강이 38.05.
+
+## 7.4 검증
+
+레벨 시퀀스에 Control Rig 트랙을 붙이고 컨트롤을 실제로 움직여 확인했습니다.
+
+<table>
+<tr>
+<td width="100%"><img src="docs/images/rig_02_compare.jpg" width="100%"></td>
+</tr>
+<tr>
+<td align="center"><b>왼쪽</b> 기본 포즈(컨트롤 전부 0) — <b>오른쪽</b> 골반을 z 94.5→70으로 내리고 손 IK를 앞으로</td>
+</tr>
+</table>
+
+발 IK 컨트롤은 그대로 둔 채 골반만 내리면 **발은 바닥에 붙은 채 양 무릎이 앞으로 굽습니다.** 폴벡터를 무릎 앞(+X)·팔꿈치 뒤(−X)에 둔 대로 접히는 방향도 맞습니다.
+
+![한쪽만 IK](docs/images/rig_04_ik_single.jpg)
+
+왼쪽 팔다리에만 IK 목표를 준 상태. 오른쪽은 기본 포즈 그대로라 좌우 대조가 분명합니다.
+
+## 7.5 재현
+
+1. `Content/Characters/LS_CR_Character_Demo` 더블클릭 — 캐릭터가 스포너블로 들어 있어 별도 레벨 없이 열립니다
+2. 시퀀서 트랙에서 `ctrl_ik_foot_L` 등을 선택해 뷰포트에서 직접 움직여보면 IK가 반응합니다
+3. 리그 자체를 보려면 `Content/Characters/CR_Character` 열기 — 릭 계층구조 패널에 본 20 + Null/컨트롤 28이 있습니다
+4. 프리뷰 메시는 에셋에 저장되지 않으므로, 리그 에디터에서 보려면 **프리뷰 씬 세팅 → 프리뷰 메시**에 `SK_Character`를 지정하세요 (아래 기술 노트 참고)
+
+## 7.6 기술 노트
+
+<details>
+<summary><b>MCP로 막힌 것들 — 6건 (펼치기)</b></summary>
+
+**컨트롤의 초기 스케일이 0으로 들어갑니다.** `add_control`로 `EulerTransform` 컨트롤을 만들면 값이 zero-initialize되어 스케일이 `(0,0,0)`입니다. 이 컨트롤을 부모로 삼아 자식 Null을 글로벌 좌표로 배치하면 부모 역행렬이 특이해져 **자식의 로컬 트랜스폼이 전부 0으로 붕괴합니다.** 컨트롤 28개가 모두 원점에 겹쳐 쌓였습니다.
+→ **우회**: `add_control` **직후 곧바로** `set_local_transform`으로 identity(scale 1)를 initial/current 양쪽에 써줍니다. 다음 자식을 만들기 전에 해야 합니다.
+
+**`SK_Character`의 root 본에 스케일 100이 박혀 있습니다.** Blender 임포트 잔재입니다. FK가 컨트롤의 글로벌 트랜스폼을 그대로 본에 쓰는데 컨트롤 스케일이 1이면, root 본 스케일이 100→1이 되어 **캐릭터가 1/100로 쪼그라듭니다.** 뷰포트에서 캐릭터가 사라진 것처럼 보입니다.
+→ **우회**: Null을 만들 때 위치·회전뿐 아니라 **본의 글로벌 스케일까지 복사**합니다. 그러면 컨트롤 글로벌 스케일도 100이 되어 FK가 스케일을 보존합니다.
+
+**컨트롤 셰이프 크기는 스케일이 두 번 곱해집니다.** `shapeTransform.scale` × 컨트롤 글로벌 스케일(100) × 셰이프 메시 자체 크기(약 100유닛)입니다. 기본 셰이프 라이브러리의 `DefaultShape`가 scale 0.1을 쓰는 이유가 이것입니다. 처음에 셰이프 스케일을 30으로 줬더니 **컨트롤 하나가 30미터**가 되어 화면을 뒤덮었습니다.
+→ **우회**: 원하는 유닛 크기 `S`에 대해 `shapeTransform.scale = S / 10000`. 그리고 셰이프 세팅을 나중에 고치는 툴이 없어서, 크기를 잘못 잡으면 **에셋을 지우고 리그를 다시 만들어야 합니다** — 계층에서 Null/Control을 제거하는 툴 자체가 없습니다(`add_*`만 있고 `remove_*`가 없음).
+
+**`set_world_transform`은 컨트롤 스케일을 리셋합니다.** 월드 스케일을 1로 맞추려고 로컬 스케일을 `1/부모스케일`(=0.01)로 써버립니다. IK 이펙터는 스케일을 안 쓰니 무해하지만, **FK 컨트롤(`ctrl_pelvis` 등)에 쓰면 그 본 이하가 전부 1/100로 붕괴합니다.**
+→ **우회**: `set_world_transform`으로 위치를 잡은 뒤 `get_euler_transform`으로 로컬 값을 읽어, 같은 위치·회전에 **scale만 1로 되돌려** `set_euler_transform`을 한 번 더 호출합니다.
+
+**Basic IK가 `Item Lengths are not provided` 경고를 냅니다.** `ItemALength`/`ItemBLength`가 0이면 rest 글로벌 좌표에서 자동 계산하는데, 그 계산에 현재/초기 스케일 비가 곱해집니다. 스케일이 어긋난 상태에서는 길이가 0으로 떨어져 IK가 조용히 놀게 됩니다.
+→ **우회**: rest 좌표에서 본 간 거리를 직접 재서 두 핀에 명시적으로 씁니다. 경고가 사라집니다.
+
+**`PreviewSkeletalMesh`는 `ObjectTools`로 쓸 수 없습니다.** ControlRigBlueprint 경로를 넘기면 CDO(`Default__CR_Character_C`)로 리졸브되는데, 프리뷰 메시는 블루프린트 **에셋**의 프로퍼티라 CDO에는 없습니다. `the following properties could not be set: PreviewSkeletalMesh`.
+→ **우회**: `SlateInspectorToolset`으로 UI를 직접 조작합니다 — 프리뷰 씬 세팅 탭을 `Click`하고, 프리뷰 메시 행의 콤보박스에 `SelectOption("SK_Character")`. 다만 이 값은 에셋이 아니라 에디터 설정에 저장되므로 리그를 다시 만들면 재지정해야 합니다.
+
+**그 외** — 레벨 뷰포트를 캡처할 때 Control Rig 애님 모드의 컨트롤 기즈모가 화면을 가립니다(카메라가 셰이프 안쪽에 들어가면 내부 면이 통째로 보입니다). `set_anim_mode_hide_manips(true)`로 숨기고 찍으면 됩니다. 그리고 시퀀서에서 컨트롤 값을 바꾼 뒤에는 `set_playhead_frame` + `force_evaluate`를 호출해야 레벨 뷰포트에 반영됩니다.
 
 </details>
