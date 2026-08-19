@@ -831,11 +831,11 @@ BeginExecution
 
 | 항목 | 값 |
 |---|---|
-| `BP_HarborCharacter` | Character 파생 · EventGraph 노드 31개 |
-| `BP_HarborGameMode` | GameModeBase 파생 |
-| 애니메이션 | BeginPlay에서 `A_Character_Idle` 루프 재생 |
+| `BP_HarborCharacter` | Character 파생 · EventGraph 노드 44개 |
+| `BP_HarborGameMode` | GameModeBase 파생 · PlayerStart에서 폰 스폰 |
+| 애니메이션 | 속도에 따라 `A_Character_Idle` ↔ `A_Character_Walk` 전환 |
 | 입력 | 축 6종(전후·좌우·시점 상하좌우) + 액션 2종(점프·스프린트) |
-| 카메라 | 런타임 CameraComponent, 캐릭터 뒤 350 / 위 110 / pitch -8 |
+| 카메라 | SpringArm 350 + CameraComponent, 충돌 회피 동작 |
 | 이동 | 걷기 450, 스프린트 800, 점프 480 |
 | 캡슐 | 반경 34 / 半높이 90 (키 180.8cm에 맞춤) |
 
@@ -860,29 +860,39 @@ EventGraph (create_node + connect_pins)
   InputAxis LookRight/Up ─ AddControllerYaw/PitchInput(AxisValue)
   InputAction Jump       ─ Pressed→Jump / Released→StopJumping
   InputAction Sprint     ─ Pressed→MaxWalkSpeed 800 / Released→450
-            └ PlayAnimation(GetMesh, A_Character_Idle, looping)
+
+  BeginPlay ─ … ─ PlayAnimation(GetMesh, A_Character_Idle, looping)
+  Tick ─ InRange(VectorLengthXY(GetVelocity), 10, ∞)
+         ├ true  ─ Branch(bIsWalking==false) ─ Set true  ─ PlayAnimation(Walk)
+         └ false ─ Branch(bIsWalking==true)  ─ Set false ─ PlayAnimation(Idle)
 ```
+
+카메라는 **SpringArm 자식으로 CameraComponent를 소켓(`SpringEndpoint`)에 스냅**시켰습니다. 이러면 SpringArm의 `bDoCollisionTest`가 그대로 살아서, 뒤에 벽이 있으면 카메라가 자동으로 앞으로 당겨집니다.
 
 입력 매핑은 에셋을 만들지 않고 **`InputSettings` CDO에 직접 썼습니다.** `AxisMappings`/`ActionMappings`를 넣으면 에디터 재시작 없이 곧바로 `Input|AxisEvents|MoveForward` 같은 이벤트 노드가 생깁니다. Enhanced Input이 기본값(`DefaultPlayerInputClass=EnhancedPlayerInput`)인데도 레거시 매핑이 그대로 동작합니다.
 
 ## 8.3 재현
 
 1. `Content/IndustrialHarbor_Claude/Level/L_IndustrialHarbor_Claude` 열기
-2. 레벨에 배치된 `BP_HarborCharacter`(`AutoPossessPlayer=Player0`)가 플레이어입니다 — 그대로 Play
+2. 그대로 Play — 레벨의 `BP_HarborGameMode`가 `PlayerStart`에서 `BP_HarborCharacter`를 스폰합니다
 3. **WASD** 이동 · **마우스** 시점 · **Space** 점프 · **LeftShift** 스프린트
 
-## 8.4 남은 것
+<table>
+<tr><td width="100%"><img src="docs/images/bp_02_idle_walk.jpg" width="100%"></td></tr>
+<tr><td align="center">서 있을 때 <b>Idle</b> — 움직이면 <b>Walk</b>. Tick에서 수평 속도로 판정해 전환합니다.</td></tr>
+</table>
 
-정직하게 적어두면, 이 섹션은 **아직 덜 끝났습니다.**
+## 8.4 한계
 
-- **애님 블루프린트가 없어 이동 애니메이션이 없습니다.** BeginPlay에서 `A_Character_Idle`을 루프 재생시켜 T포즈는 벗어났지만, 걸어도 Idle 그대로입니다. 제대로 하려면 AnimBP + 속도 기반 블렌드스페이스가 필요합니다(`A_Character_Walk`는 이미 있습니다).
-- **카메라에 충돌 회피가 없습니다.** 스프링암을 런타임 생성 경로로 붙였을 때 카메라가 팔 끝이 아니라 원점(캐릭터 몸속)에 남아, 결국 카메라를 루트에 직접 상대배치했습니다. 벽에 붙으면 카메라가 벽을 뚫습니다.
-- **GameMode의 `DefaultPawnClass`로는 폰이 스폰되지 않았습니다.** 레벨 직접 배치 + `AutoPossessPlayer`로 우회했습니다(아래 기술 노트).
+세 가지 미해결 항목(이동 애니메이션 없음 / 카메라 충돌 회피 없음 / GameMode 스폰 불가)은 모두 해결했습니다. 남은 한계는 다음과 같습니다.
+
+- **애님 블루프린트는 MCP로 만들 수 없습니다.** `BlueprintTools.create`에 `AnimBlueprint`를 넘기면 스켈레톤을 지정할 방법이 없어 모달 오류 창이 뜨고 에디터가 멈춥니다. 그래서 AnimBP 대신 **EventGraph의 Tick에서 속도를 보고 애니메이션을 갈아끼우는** 방식으로 구현했습니다. 동작은 하지만 Idle↔Walk 사이에 블렌딩이 없어 전환이 딱딱하고, 이동 방향별 애니메이션(후진·좌우)도 없습니다.
+- **점프·낙하 중 애니메이션이 없습니다.** 공중에서도 Walk 또는 Idle이 재생됩니다.
 
 ## 8.5 기술 노트
 
 <details>
-<summary><b>MCP로 막힌 것들 — 9건 (펼치기)</b></summary>
+<summary><b>MCP로 막힌 것들 — 11건 (펼치기)</b></summary>
 
 **`write_graph_dsl`이 한글 에디터에서 반쯤 막힙니다.** 이 툴셋의 하이라이트는 블루프린트 그래프를 S-expression DSL 한 덩어리로 쓰는 `write_graph_dsl`입니다. 그런데 노드 `type_id`가 에디터 언어를 따라 전부 로컬라이즈돼 있고(`Development|PrintString` → `개발|PrintString`, `Transformation|…` → `트랜스포메이션|…`), DSL은 영문 접두사를 하드코딩합니다.
 - `(event X …)` → `AddEvent|X`를 찾는데 실제 카테고리는 `이벤트추가|이벤트BeginPlay`. **이벤트를 아예 만들 수 없습니다.**
@@ -895,13 +905,17 @@ EventGraph (create_node + connect_pins)
 **블루프린트에 컴포넌트를 추가하는 툴이 없습니다.** `PrimitiveTools`는 레벨 액터에 StaticMesh 프리미티브를 붙이는 용도라 SCS(컴포넌트 트리)에는 손을 못 댑니다.
 → **우회**: BeginPlay에서 `Game|클래스로컴포넌트추가`(AddComponentByClass)로 런타임 생성. 단 이 노드는 **자동으로 루트에 붙여주지 않습니다** — `트랜스포메이션|AttachComponentToComponent`를 따로 호출해야 합니다(`self`=붙일 컴포넌트, `Parent`=대상). 처음엔 이걸 빼먹어서 스프링암이 공중에 떠 있었습니다.
 
-**스프링암은 런타임 생성 경로에서 제대로 붙지 않았습니다.** SpringArm을 만들고 카메라를 자식으로 붙여도 카메라가 팔 끝이 아니라 원점(= 캐릭터 몸속)에 남습니다. `SocketName="SpringEndpoint"`를 지정해도 같았습니다.
-→ **우회**: 스프링암을 버리고 CameraComponent를 루트에 `KeepRelative`로 붙인 뒤 `SetRelativeLocationAndRotation((-350,0,110), pitch -8)`. 캐릭터에 `bUseControllerRotationYaw=true`를 주면 캐릭터가 컨트롤러 yaw를 따라 돌아 카메라도 뒤를 유지합니다.
+**런타임 생성한 스프링암에 카메라를 붙일 때는 부착 규칙이 중요합니다.** 처음에 카메라가 팔 끝이 아니라 원점(= 캐릭터 몸속)에 남았는데, 원인은 `AttachComponentToComponent`의 `Parent`를 스프링암이 아니라 **루트로 넘긴 것**이었습니다. `Parent`=스프링암, `SocketName="SpringEndpoint"`, 규칙 `SnapToTarget`으로 고치니 정상 동작합니다. 이러면 `bDoCollisionTest`가 살아 있어 뒤가 벽이면 카메라가 자동으로 당겨집니다.
 
 **컴파일 에러 "이 블루프린트(셀프)는 SceneComponent 이지 않으므로 'Target'에 연결이 있어야 합니다"** — SceneComponent용 노드에 self(Actor)를 물리려 한 것입니다. `트랜스포메이션|GetForwardVector`는 **SceneComponent**용이고, 액터용은 `트랜스포메이션|GetActorForwardVector`입니다. 이름이 거의 같아서 찾는 데 시간이 걸렸습니다.
 
-**GameMode의 `DefaultPawnClass`로 폰이 스폰되지 않습니다.** WorldSettings에 GameMode를 물려 `LogLoad: Game class is 'BP_HarborGameMode_C'`까지 확인되는데도 캐릭터의 BeginPlay가 돌지 않았습니다(BeginPlay에 심은 PrintString이 로그·화면 어디에도 안 뜸). 스폰 실패 경고조차 남지 않습니다.
-→ **우회**: 레벨에 BP를 직접 배치하고 `AutoPossessPlayer="Player0"`. 그 즉시 BeginPlay가 돌았습니다. 원인 규명은 못 했고, PIE 검증은 이 경로로 했습니다.
+**`DefaultPawnClass` 스폰이 안 되는 것처럼 보였던 건 CDO 저장 시점 문제였습니다.** WorldSettings에 GameMode를 물려 `Game class is 'BP_HarborGameMode_C'`까지 찍히는데도 캐릭터의 BeginPlay가 돌지 않아, 당시엔 레벨 직접 배치 + `AutoPossessPlayer`로 우회했습니다. 나중에 `DefaultPawnClass`를 다시 읽어보니 값이 정상이었고, 배치 액터를 지우고 PIE를 돌리자 **PlayerStart에서 정상 스폰**됐습니다. `set_properties`로 CDO를 고친 뒤에는 반드시 `save_assets`까지 하고 확인할 것.
+
+**입력 매핑을 `InputSettings` CDO에만 쓰면 에디터를 껐다 켤 때 사라집니다.** 런타임에는 즉시 반영되지만 `DefaultInput.ini`에 기록되지 않아, 재시작하면 블루프린트가 `Input Axis Event가 …를 참조하지만 프로젝트 설정에 없습니다` 경고를 냅니다.
+→ **우회**: `Config/DefaultInput.ini`의 `[/Script/Engine.InputSettings]` 섹션에 `+AxisMappings=(AxisName="MoveForward",Key=W,Scale=1.000000)` 형태로 직접 기록해 영구화합니다.
+
+**애님 블루프린트는 만들 수 없고, 실패하면 에디터가 모달로 멈춥니다.** `create`에 `/Script/Engine.AnimBlueprint`를 넘기면 스켈레톤을 지정할 인자가 없어 실패하는데, 이때 "메시지" 제목의 **모달 다이얼로그**가 떠서 MCP 호출이 전부 블록됩니다(툴 호출이 응답 없이 매달림).
+→ **우회**: `user32.EnumWindows`로 언리얼 프로세스의 창을 훑어 그 다이얼로그를 찾고 `PostMessage(WM_CLOSE)`로 닫으면 즉시 복구됩니다. 애니메이션은 AnimBP 대신 Tick에서 속도를 보고 `PlayAnimation`을 갈아끼우는 방식으로 구현했습니다.
 
 **`AnimationData`를 채워도 런타임에서는 재생되지 않습니다.** 메시 컴포넌트에 `AnimationMode="AnimationSingleNode"` + `AnimationData.AnimToPlay`를 넣으면 프로퍼티는 멀쩡히 들어가는데(다시 읽으면 그대로 나옵니다) PIE에서는 T포즈 그대로입니다. 그 필드는 에디터 프리뷰용에 가깝습니다.
 → **우회**: BeginPlay에서 `컴포넌트|애니메이션|PlayAnimation`(self=`Variables|캐릭터|GetMesh`, `NewAnimToPlay`, `bLooping=true`)을 직접 호출합니다.
