@@ -6,13 +6,14 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 
 <table>
 <tr>
-<td width="14.2%"><a href="#1-산업-항구-모듈러-킷"><img src="docs/images/harbor_01_overview.jpg" width="100%"></a></td>
-<td width="14.2%"><a href="#2-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
-<td width="14.2%"><a href="#3-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
-<td width="14.2%"><a href="#4-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
-<td width="14.2%"><a href="#5-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
-<td width="14.2%"><a href="#6-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
-<td width="14.2%"><a href="#7-control-rig-리깅"><img src="docs/images/rig_01_pose.jpg" width="100%"></a></td>
+<td width="12.5%"><a href="#1-산업-항구-모듈러-킷"><img src="docs/images/harbor_01_overview.jpg" width="100%"></a></td>
+<td width="12.5%"><a href="#2-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
+<td width="12.5%"><a href="#3-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
+<td width="12.5%"><a href="#4-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
+<td width="12.5%"><a href="#5-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
+<td width="12.5%"><a href="#6-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
+<td width="12.5%"><a href="#7-control-rig-리깅"><img src="docs/images/rig_01_pose.jpg" width="100%"></a></td>
+<td width="12.5%"><a href="#8-블루프린트-게임플레이"><img src="docs/images/bp_01_thirdperson.jpg" width="100%"></a></td>
 </tr>
 <tr>
 <td align="center"><b>산업 항구 모듈러 킷</b><br>메시 90 · 액터 1,720</td>
@@ -22,6 +23,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 <td align="center"><b>PCG 절차적 숲</b><br>인스턴스 70,325</td>
 <td align="center"><b>시퀀서 시네마틱</b><br>42초 · 6샷</td>
 <td align="center"><b>Control Rig 리깅</b><br>컨트롤 28 · IK 4체인</td>
+<td align="center"><b>블루프린트 게임플레이</b><br>BP 2종 · 노드 26</td>
 </tr>
 </table>
 
@@ -38,6 +40,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 | [5](#5-pcg-절차적-숲) | **PCG 절차적 숲** | 그래프 93노드 / 인스턴스 70,325 / 지형 600m | `Content/PCG_Test` | `4cfc69f` |
 | [6](#6-시퀀서-시네마틱) | **시퀀서 시네마틱** | 1260프레임 / 6샷 / 카메라 6대 | `Content/VFX_Test` | `1de62e4` |
 | [7](#7-control-rig-리깅) | **Control Rig 리깅** | 컨트롤 28 / 그래프 53노드 / IK 4체인 | `Content/Characters` | `3d760bc` |
+| [8](#8-블루프린트-게임플레이) | **블루프린트 게임플레이** | BP 2종 / 노드 26 / 입력 8종 | `Content/HarborGame` | — |
 
 굵은 항목은 **결과 → 파이프라인 → 재현 방법 → 기술 노트** 순서로 상세 정리했습니다.
 기술 노트에는 MCP로 막힌 지점과 우회책을 적어뒀습니다(접혀 있습니다).
@@ -811,5 +814,91 @@ BeginExecution
 → **우회**: `SlateInspectorToolset`으로 UI를 직접 조작합니다 — 프리뷰 씬 세팅 탭을 `Click`하고, 프리뷰 메시 행의 콤보박스에 `SelectOption("SK_Character")`. 다만 이 값은 에셋이 아니라 에디터 설정에 저장되므로 리그를 다시 만들면 재지정해야 합니다.
 
 **그 외** — 레벨 뷰포트를 캡처할 때 Control Rig 애님 모드의 컨트롤 기즈모가 화면을 가립니다(카메라가 셰이프 안쪽에 들어가면 내부 면이 통째로 보입니다). `set_anim_mode_hide_manips(true)`로 숨기고 찍으면 됩니다. 그리고 시퀀서에서 컨트롤 값을 바꾼 뒤에는 `set_playhead_frame` + `force_evaluate`를 호출해야 레벨 뷰포트에 반영됩니다.
+
+</details>
+
+---
+
+# 8. 블루프린트 게임플레이
+
+> `Content/HarborGame` · 무대는 1번 항구 레벨
+
+지금까지는 에셋(메시·머티리얼·리그·VFX)만 만들었고 **게임플레이 로직은 없었습니다.** 여기서는 1번에서 지은 항구를 3번 캐릭터로 실제로 걸어다닐 수 있게, 블루프린트를 MCP로 구성했습니다.
+
+![3인칭 플레이](docs/images/bp_01_thirdperson.jpg)
+
+## 8.1 결과
+
+| 항목 | 값 |
+|---|---|
+| `BP_HarborCharacter` | Character 파생 · EventGraph 노드 26개 |
+| `BP_HarborGameMode` | GameModeBase 파생 |
+| 입력 | 축 6종(전후·좌우·시점 상하좌우) + 액션 2종(점프·스프린트) |
+| 카메라 | 런타임 CameraComponent, 캐릭터 뒤 350 / 위 110 / pitch -8 |
+| 이동 | 걷기 450, 스프린트 800, 점프 480 |
+| 캡슐 | 반경 34 / 半높이 90 (키 180.8cm에 맞춤) |
+
+## 8.2 구성
+
+블루프린트 CDO의 서브오브젝트에 프로퍼티를 직접 써서 기본 설정을 끝내고, 나머지 로직만 그래프로 만들었습니다.
+
+```
+CDO 프로퍼티 (ObjectTools.set_properties)
+  Default__BP_HarborCharacter_C:CharacterMesh0     SkeletalMeshAsset=SK_Character, z -90
+  Default__BP_HarborCharacter_C:CollisionCylinder  반경 34 / 半높이 90
+  Default__BP_HarborCharacter_C:CharMoveComp       MaxWalkSpeed 450, JumpZVelocity 480
+  Default__BP_HarborCharacter_C                    bUseControllerRotationYaw=true
+
+EventGraph (create_node + connect_pins)
+  BeginPlay ─ AddComponentByClass(SpringArm) ─ Cast ─ Attach(→루트)
+            ─ SetTargetArmLength/UsePawnControlRotation
+            ─ AddComponentByClass(Camera) ─ Attach(→루트, KeepRelative)
+            ─ SetRelativeLocationAndRotation((-350,0,110), pitch -8)
+  InputAxis MoveForward  ─ AddMovementInput(GetActorForwardVector, AxisValue)
+  InputAxis MoveRight    ─ AddMovementInput(GetActorRightVector,  AxisValue)
+  InputAxis LookRight/Up ─ AddControllerYaw/PitchInput(AxisValue)
+  InputAction Jump       ─ Pressed→Jump / Released→StopJumping
+  InputAction Sprint     ─ Pressed→MaxWalkSpeed 800 / Released→450
+```
+
+입력 매핑은 에셋을 만들지 않고 **`InputSettings` CDO에 직접 썼습니다.** `AxisMappings`/`ActionMappings`를 넣으면 에디터 재시작 없이 곧바로 `Input|AxisEvents|MoveForward` 같은 이벤트 노드가 생깁니다. Enhanced Input이 기본값(`DefaultPlayerInputClass=EnhancedPlayerInput`)인데도 레거시 매핑이 그대로 동작합니다.
+
+## 8.3 재현
+
+1. `Content/IndustrialHarbor_Claude/Level/L_IndustrialHarbor_Claude` 열기
+2. 레벨에 배치된 `BP_HarborCharacter`(`AutoPossessPlayer=Player0`)가 플레이어입니다 — 그대로 Play
+3. **WASD** 이동 · **마우스** 시점 · **Space** 점프 · **LeftShift** 스프린트
+
+## 8.4 남은 것
+
+정직하게 적어두면, 이 섹션은 **아직 덜 끝났습니다.**
+
+- **애님 블루프린트가 없어 캐릭터가 T포즈로 미끄러집니다.** 메시에 `A_Character_Idle`을 단일 노드 애니메이션으로 물리는 데까지는 했지만 검증 전에 세션이 끊겼습니다. 제대로 하려면 AnimBP + 속도 기반 블렌드스페이스가 필요합니다.
+- **카메라에 충돌 회피가 없습니다.** 스프링암을 런타임 생성 경로로 붙였을 때 카메라가 팔 끝이 아니라 원점(캐릭터 몸속)에 남아, 결국 카메라를 루트에 직접 상대배치했습니다. 벽에 붙으면 카메라가 벽을 뚫습니다.
+- **GameMode의 `DefaultPawnClass`로는 폰이 스폰되지 않았습니다.** 레벨 직접 배치 + `AutoPossessPlayer`로 우회했습니다(아래 기술 노트).
+
+## 8.5 기술 노트
+
+<details>
+<summary><b>MCP로 막힌 것들 — 6건 (펼치기)</b></summary>
+
+**`write_graph_dsl`이 한글 에디터에서 반쯤 막힙니다.** 이 툴셋의 하이라이트는 블루프린트 그래프를 S-expression DSL 한 덩어리로 쓰는 `write_graph_dsl`입니다. 그런데 노드 `type_id`가 에디터 언어를 따라 전부 로컬라이즈돼 있고(`Development|PrintString` → `개발|PrintString`, `Transformation|…` → `트랜스포메이션|…`), DSL은 영문 접두사를 하드코딩합니다.
+- `(event X …)` → `AddEvent|X`를 찾는데 실제 카테고리는 `이벤트추가|이벤트BeginPlay`. **이벤트를 아예 만들 수 없습니다.**
+- `self` 변수 → `Variables|Getareferencetoself does not exist`. self 핀은 **비워두면** 블루프린트가 알아서 self로 취급하므로 `:self self`를 쓰지 않는 것으로 우회했습니다.
+- 캐스트의 `(:then …)` continuation → `Unknown exec output "then". Available: []`. 노드를 직접 조회하면 `then`/`CastFailed`가 멀쩡히 있는데도 DSL이 못 읽습니다.
+→ **우회**: DSL을 포기하고 `create_node` + `get_node_infos`(핀 조회) + `connect_pins`로 짰습니다. `mk/op/ip/link` 헬퍼를 스크립트에 만들어두면 26노드 정도는 무리 없습니다. 참고로 `read_graph_dsl`도 한글 환경에서는 빈 문자열만 돌려줍니다.
+
+**`(bind x …)`로 exec 노드를 받으면 데이터가 아니라 `then`이 잡힙니다.** DSL이 동작하는 부분에서도 이 함정이 있습니다. `AddComponentByClass`처럼 exec 출력이 먼저인 노드는 **`(bind (execOut value) …)` 튜플 형식**으로 받아야 두 번째가 데이터 출력이 됩니다.
+
+**블루프린트에 컴포넌트를 추가하는 툴이 없습니다.** `PrimitiveTools`는 레벨 액터에 StaticMesh 프리미티브를 붙이는 용도라 SCS(컴포넌트 트리)에는 손을 못 댑니다.
+→ **우회**: BeginPlay에서 `Game|클래스로컴포넌트추가`(AddComponentByClass)로 런타임 생성. 단 이 노드는 **자동으로 루트에 붙여주지 않습니다** — `트랜스포메이션|AttachComponentToComponent`를 따로 호출해야 합니다(`self`=붙일 컴포넌트, `Parent`=대상). 처음엔 이걸 빼먹어서 스프링암이 공중에 떠 있었습니다.
+
+**스프링암은 런타임 생성 경로에서 제대로 붙지 않았습니다.** SpringArm을 만들고 카메라를 자식으로 붙여도 카메라가 팔 끝이 아니라 원점(= 캐릭터 몸속)에 남습니다. `SocketName="SpringEndpoint"`를 지정해도 같았습니다.
+→ **우회**: 스프링암을 버리고 CameraComponent를 루트에 `KeepRelative`로 붙인 뒤 `SetRelativeLocationAndRotation((-350,0,110), pitch -8)`. 캐릭터에 `bUseControllerRotationYaw=true`를 주면 캐릭터가 컨트롤러 yaw를 따라 돌아 카메라도 뒤를 유지합니다.
+
+**컴파일 에러 "이 블루프린트(셀프)는 SceneComponent 이지 않으므로 'Target'에 연결이 있어야 합니다"** — SceneComponent용 노드에 self(Actor)를 물리려 한 것입니다. `트랜스포메이션|GetForwardVector`는 **SceneComponent**용이고, 액터용은 `트랜스포메이션|GetActorForwardVector`입니다. 이름이 거의 같아서 찾는 데 시간이 걸렸습니다.
+
+**GameMode의 `DefaultPawnClass`로 폰이 스폰되지 않습니다.** WorldSettings에 GameMode를 물려 `LogLoad: Game class is 'BP_HarborGameMode_C'`까지 확인되는데도 캐릭터의 BeginPlay가 돌지 않았습니다(BeginPlay에 심은 PrintString이 로그·화면 어디에도 안 뜸). 스폰 실패 경고조차 남지 않습니다.
+→ **우회**: 레벨에 BP를 직접 배치하고 `AutoPossessPlayer="Player0"`. 그 즉시 BeginPlay가 돌았습니다. 원인 규명은 못 했고, PIE 검증은 이 경로로 했습니다.
 
 </details>
