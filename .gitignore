@@ -30,3 +30,8 @@ Thumbs.db
 ExternalAssets/Models/KoreanOldTown/KoreanOldTown_CombinedSource.blend
 Content/KoreanOldTown/Level/KOT_SaveProbe.umap
 Content/KoreanOldTown/Level/KoreanOldTown_BlenderGenerated.umap
+
+# 라이팅 프리셋 작업 캡처(중간 산출물)
+scripts/lighting_presets/shots/
+scripts/**/__pycache__/
+scripts/lighting_presets/_spots.json

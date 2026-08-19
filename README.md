@@ -6,14 +6,15 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 
 <table>
 <tr>
-<td width="12.5%"><a href="#1-산업-항구-모듈러-킷"><img src="docs/images/harbor_01_overview.jpg" width="100%"></a></td>
-<td width="12.5%"><a href="#2-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
-<td width="12.5%"><a href="#3-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
-<td width="12.5%"><a href="#4-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
-<td width="12.5%"><a href="#5-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
-<td width="12.5%"><a href="#6-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
-<td width="12.5%"><a href="#7-control-rig-리깅"><img src="docs/images/rig_01_pose.jpg" width="100%"></a></td>
-<td width="12.5%"><a href="#8-블루프린트-게임플레이"><img src="docs/images/bp_01_thirdperson.jpg" width="100%"></a></td>
+<td width="11.1%"><a href="#1-산업-항구-모듈러-킷"><img src="docs/images/harbor_01_overview.jpg" width="100%"></a></td>
+<td width="11.1%"><a href="#2-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
+<td width="11.1%"><a href="#3-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
+<td width="11.1%"><a href="#4-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
+<td width="11.1%"><a href="#5-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
+<td width="11.1%"><a href="#6-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
+<td width="11.1%"><a href="#7-control-rig-리깅"><img src="docs/images/rig_01_pose.jpg" width="100%"></a></td>
+<td width="11.1%"><a href="#8-블루프린트-게임플레이"><img src="docs/images/bp_01_thirdperson.jpg" width="100%"></a></td>
+<td width="11.1%"><a href="#9-시간대별-라이팅-프리셋"><img src="docs/images/lighting_01_hero.jpg" width="100%"></a></td>
 </tr>
 <tr>
 <td align="center"><b>산업 항구 모듈러 킷</b><br>메시 90 · 액터 1,720</td>
@@ -24,6 +25,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 <td align="center"><b>시퀀서 시네마틱</b><br>42초 · 6샷</td>
 <td align="center"><b>Control Rig 리깅</b><br>컨트롤 28 · IK 4체인</td>
 <td align="center"><b>블루프린트 게임플레이</b><br>BP 2종 · 노드 26</td>
+<td align="center"><b>시간대별 라이팅 프리셋</b><br>프리셋 3종 · 라이트 46</td>
 </tr>
 </table>
 
@@ -41,6 +43,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 | [6](#6-시퀀서-시네마틱) | **시퀀서 시네마틱** | 1260프레임 / 6샷 / 카메라 6대 | `Content/VFX_Test` | `1de62e4` |
 | [7](#7-control-rig-리깅) | **Control Rig 리깅** | 컨트롤 28 / 그래프 53노드 / IK 4체인 | `Content/Characters` | `3d760bc` |
 | [8](#8-블루프린트-게임플레이) | **블루프린트 게임플레이** | BP 2종 / 노드 26 / 입력 8종 | `Content/HarborGame` | `4b4d1ad` |
+| [9](#9-시간대별-라이팅-프리셋) | **시간대별 라이팅 프리셋** | 레벨 3종 / 라이트 46 / 창문 196 | `Content/IndustrialHarbor_Claude/Level` | `-` |
 
 굵은 항목은 **결과 → 파이프라인 → 재현 방법 → 기술 노트** 순서로 상세 정리했습니다.
 기술 노트에는 MCP로 막힌 지점과 우회책을 적어뒀습니다(접혀 있습니다).
@@ -924,5 +927,171 @@ EventGraph (create_node + connect_pins)
 → **우회**: 플레이 화면을 찍으려면 `CaptureEditorImage`를 쓰되, 그 전에 창을 앞으로 가져와야 합니다. Windows `user32.SetForegroundWindow` + `ShowWindow(SW_MAXIMIZE)`를 ctypes로 호출해 창을 띄운 뒤 캡처하면 됩니다.
 
 **MCP 세션이 끊겨도 HTTP로 직접 붙을 수 있습니다.** 이 프로젝트의 언리얼 MCP는 `.mcp.json`에 `{"type":"http","url":"http://127.0.0.1:8000/mcp"}`로 잡혀 있는 HTTP 서버입니다. 클라이언트 쪽 세션이 죽어 툴 목록에서 사라져도, 에디터만 살아 있으면 JSON-RPC를 직접 던져 그대로 작업할 수 있습니다 — `initialize`로 `Mcp-Session-Id`를 받고(이후 요청 헤더에 실어야 합니다), `tools/call`로 `call_tool`을 호출하면 됩니다. 덤으로 캡처 base64가 에이전트 컨텍스트를 거치지 않고 곧장 파일로 떨어져 훨씬 가볍습니다.
+
+</details>
+
+---
+
+# 9. 시간대별 라이팅 프리셋
+
+> `Content/IndustrialHarbor_Claude/Level/L_IndustrialHarbor_{BlueHour,GoldenHour,Night}` · 스크립트 `scripts/lighting_presets`
+
+1번의 항구 레벨(액터 1,720개)을 **여명 · 황혼 · 야간** 세 가지 빛으로 다시 찍었습니다. 주간 원본은 그대로 두고 레벨 사본 3개를 만들어 태양·대기·안개·인공광·포스트프로세스를 따로 넣었습니다. **SpotLight 34개와 창문 조명 196개를 새로 배치**하고 노면을 젖게 만들었으며, 값을 한 번 넣고 끝내지 않고 **캡처 → 눈으로 확인 → 수정을 프리셋마다 6~10회** 돌렸습니다. 세 시간대는 같은 좌표·회전으로 찍어 비교가 성립합니다.
+
+![황혼 — B 창고 거리](docs/images/lighting_01_hero.jpg)
+
+## 9.1 결과
+
+| 항목 | 값 |
+|---|---|
+| 프리셋 | Blue Hour(여명) / Golden Hour(황혼) / Night(야간 조업) |
+| 레벨 | 주간 원본 + 사본 3개 (액터 각 1,720+) |
+| 추가 광원 | SpotLight 34개 (가로등 14 · 부두 10 · 야적장 6 · 크레인 4) |
+| 기존 광원 재조정 | PointLight 12개 (색온도 2000~2200K, 볼류메트릭 산란 1.5~5.5) |
+| 창문 조명 | 후보 208곳 중 프리셋별 38~81개 점등 (18~38%) |
+| 젖은 노면 | 노면 MI 사본 21개(7종 × 3프리셋), 지면 액터 192개에 OverrideMaterials |
+| 고정 카메라 | 3구역 × 3시간대 = 9장 (좌표·회전을 코드 상수로 고정) |
+| 반복 횟수 | Blue Hour 10회 · Golden Hour 7회 · Night 6회 |
+| 노출 | 세 프리셋 모두 `AEM_Manual` + Min=Max 고정 (자동 노출 비활성) |
+
+<table>
+<tr>
+<td width="50%"><img src="docs/images/lighting_02_bluehour.jpg" width="100%"></td>
+<td width="50%"><img src="docs/images/lighting_03_night.jpg" width="100%"></td>
+</tr>
+<tr>
+<td align="center">Blue Hour — 청록 하늘과 나트륨등의 보색 대비</td>
+<td align="center">Night — 볼류메트릭 빛무리와 젖은 노면 반사</td>
+</tr>
+</table>
+
+구역별로 세 시간대를 같은 카메라로 나란히 놓은 비교입니다.
+
+![B 창고 거리](docs/images/lighting_04_cmp_warehouse.jpg)
+![C 컨테이너 야적장](docs/images/lighting_05_cmp_yard.jpg)
+![E 부두](docs/images/lighting_06_cmp_pier.jpg)
+
+## 9.2 파이프라인
+
+```
+AssetTools.duplicate → 즉시 save        사본은 저장 전에는 load_level이 거부됩니다
+      │
+      ├─ ① 태양·대기            DirectionalLight pitch/yaw/색온도 + SkyAtmosphere
+      │                         여명 +0.5° · 황혼 −6° · 야간 −52°(달)
+      │
+      ├─ ② 볼류메트릭 포그      ExponentialHeightFog
+      │                         밀도 0.055~0.07, 소광 0.9~1.2
+      │                         인스캐터는 청색 / 태양 방향만 주황
+      │                         ※ 스케일러빌리티가 Low면 이 단계가 통째로 무효
+      │
+      ├─ ③ 인공광 배치          SpotLight 34개를 램프·부두·협로·크레인에
+      │                         rhythm() 으로 밝기 0.55~1.4배, 7개마다 1개 소등
+      │                         도로는 남쪽 연석에도 걸어 빛 웅덩이를 잇습니다
+      │
+      ├─ ④ 창문 조명            건물 AABB → 종류별 half-size → yaw 회전
+      │                         벽면 격자 208곳 중 시드 고정 난수로 18~38%만
+      │                         CL_Window_Industrial + 발광 유리 MI
+      │
+      ├─ ⑤ 젖은 노면            원본 MI를 부모로 사본 생성 (원본은 건드리지 않음)
+      │                         Roughness 0.22~0.46 / Specular 0.9~1.0
+      │                         지면 액터 192개에 OverrideMaterials
+      │
+      ├─ ⑥ 포스트 프로세스      AEM_Manual + Min=Max 로 노출 고정
+      │                         그림자 청색 / 하이라이트 주황 보색 그레이딩
+      │                         비네트·그레인·색수차는 "있는지 모를 정도"
+      │
+      └─ ⑦ 캡처 검증            Billboard/Arrow 숨김 + 게임 뷰(G)
+                                고정 카메라 3곳 → 이미지 확인 → ①~⑥ 수정
+```
+
+## 9.3 프리셋 값
+
+세 프리셋의 성격을 가르는 건 **무엇이 화면을 지배하는가**입니다. 여명은 하늘, 황혼은 태양, 야간은 인공광입니다.
+
+| | Blue Hour | Golden Hour | Night |
+|---|---|---|---|
+| 태양 pitch / yaw | `+0.5° / 170°` (지평선 바로 아래) | `−6° / 174°` (고도 6도, 도로 축) | `−52° / 35°` (달) |
+| 태양 세기 / 색온도 | 0.62 / 2900K | 22.0 / 2700K | 0.30 / 9000K |
+| SkyLight | 2.4 | 5.5 | 0.45 |
+| 안개 밀도 / 소광 | 0.055 / 0.9 | 0.07 / 1.1 | 0.06 / 1.2 |
+| 안개 인스캐터 | 청색 `(0.055, 0.10, 0.20)` | 청색 `(0.16, 0.19, 0.27)` | 짙은 청색 `(0.02, 0.035, 0.07)` |
+| 태양 방향 인스캐터 | 주황, 지수 16 | 주황, 지수 14 | 거의 없음, 지수 20 |
+| 노출 (Manual EV bias) | 8.2 | 5.0 | 6.5 |
+| 가로등 밝기 | 5,400 lm | 5,200 lm | 11,000 lm |
+| 광원 볼류메트릭 산란 | 4.0 | 1.2 | 5.0 |
+| 노면 Roughness / Specular | 0.30 / 1.0 | 0.46 / 0.9 | 0.22 / 1.0 |
+| 창문 점등 | 35% (81개) | 18% (38개) | 38% (77개) |
+
+- **여명** — 인공광을 일부러 **0.6배로 낮췄습니다.** 처음엔 야간과 같은 밝기로 켰더니 하늘이 눌려 "그냥 밤"이 됐습니다. 노출을 올리고 램프를 낮춰야 청록 하늘 대 주황 나트륨등의 보색 대비가 살아납니다.
+- **황혼** — 태양 방위각이 전부입니다. 측면광(`yaw −120~−158`)도 시험했지만 태양이 화면 밖으로 나가 밋밋해져 도로 축에서 4도 비껴 놓은 **역광**을 택했습니다. 태양이 소실점에 걸리고 젖은 노면이 그 빛을 길게 끌어옵니다. 대신 "바닥에 깔리는 긴 그림자"는 포기했습니다 — 역광에서는 그림자가 카메라 쪽으로 와서 화면에 보이지 않습니다.
+- **야간** — 달빛을 거의 껐습니다(0.30). 형체는 인공광과 창문, 안개에 산란된 빛으로만 읽힙니다.
+
+**볼류메트릭 포그가 전부의 전제입니다.** 이게 없으면 갓레이도 빛무리도 생기지 않습니다. 밀도 0.03~0.16 / 산란 2~16을 격자로 찍어 비교했고, 조금만 넘겨도 화면이 주황 죽으로 덮여 최종값은 밀도 0.055~0.07 / 산란 1.2~5.0에 안착했습니다. `bEnableLightShaftBloom`도 시험했지만 화면 전체가 주황 안개가 되어 제외했습니다.
+
+**인공광은 균일하지 않게** 걸었습니다. 컨테이너 협로 조명은 통로 중앙(Y=1100)에 두되 각도만 좌우로 번갈아 기울였습니다 — 위치를 옆으로 옮기면 조명이 컨테이너 위로 올라가 협로가 오히려 어두워집니다. 부두 조명도 바다 쪽으로 90° 돌렸다가 부두 바닥이 죽어 52°로 되돌렸습니다.
+
+## 9.4 카메라
+
+같은 좌표·회전으로 찍어야 비교가 성립하므로 `scripts/lighting_presets/cameras.py`에 상수로 고정했습니다.
+
+| 이름 | 위치 (x, y, z) | 회전 (pitch, yaw) | 의도 |
+|---|---|---|---|
+| `B_warehouse` | `(-5400, 1150, 172)` | `(0.5, 2)` | 도로 소실점, 우측 창고 벽을 전경에 걸침 |
+| `C_yard` | `(3200, 1100, 180)` | `(1, 1)` | 컨테이너 협로(행 간격 800) 소실점, 우측 녹슨 기둥이 전경 층 |
+| `E_pier` | `(3200, -5980, 172)` | `(1, 176)` | 부두 난간 소실점 + 갠트리 크레인 실루엣 + 수면 반사 |
+
+전부 눈높이(z≈172~180)입니다. 위에서 내려다본 구도는 미니어처처럼 보여 감흥이 없습니다. 후보 30여 개를 격자로 찍어 골랐고, 초기 후보의 절반은 카메라가 벽이나 컨테이너에 처박혀 있었습니다. 에디터 뷰포트 FOV는 MCP로 노출되지 않아 기본값 90도를 그대로 씁니다.
+
+## 9.5 반복 개선
+
+값을 넣고 → 대표 구도를 찍고 → **이미지를 열어 보고** → 고쳤습니다. 매번 확인한 항목과 실제로 걸린 것들입니다.
+
+| 점검 항목 | 실제로 걸린 것 |
+|---|---|
+| 어두운 부분이 검게 뭉개지지 않았나 | 도로 남쪽이 통째로 검음 → 남쪽 연석에 가로등 4개, 부두 서쪽에 작업등 3개 추가 |
+| 밝은 부분이 하얗게 타지 않았나 | 황혼 태양 주변이 흰색으로 날아감 → EV bias 5.5→5.0, 인스캐터 지수 8→14 |
+| 시선이 머물 밝은 지점이 있나 | 크레인 작업등 4개를 3400~3600K로 강하게 |
+| 안개가 대비를 죽이고 있지 않나 | 밀도 0.16 + 산란 12~16에서 화면이 주황 죽 → 0.055~0.07 / 4~5 |
+| 색이 한 가지로 균일하지 않나 | 여명이 야간과 구분 안 됨 → 인공광 0.6배 + 노출 7.0→8.2 |
+| 원경이 근경과 구분되나 | `fogMaxOpacity` 0.95→0.82로 원경이 완전히 묻히지 않게 |
+
+## 9.6 재현
+
+1. 에디터에서 프로젝트를 열고 MCP 서버(`http://127.0.0.1:8000/mcp`)가 살아 있는지 확인합니다.
+2. **스케일러빌리티를 Epic으로 올립니다** — Low면 볼류메트릭 포그가 아예 꺼집니다(9.7 참고). 콘솔에 `Scalability 3`, `sg.ResolutionQuality 100`.
+3. `python scripts/lighting_presets/make_levels.py` — 레벨 사본 3개 생성
+4. `python scripts/lighting_presets/probe_buildings.py` — 건물 바운드를 `building_bounds.json`으로 추출
+5. `python scripts/lighting_presets/setup_preset.py BlueHour` (이어서 `GoldenHour`, `Night`) — 젖은 노면 MI·창문·스팟라이트·라이팅 값을 한 번에 적용. 전부 `exists` 체크가 있어 다시 돌려도 중복되지 않습니다
+6. `python scripts/lighting_presets/recapture.py` — 세 프리셋을 순회하며 고정 카메라 9장 촬영
+7. `python scripts/lighting_presets/compare.py` — 구역별 비교 이미지를 `docs/images`에 기록
+
+값을 바꿔 시험할 때는 `sweep.py`를 씁니다. 변형 목록을 넘기면 한 구도를 반복해 찍고 격자 시트를 만들어 주며, 이 작업의 판단은 대부분 그 시트를 보고 내렸습니다.
+
+## 9.7 기술 노트
+
+<details>
+<summary><b>MCP로 막힌 것들 — 8건 (펼치기)</b></summary>
+
+**에디터 스케일러빌리티가 전부 Low(0)여서 볼류메트릭 포그가 꺼져 있었습니다.** `bEnableVolumetricFog=true`를 넣고 광원 산란을 아무리 올려도 빛무리가 생기지 않아 CVar를 뒤져 보니 `r.VolumetricFog=0`, `sg.EffectsQuality=0`, `sg.ResolutionQuality=50`이었습니다. 스케일러빌리티 Low 프로파일이 볼류메트릭 포그를 끕니다. 라이팅 값이 아니라 **품질 설정이 그림을 결정하고 있었습니다.**
+→ **우회**: 콘솔에 `Scalability 3` + `sg.ResolutionQuality 100`. 이것만으로 같은 값에서 화면이 완전히 달라집니다. 라이팅 작업 전에 `SearchCVars`로 `sg.`를 한 번 확인할 것.
+
+**MCP에는 CVar를 설정하는 툴이 없습니다.** `EditorAppToolset`에 `SearchCVars`(조회)는 있지만 설정 툴이 없습니다.
+→ **우회**: 에디터 상태바의 Cmd 입력란을 슬레이트로 두드립니다. 다만 입력란은 루트 스냅샷에 잡히지 않고, 상태바의 Cmd 메뉴(`m20`)를 `Click`한 뒤 **그 서브트리를 다시 스냅샷**해야 `textbox`가 나타납니다. `Type`으로 텍스트는 정확히 들어갑니다.
+
+**그 콘솔 입력란은 Enter 커밋이 먹지 않습니다.** `Type(submit=true)`, `PressKey("Enter"/"Return"/"NumPadEnter")`, Win32 `keybd_event(VK_RETURN)`을 모두 시도했지만 CVar 값이 바뀌지 않았습니다(텍스트가 입력란에 그대로 남아 있는 것은 스크린샷으로 확인). PowerShell `SendKeys`는 아예 `Access is denied`로 막힙니다 — 처음 스케일러빌리티를 올릴 때 `mouse_event` 클릭 + `SendKeys`가 한 번 통했고 이후로는 계속 거부됐습니다.
+→ **우회**: 콘솔로 해결하려던 것(그리드 끄기)을 뷰포트 게임 뷰로 대체했습니다.
+
+**`CaptureViewport`는 에디터 전용 요소를 그대로 찍습니다.** 라이트 아이콘, 그리드, 좌하단 축 기즈모가 전부 이미지에 나옵니다. `bShowUI: false`로도 사라지지 않습니다.
+→ **우회**: 두 단계로 지웁니다. ① 라이트 액터의 `BillboardComponent`/`ArrowComponent`를 찾아 `bVisible=false`(스프라이트 91개). ② 뷰포트 위젯을 `Click`하고 `PressKey("G")`로 게임 뷰 전환 — 그리드와 기즈모까지 사라집니다. 단 G는 **토글**이라 상태를 모르면 껐다 켰다 하게 됩니다. 캡처 좌하단에서 파란 Z축 픽셀을 세어 남아 있으면 한 번 더 누르는 식으로 확인합니다.
+
+**`ObjectTools`의 프로퍼티 이름은 camelCase입니다.** `Intensity`가 아니라 `intensity`, `FogDensity`가 아니라 `fogDensity`입니다. 그리고 **이름이 하나라도 틀리면 그 호출 전체가 실패합니다** — 12개를 요청하면서 하나만 오타여도 나머지 11개까지 못 읽습니다. `bCastShadows`(없음)와 `castShadows`(있음)처럼 헷갈리는 쌍이 있어, 새 컴포넌트를 만질 때는 `list_properties`로 먼저 이름을 뽑는 편이 빠릅니다.
+
+**`PostProcessVolume.settings`는 읽고-고쳐-쓰기로 다뤄야 합니다.** 463개 필드짜리 구조체라 일부만 넘기면 나머지가 밀릴 위험이 있고, 각 값에는 `bOverride_XXX` 플래그가 따로 있어 값만 넣으면 적용되지 않습니다.
+→ **우회**: `settings`를 통째로 읽어 필요한 키만 갈아끼우고, 키 이름에서 `bOverride_` + 첫 글자 대문자로 플래그 이름을 만들어 함께 켠 뒤 통째로 다시 씁니다.
+
+**`ProgrammaticToolset`의 샌드박스 dict는 `.get(key, default)`를 지원하지 않습니다.** `_StrictDict.get() does not support a default value`로 죽습니다. 인자 하나짜리 `.get(key)`는 됩니다. 반환값도 JSON 문자열로 한두 겹 감싸여 오는 경우가 있어 dict가 될 때까지 벗기는 처리가 필요했습니다.
+
+**`load_level`의 "has unsaved changes"는 로드하려는 대상을 가리킵니다.** 현재 열린 레벨을 저장해도 계속 거절당해 확인해 보니 **아직 열지도 않은** 대상 레벨이 dirty였습니다(이전에 부분 로드된 뒤 남은 상태).
+→ **우회**: 전환 전에 현재 레벨과 대상 레벨 **둘 다** `is_dirty`를 보고 저장합니다.
 
 </details>
