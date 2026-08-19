@@ -831,8 +831,9 @@ BeginExecution
 
 | 항목 | 값 |
 |---|---|
-| `BP_HarborCharacter` | Character 파생 · EventGraph 노드 26개 |
+| `BP_HarborCharacter` | Character 파생 · EventGraph 노드 31개 |
 | `BP_HarborGameMode` | GameModeBase 파생 |
+| 애니메이션 | BeginPlay에서 `A_Character_Idle` 루프 재생 |
 | 입력 | 축 6종(전후·좌우·시점 상하좌우) + 액션 2종(점프·스프린트) |
 | 카메라 | 런타임 CameraComponent, 캐릭터 뒤 350 / 위 110 / pitch -8 |
 | 이동 | 걷기 450, 스프린트 800, 점프 480 |
@@ -859,6 +860,7 @@ EventGraph (create_node + connect_pins)
   InputAxis LookRight/Up ─ AddControllerYaw/PitchInput(AxisValue)
   InputAction Jump       ─ Pressed→Jump / Released→StopJumping
   InputAction Sprint     ─ Pressed→MaxWalkSpeed 800 / Released→450
+            └ PlayAnimation(GetMesh, A_Character_Idle, looping)
 ```
 
 입력 매핑은 에셋을 만들지 않고 **`InputSettings` CDO에 직접 썼습니다.** `AxisMappings`/`ActionMappings`를 넣으면 에디터 재시작 없이 곧바로 `Input|AxisEvents|MoveForward` 같은 이벤트 노드가 생깁니다. Enhanced Input이 기본값(`DefaultPlayerInputClass=EnhancedPlayerInput`)인데도 레거시 매핑이 그대로 동작합니다.
@@ -873,14 +875,14 @@ EventGraph (create_node + connect_pins)
 
 정직하게 적어두면, 이 섹션은 **아직 덜 끝났습니다.**
 
-- **애님 블루프린트가 없어 캐릭터가 T포즈로 미끄러집니다.** 메시에 `A_Character_Idle`을 단일 노드 애니메이션으로 물리는 데까지는 했지만 검증 전에 세션이 끊겼습니다. 제대로 하려면 AnimBP + 속도 기반 블렌드스페이스가 필요합니다.
+- **애님 블루프린트가 없어 이동 애니메이션이 없습니다.** BeginPlay에서 `A_Character_Idle`을 루프 재생시켜 T포즈는 벗어났지만, 걸어도 Idle 그대로입니다. 제대로 하려면 AnimBP + 속도 기반 블렌드스페이스가 필요합니다(`A_Character_Walk`는 이미 있습니다).
 - **카메라에 충돌 회피가 없습니다.** 스프링암을 런타임 생성 경로로 붙였을 때 카메라가 팔 끝이 아니라 원점(캐릭터 몸속)에 남아, 결국 카메라를 루트에 직접 상대배치했습니다. 벽에 붙으면 카메라가 벽을 뚫습니다.
 - **GameMode의 `DefaultPawnClass`로는 폰이 스폰되지 않았습니다.** 레벨 직접 배치 + `AutoPossessPlayer`로 우회했습니다(아래 기술 노트).
 
 ## 8.5 기술 노트
 
 <details>
-<summary><b>MCP로 막힌 것들 — 6건 (펼치기)</b></summary>
+<summary><b>MCP로 막힌 것들 — 9건 (펼치기)</b></summary>
 
 **`write_graph_dsl`이 한글 에디터에서 반쯤 막힙니다.** 이 툴셋의 하이라이트는 블루프린트 그래프를 S-expression DSL 한 덩어리로 쓰는 `write_graph_dsl`입니다. 그런데 노드 `type_id`가 에디터 언어를 따라 전부 로컬라이즈돼 있고(`Development|PrintString` → `개발|PrintString`, `Transformation|…` → `트랜스포메이션|…`), DSL은 영문 접두사를 하드코딩합니다.
 - `(event X …)` → `AddEvent|X`를 찾는데 실제 카테고리는 `이벤트추가|이벤트BeginPlay`. **이벤트를 아예 만들 수 없습니다.**
@@ -900,5 +902,13 @@ EventGraph (create_node + connect_pins)
 
 **GameMode의 `DefaultPawnClass`로 폰이 스폰되지 않습니다.** WorldSettings에 GameMode를 물려 `LogLoad: Game class is 'BP_HarborGameMode_C'`까지 확인되는데도 캐릭터의 BeginPlay가 돌지 않았습니다(BeginPlay에 심은 PrintString이 로그·화면 어디에도 안 뜸). 스폰 실패 경고조차 남지 않습니다.
 → **우회**: 레벨에 BP를 직접 배치하고 `AutoPossessPlayer="Player0"`. 그 즉시 BeginPlay가 돌았습니다. 원인 규명은 못 했고, PIE 검증은 이 경로로 했습니다.
+
+**`AnimationData`를 채워도 런타임에서는 재생되지 않습니다.** 메시 컴포넌트에 `AnimationMode="AnimationSingleNode"` + `AnimationData.AnimToPlay`를 넣으면 프로퍼티는 멀쩡히 들어가는데(다시 읽으면 그대로 나옵니다) PIE에서는 T포즈 그대로입니다. 그 필드는 에디터 프리뷰용에 가깝습니다.
+→ **우회**: BeginPlay에서 `컴포넌트|애니메이션|PlayAnimation`(self=`Variables|캐릭터|GetMesh`, `NewAnimToPlay`, `bLooping=true`)을 직접 호출합니다.
+
+**캡처 툴 두 개가 서로 다른 것을 찍습니다.** `CaptureEditorImage`는 **실제 창**을 캡처해서, 에디터 창이 가려지거나 최소화돼 있으면 `Failed to capture any editor windows`로 실패합니다. 반면 `CaptureViewport`는 렌더 기반이라 창 상태와 무관하지만 **PIE 중에도 에디터 월드를 렌더**합니다 — 그래서 PIE에서 도는 애니메이션은 안 잡히고 캡슐 와이어프레임까지 같이 나옵니다.
+→ **우회**: 플레이 화면을 찍으려면 `CaptureEditorImage`를 쓰되, 그 전에 창을 앞으로 가져와야 합니다. Windows `user32.SetForegroundWindow` + `ShowWindow(SW_MAXIMIZE)`를 ctypes로 호출해 창을 띄운 뒤 캡처하면 됩니다.
+
+**MCP 세션이 끊겨도 HTTP로 직접 붙을 수 있습니다.** 이 프로젝트의 언리얼 MCP는 `.mcp.json`에 `{"type":"http","url":"http://127.0.0.1:8000/mcp"}`로 잡혀 있는 HTTP 서버입니다. 클라이언트 쪽 세션이 죽어 툴 목록에서 사라져도, 에디터만 살아 있으면 JSON-RPC를 직접 던져 그대로 작업할 수 있습니다 — `initialize`로 `Mcp-Session-Id`를 받고(이후 요청 헤더에 실어야 합니다), `tools/call`로 `call_tool`을 호출하면 됩니다. 덤으로 캡처 base64가 에이전트 컨텍스트를 거치지 않고 곧장 파일로 떨어져 훨씬 가볍습니다.
 
 </details>
