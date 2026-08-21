@@ -6,15 +6,16 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 
 <table>
 <tr>
-<td width="11.1%"><a href="#1-산업-항구-모듈러-킷"><img src="docs/images/harbor_01_overview.jpg" width="100%"></a></td>
-<td width="11.1%"><a href="#2-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
-<td width="11.1%"><a href="#3-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
-<td width="11.1%"><a href="#4-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
-<td width="11.1%"><a href="#5-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
-<td width="11.1%"><a href="#6-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
-<td width="11.1%"><a href="#7-control-rig-리깅"><img src="docs/images/rig_01_pose.jpg" width="100%"></a></td>
-<td width="11.1%"><a href="#8-블루프린트-게임플레이"><img src="docs/images/bp_01_thirdperson.jpg" width="100%"></a></td>
-<td width="11.1%"><a href="#9-시간대별-라이팅-프리셋"><img src="docs/images/lighting_01_hero.jpg" width="100%"></a></td>
+<td width="10%"><a href="#1-산업-항구-모듈러-킷"><img src="docs/images/harbor_01_overview.jpg" width="100%"></a></td>
+<td width="10%"><a href="#2-umg-레이아웃-재현"><img src="docs/images/25_ui_result.jpg" width="100%"></a></td>
+<td width="10%"><a href="#3-캐릭터-리깅애니메이션"><img src="docs/images/23_char_hero.jpg" width="100%"></a></td>
+<td width="10%"><a href="#4-나이아가라-vfx"><img src="docs/images/09_vfx_fire.jpg" width="100%"></a></td>
+<td width="10%"><a href="#5-pcg-절차적-숲"><img src="docs/images/01_overview.jpg" width="100%"></a></td>
+<td width="10%"><a href="#6-시퀀서-시네마틱"><img src="docs/images/14_seq_pullback.jpg" width="100%"></a></td>
+<td width="10%"><a href="#7-control-rig-리깅"><img src="docs/images/rig_01_pose.jpg" width="100%"></a></td>
+<td width="10%"><a href="#8-블루프린트-게임플레이"><img src="docs/images/bp_01_thirdperson.jpg" width="100%"></a></td>
+<td width="10%"><a href="#9-시간대별-라이팅-프리셋"><img src="docs/images/lighting_01_hero.jpg" width="100%"></a></td>
+<td width="10%"><a href="#10-mcp-툴셋-자체-검증"><img src="docs/images/mcp_01_testmatrix.jpg" width="100%"></a></td>
 </tr>
 <tr>
 <td align="center"><b>산업 항구 모듈러 킷</b><br>메시 90 · 액터 1,720</td>
@@ -26,6 +27,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 <td align="center"><b>Control Rig 리깅</b><br>컨트롤 28 · IK 4체인</td>
 <td align="center"><b>블루프린트 게임플레이</b><br>BP 2종 · 노드 26</td>
 <td align="center"><b>시간대별 라이팅 프리셋</b><br>프리셋 3종 · 라이트 46</td>
+<td align="center"><b>MCP 툴셋 자체 검증</b><br>테스트 2,494건 · 96.8%</td>
 </tr>
 </table>
 
@@ -44,6 +46,7 @@ Unreal Engine **5.8** 프로젝트. 에디터를 손으로 조작하는 대신 *
 | [7](#7-control-rig-리깅) | **Control Rig 리깅** | 컨트롤 28 / 그래프 53노드 / IK 4체인 | `Content/Characters` | `3d760bc` |
 | [8](#8-블루프린트-게임플레이) | **블루프린트 게임플레이** | BP 2종 / 노드 26 / 입력 8종 | `Content/HarborGame` | `4b4d1ad` |
 | [9](#9-시간대별-라이팅-프리셋) | **시간대별 라이팅 프리셋** | 레벨 3종 / 라이트 46 / 창문 196 | `Content/IndustrialHarbor_Claude/Level` | `6dcf6b5` |
+| [10](#10-mcp-툴셋-자체-검증) | **MCP 툴셋 자체 검증** | 테스트 2,494건 / 툴셋 52개 / 결함 1건 수정 | `scripts/mcp_audit` | `-` |
 
 굵은 항목은 **결과 → 파이프라인 → 재현 방법 → 기술 노트** 순서로 상세 정리했습니다.
 기술 노트에는 MCP로 막힌 지점과 우회책을 적어뒀습니다(접혀 있습니다).
@@ -1093,5 +1096,148 @@ AssetTools.duplicate → 즉시 save        사본은 저장 전에는 load_leve
 
 **`load_level`의 "has unsaved changes"는 로드하려는 대상을 가리킵니다.** 현재 열린 레벨을 저장해도 계속 거절당해 확인해 보니 **아직 열지도 않은** 대상 레벨이 dirty였습니다(이전에 부분 로드된 뒤 남은 상태).
 → **우회**: 전환 전에 현재 레벨과 대상 레벨 **둘 다** `is_dirty`를 보고 저장합니다.
+
+</details>
+
+---
+
+# 10. MCP 툴셋 자체 검증
+
+> `scripts/mcp_audit` · 대상: 언리얼 MCP 플러그인 전체 (툴셋 52개)
+
+지금까지 아홉 개 섹션은 **MCP로 무언가를 만든** 기록입니다. 이번에는 방향을 뒤집어 **MCP 자체를 검증**했습니다. 에디터에 등록된 자동화 테스트 8,954개 중 MCP 관련 **2,494개를 돌려 2,415개가 통과(96.8%)** 했고, 실패한 79건을 원인별로 갈랐습니다. 그 과정에서 **프로젝트의 실제 설정 결함 하나를 찾아 고쳤고**, 프로젝트 맵 7개가 PIE에서 정상 동작하는지도 전수 확인했습니다.
+
+![툴셋별 통과·실패](docs/images/mcp_01_testmatrix.jpg)
+
+## 10.1 결과
+
+| 항목 | 값 |
+|---|---|
+| 등록된 자동화 테스트 | 8,954개 (엔진 전체) |
+| 실행 | 2,494개 (`AI.Toolsets` / `AI.ToolsetRegistry` / `AI.ModelContextProtocol`) |
+| 통과 / 실패 | **2,415 / 79 (96.8%)** |
+| 전원 통과한 툴셋 | AnimationToolset(202) · PhysicsToolsets(50) · PCGToolset(47) · SlateInspectorToolset(47) · GASToolsets(24) |
+| 전면 실패한 툴셋 | **StateTreeToolset (0/12)** |
+| 맵 PIE 전수 검증 | 7개 전부 통과 (항구 4 · PCG 숲 · VFX 쇼케이스 · 한옥마을) |
+| 찾아 고친 결함 | `GameViewportClientClassName` 미설정 (CommonUI 입력 라우팅) |
+| 툴셋 인벤토리 | 52개 중 이 저장소가 사용한 것 15개 |
+
+## 10.2 파이프라인
+
+```
+list_toolsets → describe_toolset          툴셋 52개의 툴 시그니처를 전부 뽑는다
+      │                                   제작 가능 / 조회 전용을 여기서 가른다
+      │
+      ├─ ① DiscoverTests()                워커 초기화 (세션당 한 번)
+      ├─ ② ListTests(limit=100000)        8,954개 이름 수집 → 카테고리 집계
+      ├─ ③ RunTestsByFilter("AI.")        접두사 매칭으로 2,494개만 실행
+      │                                   ※ HTTP 요청은 600초에 끊기지만
+      │                                     테스트는 에디터 안에서 계속 돈다
+      ├─ ④ GetTestStatus() 폴링           complete/passed/failed를 20초마다
+      │                                   약 17분 소요
+      ├─ ⑤ GetTestResults()               {name, state, duration, errors[]}
+      └─ ⑥ 실패 79건을 원인별로 분류      traceback 마지막 줄 + 한글 정규식
+
+Project.Maps.PIE                          현재 열린 맵에서 PIE를 띄워 본다
+      └─ 맵 전수 순회는 별도로 구현       load_level → StartPIE → IsPIERunning
+                                          → StopPIE 를 맵마다 반복
+```
+
+## 10.3 실패 79건의 정체
+
+| 원인 | 건수 | 내용 |
+|---|---:|---|
+| 널 반환 | 17 | 툴이 `None`을 돌려줌 — 대부분 blueprint 툴셋 |
+| 한글 로컬라이제이션 | 17 | 타입명·설명이 번역돼 문자열 비교가 깨짐 |
+| StateTree 툴셋 전면 실패 | 12 | 12개 전부 |
+| 테스트 픽스처 없음 | 7 | `No populated BehaviorTree asset found in the asset registry` |
+| CommonUI 뷰포트 미설정 | 3 | 아래에서 고쳤습니다 |
+| SSE 응답 파싱 | 1 | `Should parse SSE response` |
+| 기타 | 22 | |
+
+**`EditorToolset` 실패 45건 중 39건이 blueprint 테스트**이고, 그 상당수가 이런 모습입니다.
+
+```
+AssertionError: 'Array' not found in '인티저 배열'
+AssertionError: 'Map' not found in '맵: 스트링 -> 인티저'
+AssertionError: 'Set' not found in '인티저 세트'
+```
+
+**에디터 언어가 한글이면 블루프린트 툴셋이 자기 테스트조차 통과하지 못합니다.** 8.5에 적어둔 "한글 에디터에서 `write_graph_dsl`이 반쯤 막힌다"(`Development|PrintString` → `개발|PrintString`)와 같은 뿌리입니다. 우리가 잘못 쓴 게 아니라 툴셋이 로컬라이즈된 타입명을 그대로 노출하는 구조 문제였습니다.
+
+`AI.ModelContextProtocol.Server.Protocol Operations`의 `Should parse SSE response` 실패도 눈에 띕니다. HTTP로 직접 붙을 때 SSE `data:` 줄을 손으로 벗겨내야 했던 지점과 정확히 겹칩니다.
+
+## 10.4 찾아낸 실제 결함
+
+**`GameViewportClientClassName`이 설정돼 있지 않았습니다.** 2번에서 CommonUI를 쓰는 위젯을 만들었는데 뷰포트 클라이언트를 지정하지 않아, PIE를 띄울 때마다 이 로그가 났습니다.
+
+```
+LogUIActionRouter: Using CommonUI without a CommonGameViewportClient derived
+game viewport client. CommonUI Input routing will not function correctly.
+```
+
+자동화 테스트는 Error 로그를 실패로 처리하므로 `Project.Maps.PIE`가 여기서 죽었습니다. `Config/DefaultEngine.ini`에 한 줄을 넣어 해결했습니다.
+
+```ini
+[/Script/Engine.Engine]
+GameViewportClientClassName=/Script/CommonUI.CommonGameViewportClient
+```
+
+고친 뒤 `Project.Maps.PIE`는 **Success**로 바뀌었고, 맵 7개를 순회하며 PIE를 띄운 결과도 전부 정상이었습니다. 경고에 그치지 않고 **CommonUI 입력 라우팅이 실제로 동작하지 않던 상태**였으므로, 테스트가 없었다면 계속 모르고 지나쳤을 문제입니다.
+
+| 맵 | 결과 |
+|---|---|
+| `L_IndustrialHarbor_Claude` / `_BlueHour` / `_GoldenHour` / `_Night` | OK |
+| `L_PCG_Forest` · `L_VFX_Showcase` · `KotreanOldTown` | OK |
+
+## 10.5 제작 가능 / 조회 전용
+
+툴 시그니처를 전수 조사해 보니 툴셋마다 성격이 갈립니다. 다음 작업을 고를 때 쓰려고 정리해 둡니다.
+
+| 툴셋 | 툴 수 | 성격 |
+|---|---:|---|
+| `MaterialTools` | 22 | **제작 가능** — `create_material` / `add_expression` / `connect_expressions` / `layout_expressions` / `recompile` |
+| `PhysicsAssetToolset` | 17 | **제작 가능** — `CreateFromMesh` + Body/Constraint CRUD + `SetConstraintLimits` (테스트 50개 전원 통과) |
+| `DataTableTools` | 10 | **제작 가능** — 스키마 지정 생성, CSV 임포트, 행 CRUD |
+| `GameplayTagsToolset` | 6 | **제작 가능** — 태그 추가·삭제·이름변경 |
+| `AgentSkillToolset` | 4 | **제작 가능** — MCP 스킬 에셋 자체를 만드는 메타 기능 |
+| `BehaviorTreeTools` | 7 | **조회 전용** — 전부 `get_`/`list_` |
+| `StateTreeTools` | 9 | **조회 전용** + 테스트 12개 전면 실패 |
+| `ConversationTools` | 7 | **조회 전용** |
+
+**AI 로직(BehaviorTree · StateTree)은 MCP로 검사만 되고 생성이 안 됩니다.** 블루프린트처럼 `create_node` + `connect_pins`로 우회할 경로도 없습니다.
+
+## 10.6 재현
+
+1. 에디터를 **새로 띄운 상태**에서 시작합니다 (10.7 참고 — 테스트 격리가 안 됩니다).
+2. `python scripts/mcp_audit/run_tests.py mcp "AI."` — 2,494개 실행 후 `results_mcp.json` 저장. 약 17분
+3. `python scripts/mcp_audit/analyze.py` — 그룹별 통과/실패와 실패 원인 집계
+4. `python scripts/mcp_audit/chart.py` — `docs/images/mcp_01_testmatrix.jpg` 생성 (원본 결과가 없으면 커밋된 `summary_toolsets.json`으로 그립니다)
+5. `python scripts/mcp_audit/verify_maps.py` — 에디터 재기동을 기다렸다가 `Project.Maps.PIE` 재검증 + 맵 전수 PIE 순회
+
+## 10.7 기술 노트
+
+<details>
+<summary><b>돌려보고 알게 된 것들 — 5건 (펼치기)</b></summary>
+
+**테스트 간 격리가 되지 않습니다.** `AI.` 전체를 돌린 직후 `Project.Maps.PIE`를 실행했더니 19초 만에 이 ensure로 실패했습니다.
+
+```
+Ensure condition failed: Widget->GetOuter() == Blueprint->WidgetTree
+  UWidgetBlueprint::ValidateGeneratedClass()
+  FInternalPlayLevelUtils::ResolveDirtyBlueprints()
+  UEditorEngine::StartPlayInEditorSession()
+```
+
+원인은 앞서 돌린 `UMGToolSet` 테스트 159개가 `/Automation/UMGToolSetTest/`에 남긴 **임시 위젯 170개**였습니다. 그중 일부가 구조적으로 깨진 채 메모리에 남았고, PIE는 시작할 때 dirty 블루프린트를 전부 컴파일하므로 거기서 터집니다. 우리 프로젝트 위젯은 로그에 한 번도 등장하지 않았습니다.
+→ **우회**: 그룹을 바꿔 돌릴 때는 에디터를 재시작합니다.
+
+**자동화 테스트가 버전 관리 대상 파일을 수정합니다.** `ConfigSettingsToolset` 테스트가 `SaveSection`을 호출하면서 `Config/DefaultGame.ini`의 `GeneralProjectSettings` 섹션을 기본값으로 전부 펼쳐 디스크에 썼습니다(`CompanyName=`, `ProjectVersion=1.0.0.0` 등 20여 줄). 값 자체는 무해하지만 테스트를 돌린 뒤에는 `git status`를 확인해야 합니다.
+
+**`RunTestsByFilter`는 비동기지만 HTTP 요청은 600초에 끊깁니다.** 2,494개를 걸면 호출이 `TimeoutError`로 죽는데, **테스트는 에디터 안에서 계속 돕니다.** 타임아웃을 실패로 오해하지 말고 `GetTestStatus()`로 다시 붙어 폴링하면 됩니다. 필터는 접두사/부분 문자열 매칭이라 `"AI."`처럼 넓게 걸 수 있습니다.
+
+**`Project.Maps.PIE`는 프로젝트 맵을 순회하지 않습니다.** 이름만 보고 전수 검증 테스트로 기대했는데, 실제로는 **현재 열려 있는 맵에서 PIE를 한 번 띄워 보는** 테스트입니다. 실행 로그에 우리 맵 이름이 하나도 나오지 않아 알았습니다. 전수 검증은 `load_level` → `StartPIE` → `IsPIERunning` → `StopPIE`를 맵마다 직접 돌려야 합니다.
+
+**테스트 결과의 `errors[]`는 traceback 전체가 한 문자열로 들어옵니다.** 첫 줄만 보면 `Expected 'Test succeeded' to be true.` 같은 껍데기라 원인을 알 수 없고, 마지막 `AssertionError:` 줄까지 파고들어야 실체가 나옵니다. 실패 79건 중 15건은 그 줄조차 잘려 있어 원인을 특정하지 못했습니다.
 
 </details>

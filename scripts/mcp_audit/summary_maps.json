@@ -1,0 +1,51 @@
+[
+ {
+  "map": "L_IndustrialHarbor_Claude",
+  "load_s": 1.1,
+  "pie": true,
+  "result": "OK",
+  "total_s": 11.1
+ },
+ {
+  "map": "L_IndustrialHarbor_BlueHour",
+  "load_s": 1.6,
+  "pie": true,
+  "result": "OK",
+  "total_s": 10.7
+ },
+ {
+  "map": "L_IndustrialHarbor_GoldenHour",
+  "load_s": 1.3,
+  "pie": true,
+  "result": "OK",
+  "total_s": 10.4
+ },
+ {
+  "map": "L_IndustrialHarbor_Night",
+  "load_s": 1.4,
+  "pie": true,
+  "result": "OK",
+  "total_s": 10.8
+ },
+ {
+  "map": "L_PCG_Forest",
+  "load_s": 1.3,
+  "pie": true,
+  "result": "OK",
+  "total_s": 10.0
+ },
+ {
+  "map": "L_VFX_Showcase",
+  "load_s": 1.7,
+  "pie": true,
+  "result": "OK",
+  "total_s": 10.0
+ },
+ {
+  "map": "KotreanOldTown",
+  "load_s": 0.9,
+  "pie": true,
+  "result": "OK",
+  "total_s": 10.3
+ }
+]

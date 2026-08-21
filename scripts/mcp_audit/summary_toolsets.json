@@ -1,0 +1,83 @@
+{
+ "total": 2494,
+ "passed": 2415,
+ "failed": 79,
+ "groups": {
+  "EditorToolset": {
+   "pass": 831,
+   "fail": 45
+  },
+  "ToolsetRegistry": {
+   "pass": 596,
+   "fail": 8
+  },
+  "AnimationToolset": {
+   "pass": 202,
+   "fail": 0
+  },
+  "ModelContextProtocol": {
+   "pass": 192,
+   "fail": 1
+  },
+  "UMGToolSet": {
+   "pass": 157,
+   "fail": 2
+  },
+  "System.AI": {
+   "pass": 139,
+   "fail": 1
+  },
+  "PhysicsToolsets": {
+   "pass": 50,
+   "fail": 0
+  },
+  "PCGToolset": {
+   "pass": 47,
+   "fail": 0
+  },
+  "SlateInspectorToolset": {
+   "pass": 47,
+   "fail": 0
+  },
+  "PluginToolset": {
+   "pass": 42,
+   "fail": 1
+  },
+  "GASToolsets": {
+   "pass": 24,
+   "fail": 0
+  },
+  "ConfigSettingsToolset": {
+   "pass": 20,
+   "fail": 2
+  },
+  "DataRegistryToolset": {
+   "pass": 18,
+   "fail": 0
+  },
+  "GameplayTagsToolset": {
+   "pass": 16,
+   "fail": 0
+  },
+  "GameFeatureToolset": {
+   "pass": 13,
+   "fail": 0
+  },
+  "StateTreeToolset": {
+   "pass": 0,
+   "fail": 12
+  },
+  "AIModuleToolset": {
+   "pass": 4,
+   "fail": 7
+  },
+  "AutomationTestToolset": {
+   "pass": 9,
+   "fail": 0
+  },
+  "ConversationToolset": {
+   "pass": 8,
+   "fail": 0
+  }
+ }
+}
